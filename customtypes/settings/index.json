@@ -91,6 +91,30 @@
           "placeholder": "",
           "select": null
         }
+      },
+      "tools_list": {
+        "type": "Group",
+        "config": {
+          "label": "Tools List",
+          "repeat": true,
+          "fields": {
+            "tool_link": {
+              "type": "Link",
+              "config": {
+                "label": "Tool Link",
+                "placeholder": "",
+                "select": null
+              }
+            },
+            "tool_label": {
+              "type": "Text",
+              "config": {
+                "label": "Tool Label",
+                "placeholder": ""
+              }
+            }
+          }
+        }
       }
     },
     "SEO and Meta Data": {

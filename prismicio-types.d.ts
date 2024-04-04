@@ -356,6 +356,31 @@ export interface SettingsDocumentDataNavItemItem {
 }
 
 /**
+ * Item in *Settings → Tools List*
+ */
+export interface SettingsDocumentDataToolsListItem {
+  /**
+   * Tool Link field in *Settings → Tools List*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.tools_list[].tool_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tool_link: prismic.LinkField;
+
+  /**
+   * Tool Label field in *Settings → Tools List*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.tools_list[].tool_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tool_label: prismic.KeyTextField;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -456,7 +481,20 @@ interface SettingsDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  twitterx: prismic.LinkField /**
+  twitterx: prismic.LinkField;
+
+  /**
+   * Tools List field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.tools_list[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tools_list: prismic.GroupField<
+    Simplify<SettingsDocumentDataToolsListItem>
+  > /**
    * Meta Title field in *Settings*
    *
    * - **Field Type**: Text
@@ -1020,6 +1058,7 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavItemItem,
+      SettingsDocumentDataToolsListItem,
       AllDocumentTypes,
       BiographySlice,
       BiographySliceDefaultPrimary,

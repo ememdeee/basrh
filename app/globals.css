@@ -10,3 +10,20 @@
     hsla(222, 0%, 0%, 0) 100%
     );
 }
+
+.dropdown ul {
+    margin-top: -115px; /* Initially hidden */
+    transition: margin-top 300ms ease; /* Smooth transition */
+}
+
+.showDropdown ul {
+    margin-top: 0; /* Show dropdown */
+}
+
+/* .hoverEffect{
+    transition: transform 300ms ease-in-out;
+}
+
+.hoverEffect:hover{
+    background-color: red;
+} */

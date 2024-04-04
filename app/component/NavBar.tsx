@@ -8,6 +8,7 @@ import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
 import Button from "./Button";
 import { usePathname } from "next/navigation";
+import "@/app/globals.css";
 
 export default function NavBar({
   settings,
@@ -17,9 +18,10 @@ export default function NavBar({
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+
   return (
     <nav aria-label="Main navigation">
-      <ul className="flex flex-col justify-between rounded-b-lg bg-slate-50 px-4 py-2 md:m-4 md:flex-row md:items-center md:rounded-xl">
+      <ul className="flex flex-col justify-between rounded-b-lg bg-slate-50 px-4 py-2 md:m-4 md:mt-0 md:flex-row md:items-center md:rounded-xl">
         <div className="flex items-center justify-between">
           <NameLogo name={settings.data.name} />
           <button
@@ -47,6 +49,7 @@ export default function NavBar({
           </button>
           {settings.data.nav_item.map(({ link, label }, index) => (
             <React.Fragment key={label}>
+              {index != 2 && (
               <li className="first:mt-8">
                 <PrismicNextLink
                   className={clsx(
@@ -71,16 +74,42 @@ export default function NavBar({
                   <span className="relative">{label}</span>
                 </PrismicNextLink>
               </li>
-              {index < settings.data.nav_item.length - 1 && (
-                <span
-                  className="hidden text-4xl font-thin leading-[0] text-slate-400 md:inline"
-                  aria-hidden="true"
-                >
-                  /
-                </span>
+              )}
+              {index == 2 && (
+                <div className="flex flex-col gap-4">
+                  {settings.data.tools_list.map(({ tool_link, tool_label }, index) => (
+                    <React.Fragment key={tool_label}>
+                      <li className="">
+                        <PrismicNextLink
+                          className={clsx(
+                            "group relative block overflow-hidden rounded px-3 text-3xl font-bold text-slate-900 ",
+                          )}
+                          field={tool_link}
+                          onClick={() => setOpen(false)}
+                          aria-current={
+                            pathname.includes(asLink(tool_link) as string)
+                              ? "page"
+                              : undefined
+                          }
+                        >
+                          <span
+                            className={clsx(
+                              "absolute inset-0 z-0 h-full translate-y-12 rounded bg-yellow-300 transition-transform duration-300 ease-in-out group-hover:translate-y-0",
+                              pathname.includes(asLink(tool_link) as string)
+                                ? "translate-y-6"
+                                : "translate-y-18",
+                            )}
+                          />
+                          <span className="relative">{tool_label}</span>
+                        </PrismicNextLink>
+                      </li>
+                    </React.Fragment>
+                  ))}
+                </div>
               )}
             </React.Fragment>
           ))}
+          
           <li>
             <Button
               linkField={settings.data.cta_link}
@@ -113,12 +142,14 @@ function DesktopMenu({
 }: {
   settings: Content.SettingsDocument;
   pathname: string;
-}) {
+}){
+  const [isHovering, setisHovering] = useState(-1)
+
   return (
     <div className="relative z-50 hidden flex-row items-center gap-1 bg-transparent py-0 md:flex">
       {settings.data.nav_item.map(({ link, label }, index) => (
         <React.Fragment key={label}>
-          <li>
+          <li className="relative" onMouseEnter={()=> setisHovering(index)} onMouseLeave={() => setisHovering(-1)}>
             <PrismicNextLink
               className={clsx(
                 "group relative block overflow-hidden rounded px-3 py-1 text-base font-bold text-slate-900",
@@ -138,6 +169,49 @@ function DesktopMenu({
               />
               <span className="relative">{label}</span>
             </PrismicNextLink>
+            {index == 2 && (
+              <div className={clsx("absolute top-3 pt-[47px] left-1/2 transform -translate-x-1/2 whitespace-nowrap z-[-1] dropdown",
+              isHovering === 2 ? "showDropdown" : "hideDropdown")}>
+                  <div className="whitespace-nowrap rounded overflow-hidden"
+                  >
+                    <ul className="py-5 px-5 bg-slate-50 rounded">
+                    {settings.data.tools_list.map(({ tool_link, tool_label }, index) => (
+                      <React.Fragment key={tool_label}>
+                        <li>
+                          <PrismicNextLink
+                            className={clsx(
+                              "group relative block overflow-hidden rounded px-3 py-1 text-base font-bold text-slate-900 text-center",
+                              )}
+                              field={tool_link}
+                              aria-current={
+                                pathname.includes(asLink(tool_link) as string) ? "page" : undefined
+                              }
+                              >
+                            <span
+                              className={clsx(
+                                "absolute inset-0 z-0 h-full rounded bg-yellow-300 transition-transform  duration-300 ease-in-out group-hover:translate-y-0",
+                                pathname.includes(asLink(tool_link) as string)
+                                ? "translate-y-6"
+                                : "translate-y-8",
+                                )}
+                                />
+                            <span className="relative">{tool_label}</span>
+                          </PrismicNextLink>
+                        </li>
+                        {index < settings.data.nav_item.length - 3 && (
+                          <span
+                          className="text-center hidden text-4xl font-thin leading-[0] text-slate-400 pt-[5px] pb-[6px] md:block"
+                          aria-hidden="true"
+                          >
+                            -
+                          </span>
+                        )}
+                      </React.Fragment>
+                    ))}
+                    </ul>
+                  </div>
+              </div>
+            )}
           </li>
           {index < settings.data.nav_item.length - 1 && (
             <span
@@ -154,7 +228,7 @@ function DesktopMenu({
           linkField={settings.data.cta_link}
           label={settings.data.cta_label}
           className="ml-3"
-        />
+          />
       </li>
     </div>
   );
