@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MdArrowOutward } from "react-icons/md";
 import { Content } from "@prismicio/client";
+import "@/app/globals.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,7 +24,7 @@ export default function ContentList({
   viewMoreText = "Read More",
 }: ContentListProps) {
   const component = useRef(null);
-  const itemsRef = useRef<Array<HTMLLIElement | null>>([]);
+  // const itemsRef = useRef<Array<HTMLLIElement | null>>([]);
 
   const revealRef = useRef(null);
   const [currentItem, setCurrentItem] = useState<null | number>(null);
@@ -32,35 +33,35 @@ export default function ContentList({
 
   const urlPrefix = contentType === "Blog" ? "/blog" : "/projects";
 
-  useEffect(() => {
-    // Animate list-items in with a stagger
-    let ctx = gsap.context(() => {
-      itemsRef.current.forEach((item, index) => {
-        gsap.fromTo(
-          item,
-          {
-            opacity: 0,
-            y: 20,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1.3,
-            ease: "elastic.out(1,0.3)",
-            stagger: 0.2,
-            scrollTrigger: {
-              trigger: item,
-              start: "top bottom-=100px",
-              end: "bottom center",
-              toggleActions: "play none none none",
-            },
-          },
-        );
-      });
+  // useEffect(() => {
+  //   // Animate list-items in with a stagger
+  //   let ctx = gsap.context(() => {
+  //     itemsRef.current.forEach((item, index) => {
+  //       gsap.fromTo(
+  //         item,
+  //         {
+  //           opacity: 0,
+  //           y: 20,
+  //         },
+  //         {
+  //           opacity: 1,
+  //           y: 0,
+  //           duration: 1.3,
+  //           ease: "elastic.out(1,0.3)",
+  //           stagger: 0.2,
+  //           scrollTrigger: {
+  //             trigger: item,
+  //             start: "top bottom-=100px",
+  //             end: "bottom center",
+  //             toggleActions: "play none none none",
+  //           },
+  //         },
+  //       );
+  //     });
 
-      return () => ctx.revert(); // cleanup!
-    }, component);
-  }, []);
+  //     return () => ctx.revert(); // cleanup!
+  //   }, component);
+  // }, []);
 
   useEffect(() => {
     // Mouse move event listener
@@ -136,15 +137,15 @@ export default function ContentList({
     <>
       <ul
         ref={component}
-        className="grid border-b border-b-slate-100"
+        className="grid border-b border-b-slate-100 fade-in"
         onMouseLeave={onMouseLeave}
       >
         {items.map((post, index) => (
           <li
             key={index}
-            ref={(el) => (itemsRef.current[index] = el)}
+            // ref={(el) => (itemsRef.current[index] = el)}
             onMouseEnter={() => onMouseEnter(index)}
-            className="list-item opacity-0"
+            className="list-item opacity-0f"
           >
             <a
               href={`${urlPrefix}/${post.uid}`}

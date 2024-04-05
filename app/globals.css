@@ -27,3 +27,13 @@
 .hoverEffect:hover{
     background-color: red;
 } */
+
+/* Custom CSS for transition effect */
+.fade-in {
+    animation: fadeIn ease 1s;
+}
+
+@keyframes fadeIn {
+    0% { opacity:0; }
+    100% { opacity:1; }
+}
