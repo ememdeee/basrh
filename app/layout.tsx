@@ -1,4 +1,4 @@
-// v 1.0.1
+// v 1.0.2
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
