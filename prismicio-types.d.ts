@@ -168,6 +168,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | IdGrabberFormSlice
   | ExperienceSlice
   | ContentIndexSlice
   | TechListSlice
@@ -874,6 +875,61 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *IdGrabberForm → Primary*
+ */
+export interface IdGrabberFormSliceDefaultPrimary {
+  /**
+   * Heading field in *IdGrabberForm → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: id_grabber_form.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Description field in *IdGrabberForm → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: id_grabber_form.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for IdGrabberForm Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type IdGrabberFormSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<IdGrabberFormSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *IdGrabberForm*
+ */
+type IdGrabberFormSliceVariation = IdGrabberFormSliceDefault;
+
+/**
+ * IdGrabberForm Shared Slice
+ *
+ * - **API ID**: `id_grabber_form`
+ * - **Description**: IdGrabberForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type IdGrabberFormSlice = prismic.SharedSlice<
+  "id_grabber_form",
+  IdGrabberFormSliceVariation
+>;
+
+/**
  * Primary content in *ImageBlock → Primary*
  */
 export interface ImageBlockSliceDefaultPrimary {
@@ -1077,6 +1133,10 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      IdGrabberFormSlice,
+      IdGrabberFormSliceDefaultPrimary,
+      IdGrabberFormSliceVariation,
+      IdGrabberFormSliceDefault,
       ImageBlockSlice,
       ImageBlockSliceDefaultPrimary,
       ImageBlockSliceVariation,

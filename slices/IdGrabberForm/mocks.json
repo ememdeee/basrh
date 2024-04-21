@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "major",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Eiusmod enim dolore esse ut sint adipisicing nisi do duis nulla qui eiusmod. Est ex quis excepteur quis quis qui incididunt non adipisicing mollit id laborum. Aliquip laboris amet dolor duis elit aliquip aliquip ullamco aute."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

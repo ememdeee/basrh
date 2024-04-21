@@ -20,11 +20,11 @@
     margin-top: 0; /* Show dropdown */
 }
 
-/* .hoverEffect{
-    transition: transform 300ms ease-in-out;
+.placeholder-slate-100::placeholder {
+    color: #CBD5E0; /* This is the color for the placeholder text */
 }
 
-.hoverEffect:hover{
+.placeholder-slate-100ffect:hover{
     background-color: red;
 } */
 
@@ -36,4 +36,10 @@
 @keyframes fadeIn {
     0% { opacity:0; }
     100% { opacity:1; }
+}
+
+.miniShapes{
+    max-height: 350px;
+    height: 100%;
+    min-height: 324px;
 }

@@ -17,6 +17,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "id_grabber_form": {
+              "type": "SharedSlice"
+            },
             "experience": {
               "type": "SharedSlice"
             },
