@@ -3,7 +3,6 @@ import IdGrabberFrom from "@/app/component/IdGrabberFrom";
 import Heading from "@/app/component/Heading";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import ShapesMini from "./ShapesMini";
 
 /**
  * Props for `IdGrabberForm`.
@@ -25,10 +24,7 @@ const IdGrabberForm = ({ slice }: IdGrabberFormProps): JSX.Element => {
       <div className="prose prose-xl prose-invert mb-10">
           <PrismicRichText field={slice.primary.description} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center">
-        <IdGrabberFrom/>
-        <ShapesMini/>
-      </div>
+      <IdGrabberFrom/>
     </Bounded>
     
   );
