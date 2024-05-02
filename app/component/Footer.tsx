@@ -5,7 +5,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import Link from "next/link";
 import Bounded from "@/app/component/Bounded";
 import { isFilled } from "@prismicio/client";
-import { FaGithub, FaXTwitter, FaLinkedin, FaYoutube  } from "react-icons/fa6";
+import { FaGithub, FaXTwitter, FaLinkedin, FaYoutube, FaInstagram } from "react-icons/fa6";
 
 export default async function Footer() {
   const client = createClient();
@@ -91,6 +91,15 @@ export default async function Footer() {
               aria-label={settings.data.name + " on LinkedIn"}
             >
               <FaLinkedin />
+            </PrismicNextLink>
+          )}
+          {isFilled.link(settings.data.instagram) && (
+            <PrismicNextLink
+              field={settings.data.instagram}
+              className="p-2 text-2xl text-slate-300 transition-all duration-150 hover:scale-125 hover:text-yellow-400"
+              aria-label={settings.data.name + " on Instagram"}
+            >
+              <FaInstagram />
             </PrismicNextLink>
           )}
         </div>
