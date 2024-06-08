@@ -59,7 +59,7 @@ export default function IdGrabberFrom() {
         console.log('Response from server:', data);
         
         // Split the links and output into arrays
-        const linksArray = data.links.split(' ');
+        const linksArray = data.links;
         const outputArray = data.output;
     
         // Combine links and output into an array of objects
