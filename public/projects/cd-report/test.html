@@ -1,0 +1,299 @@
+        <!-- Sales Listing History Section -->
+        <section section-name="Sales Listing History" class="p-6">
+            <div class="max-w-6xl mx-auto space-y-4" id="salesListingContainer">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+
+            <!-- Fullscreen Modal -->
+            <div id="fullscreenModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+                <img id="fullscreenImage" src="/placeholder.svg" alt="Fullscreen view" class="max-w-full max-h-full object-contain">
+            </div>
+
+            <script>
+                // Example sales listing data structure
+                const salesListingData = {
+                    records: [
+                        {
+                            images: [
+                                "assets/car.png",
+                                "assets/car2.png",
+                                "assets/car.png",
+                                "assets/car2.png",
+                                "assets/car.png",
+                                "assets/car2.png",
+                                "assets/car.png",
+                                "assets/car2.png"
+                            ],
+                            saleStatus: {
+                                listingPrice: "$66,995",
+                                sellerType: "Dealership",
+                                dealerName: "Jim Schmidt Ford Incorporated"
+                            },
+                            certification: {
+                                certified: true,
+                                type: "Certified Pre - Owned"
+                            },
+                            saleDetails: {
+                                status: "Active",
+                                date: "2023-06-15",
+                                document: "-",
+                                country: "United States",
+                                state: "OH",
+                                city: "Hicksville"
+                            },
+                            technicalSpecifications: {
+                                odometerKm: "67,550",
+                                odometerMi: "41,974",
+                                primaryDamage: "-",
+                                secondaryDamage: "-",
+                                condition: "Used",
+                                exteriorColor: "Arctic Black Metallic",
+                                interiorColor: "Black Onyx",
+                                exteriorCondition: "-",
+                                interiorCondition: "-"
+                            },
+                            listingDetails: {
+                                listingPrice: "$66,995",
+                                retailValue: "-",
+                                repairCost: "-"
+                            }
+                        },
+                        {
+                            images: [
+                                "assets/car2.png",
+                                "assets/car.png",
+                                "assets/car2.png",
+                                "assets/car.png",
+                                "assets/car2.png",
+                                "assets/car.png",
+                                "assets/car2.png",
+                                "assets/car.png"
+                            ],
+                            saleStatus: {
+                                listingPrice: "$64,500",
+                                sellerType: "Private Seller",
+                                dealerName: "-"
+                            },
+                            certification: {
+                                certified: false,
+                                type: "-"
+                            },
+                            saleDetails: {
+                                status: "Sold",
+                                date: "2023-05-20",
+                                document: "Bill of Sale",
+                                country: "United States",
+                                state: "CA",
+                                city: "Los Angeles"
+                            },
+                            technicalSpecifications: {
+                                odometerKm: "72,420",
+                                odometerMi: "45,000",
+                                primaryDamage: "Minor Scratch",
+                                secondaryDamage: "-",
+                                condition: "Used",
+                                exteriorColor: "Pearl White",
+                                interiorColor: "Tan Leather",
+                                exteriorCondition: "Excellent",
+                                interiorCondition: "Good"
+                            },
+                            listingDetails: {
+                                listingPrice: "$64,500",
+                                retailValue: "$68,000",
+                                repairCost: "$500"
+                            }
+                        }
+                    ]
+                };
+
+                function renderSalesListing(data) {
+                    const container = document.getElementById('salesListingContainer');
+                    
+                    if (!data || !data.records || data.records.length === 0) {
+                        container.innerHTML = `
+                            <h2 class="text-2xl font-bold">Sales Listing History</h2>
+                            <p class="text-gray-700">
+                                We have found 0 sales listings record for this vehicle
+                            </p>
+                            <p class="text-gray-500 italic mt-4">No records found</p>
+                        `;
+                        return;
+                    }
+
+                    const totalRecords = data.records.length;
+
+                    container.innerHTML = `
+                        <div class="flex flex-col md:flex-row justify-center md:justify-between items-center mb-4">
+                            <h2 class="text-2xl font-bold">Sales Listing History</h2>
+                            <span class="text-gray-600">${totalRecords} sales listing record(s) found</span>
+                        </div>
+
+                        <p class="text-gray-700">
+                            We have found ${totalRecords} sales listings record for this vehicle
+                        </p>
+
+                        ${data.records.map((record, index) => `
+                            <div class="mt-8 pb-8 ${index < totalRecords - 1 ? 'border-b border-gray-300' : ''}">
+                                <h3 class="text-xl font-semibold mb-4">Record #${index + 1}</h3>
+                                <div class="grid md:grid-cols-2 gap-3">
+                                    <div class="space-y-4">
+                                        <!-- Main Image -->
+                                        <div class="relative w-full rounded-lg overflow-hidden" style="padding-top: 56.25%;">
+                                            <img 
+                                                src="${record.images[0]}" 
+                                                alt="Vehicle" 
+                                                class="absolute top-0 left-0 w-full h-full object-cover main-image transition-opacity duration-300" 
+                                                id="main-image-${index}"
+                                            >
+                                            <div 
+                                                class="absolute bottom-3 right-3 p-2 bg-black bg-opacity-50 rounded-full cursor-pointer transition-opacity duration-200 fullscreen-icon"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Thumbnails Grid -->
+                                        <div class="flex overflow-scroll md:grid grid-cols-4 gap-2 thumbnails" id="thumbnails-${index}">
+                                            ${record.images.map((img, imgIndex) => `
+                                                <img 
+                                                    src="${img}" 
+                                                    alt="" 
+                                                    class="w-full h-20 object-cover rounded cursor-pointer thumbnail transition-all duration-200 hover:opacity-80 ${imgIndex === 0 ? 'ring-2 ring-blue-500' : ''}" 
+                                                    data-index="${imgIndex}"
+                                                >
+                                            `).join('')}
+                                        </div>
+                                    </div>
+
+                                    <!-- Info Panels -->
+                                    <div class="space-y-3">
+                                        <!-- Sale Status -->
+                                        <div class="border border-black rounded p-4">
+                                            <h3 class="mb-3 text-center border-b border-black pb-2">Sale Status: <span class="font-semibold">${record.saleDetails.status}</span></h3>
+                                            <div class="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-2 pt-3">
+                                                <div>
+                                                    <div class="text-gray-600 text-sm">Listing Price</div>
+                                                    <div>${record.saleStatus.listingPrice}</div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-gray-600 text-sm">Seller Type</div>
+                                                    <div>${record.saleStatus.sellerType}</div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-gray-600 text-sm">Dealer Name</div>
+                                                    <div>${record.saleStatus.dealerName}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        ${record.certification.certified ? `
+                                            <div class="flex items-center gap-2 text-green-600 justify-center">
+                                                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                                <span>${record.certification.type}</span>
+                                            </div>
+                                        ` : ''}
+
+                                        <!-- Sale Details -->
+                                        <div class="grid md:grid-cols-2 gap-2">
+                                            <div class="border border-black rounded p-4">
+                                                <h3 class="font-semibold mb-3 border-b border-black pb-3">Sale details</h3>
+                                                <div class="space-y-2 text-sm pt-1">
+                                                    ${Object.entries(record.saleDetails).map(([key, value]) => `
+                                                        <div class="grid grid-cols-2">
+                                                            <span class="text-gray-600">${key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                                            <span>${value}</span>
+                                                        </div>
+                                                    `).join('')}
+                                                </div>
+                                            </div>
+
+                                            <div class="border border-black rounded p-4">
+                                                <h3 class="font-semibold mb-3 border-b border-black pb-3">Technical Specifications</h3>
+                                                <div class="space-y-2 text-sm pt-1">
+                                                    ${Object.entries(record.technicalSpecifications).map(([key, value]) => `
+                                                        <div class="grid grid-cols-2">
+                                                            <span class="text-gray-600">${key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                                            <span>${value}</span>
+                                                        </div>
+                                                    `).join('')}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Listing Details -->
+                                        <div class="border border-black rounded p-4">
+                                            <h3 class="font-semibold mb-3 border-b border-black pb-3">Listing details</h3>
+                                            <div class="space-y-2 text-sm pt-1">
+                                                ${Object.entries(record.listingDetails).map(([key, value]) => `
+                                                    <div class="grid grid-cols-2">
+                                                        <span class="text-gray-600">${key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                                        <span>${value}</span>
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    `;
+
+                    // Initialize Lucide icons after content is inserted
+                    lucide.createIcons();
+
+                    // Add click event listeners to thumbnails
+                    data.records.forEach((record, recordIndex) => {
+                        const thumbnails = document.querySelectorAll(`#salesListingContainer #thumbnails-${recordIndex} .thumbnail`);
+                        const mainImage = document.querySelector(`#salesListingContainer #main-image-${recordIndex}`);
+
+                        thumbnails.forEach(thumbnail => {
+                            thumbnail.addEventListener('click', function() {
+                                const imageIndex = this.getAttribute('data-index');
+                                
+                                // Remove active state from all thumbnails
+                                thumbnails.forEach(thumb => {
+                                    thumb.classList.remove('ring-2', 'ring-blue-500');
+                                });
+                                
+                                // Add active state to clicked thumbnail
+                                this.classList.add('ring-2', 'ring-blue-500');
+                                
+                                // Update main image with fade effect
+                                mainImage.style.opacity = 0;
+                                mainImage.src = record.images[imageIndex];
+                                mainImage.onload = function() {
+                                    mainImage.style.opacity = 1;
+                                }
+                            });
+                        });
+                    });
+
+                    // Add click event listeners to fullscreen icons
+                    const fullscreenModal = document.getElementById('fullscreenModal');
+                    const fullscreenImage = document.getElementById('fullscreenImage');
+                    
+                    const fullscreenIcons = document.querySelectorAll('.fullscreen-icon');
+                    fullscreenIcons.forEach(icon => {
+                        icon.addEventListener('click', function(e) {
+                            console.log('clicked');
+                            // get the nighboard img src
+                            const imageSrc = this.previousElementSibling.src;
+                            console.log(imageSrc);
+                            // e.stopPropagation();
+                            // const imageSrc = this.getAttribute('data-image');
+                            // fullscreenImage.src = imageSrc;
+                            // fullscreenModal.classList.remove('hidden');
+                        });
+                    });
+
+                    fullscreenModal.addEventListener('click', function() {
+                        this.classList.add('hidden');
+                    });
+                }
+
+                // Initial render
+                renderSalesListing(salesListingData);
+            </script>
+        </section>

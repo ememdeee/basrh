@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle History Europe</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <link href="input.css" rel="stylesheet"> -->
+    <link href="vhreu-homepage.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- navbar -->
+  <style>
+    #main-nav {
+      background-color: #1a202c;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    #main-nav .nav-container{
+      max-width: 72rem;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    #main-nav .logo {
+      display: flex;
+      align-items: center;
+    }
+  
+    #main-nav .logo img {
+      height: 30px;
+    }
+  
+    #main-nav .nav-links {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 2rem;
+      align-items: center;
+      z-index: 10;
+    }
+  
+    #main-nav .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+  
+    #main-nav .nav-links li a:hover {
+      color: #1a202c;
+      background-color: #e2e8f0;
+    }
+  
+    #main-nav .nav-links .login-btn {
+      background-color: white;
+      color: #1a202c;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+  
+    #main-nav .nav-links .login-btn:hover {
+      background-color: #e2e8f0;
+      color: #1a202c;
+    }
+  
+    .menu-toggle {
+      display: none;
+      z-index: 11;
+    }
+  
+    .mobile-header {
+      display: none;
+    }
+  
+    @media screen and (max-width: 820px) {
+      #main-nav {
+        padding: 1rem;
+      }
+  
+      #main-nav .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        flex-direction: column;
+        background-color: #1a202c;
+        width: 80%;
+        height: 100%;
+        text-align: left;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        justify-content: flex-start;
+        gap: 1rem;
+      }
+  
+      #main-nav .nav-links.active {
+        right: 0;
+      }
+  
+      #main-nav .nav-links li {
+        width: 100%;
+      }
+  
+      #main-nav .nav-links li a {
+        display: block;
+        padding: 1rem;
+      }
+  
+      #main-nav .nav-links .login-btn {
+        width: 100%;
+        display: block;
+        text-align: center;
+        margin-top: 1rem;
+      }
+  
+      #main-nav .nav-links .login-btn:hover {
+        background-color: #e2e8f0;
+        color: #1a202c;
+      }
+  
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+      }
+  
+      .menu-toggle .bar {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        display: block;
+      }
+  
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+  
+      .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+  
+      .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+  
+      .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+  
+      .mobile-logo p {
+        color: #fff;
+        font-weight: 600;
+        font-size: 18px;
+      }
+      .mobile-logo img {
+        height: 30px;
+      }
+  
+      .close-menu {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+  
+      #main-nav .nav-links {
+        padding-top: 1rem;
+      }
+    }
+  </style>
+  
+  <nav id="main-nav" class="hk-font">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="/">
+          <img src="assets/vhreu-logo.svg" alt="Vehicle History Logo">
+        </a>
+      </div>
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-links">
+        <div class="mobile-header">
+          <div class="mobile-logo">
+            <p>Europe VIN Decoding</p>
+          </div>
+          <!-- <button class="close-menu" id="close-menu">&times;</button> -->
+        </div>
+        <li><a href="/">Home</a></li>
+        <li><a href="https://vehiclehistory.eu/pricing" target="_blank">Pricing</a></li>
+        <li><a href="https://vehiclehistory.eu/sample-report" target="_blank">Sample Reports</a></li>
+        <li><a href="https://vehiclehistory.eu/contact-us" target="_blank">Contact Us</a></li>
+        <li><a href="https://vehiclehistory.eu/members/login" class="login-btn" target="_blank">Login/Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const closeMenu = document.getElementById('close-menu');
+      const navLinks = document.querySelector('.nav-links');
+  
+      function toggleMenu() {
+        mobileMenu.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      }
+  
+      mobileMenu.addEventListener('click', function(event) {
+        event.stopPropagation();
+        toggleMenu();
+      });
+  
+      closeMenu.addEventListener('click', function(event) {
+        event.stopPropagation();
+        toggleMenu();
+      });
+  
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        const isClickInsideMenu = navLinks.contains(event.target);
+        const isClickOnToggle = mobileMenu.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnToggle && navLinks.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
+  
+      // Close menu when clicking on a link
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          toggleMenu();
+        });
+      });
+    });
+  </script>
+  <!-- end navbar -->
+
+  <!-- content -->
+  <script>
+    function scrollToForm() {
+        const targetElement = document.getElementById('vinForm');
+        const offset = window.innerWidth <= 768 ? 50 : 100; // Adjust based on screen size
+        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    };
+  </script>
+  <section class="hk-font bg-[#1A2634] px-4 py-12 md:py-16">
+    <div class="max-w-7xl mx-auto">
+      <!-- Trustpilot Badge -->
+      <!-- <div class="inline-flex items-center bg-white rounded-full px-4 py-1 mb-8">
+        <span class="text-sm font-medium">4.8/5 based on 10,000+&nbsp;reviews</span>
+        <img src="https://vehiclehistory.eu/assets/Trustpilot.svg" class="w-20 h-5 ml-2"></img>
+      </div> -->
+  
+      <!-- Main Content Grid -->
+      <div class="grid lg:grid-cols-2 gap-8 items-start">
+        <!-- Left Column -->
+        <div class="space-y-8">
+          <div class="">
+            <h1 class="text-4xl md:text-5xl font-bold text-white">European VIN Check</h1>
+            <h2 class="text-3xl md:text-5xl font-bold text-yellow-400 mt-1">EU VIN Lookup</h2>
+            <p class="text-gray-300 text-lg max-w-xl mt-4">Get free VIN decoding and affordable European VIN check for reliable vehicle history - verify title and condition, accidents, auction records, actual mileage and more.</p>
+          </div>
+  
+          <!-- Form Section -->
+          <div id="vinForm" class="space-y-4">
+            <input 
+              type="text" 
+              placeholder="Enter your VIN number" 
+              class="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            >
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              class="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            >
+            <input 
+              type="tel" 
+              placeholder="Enter your phone number" 
+              class="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            >
+            <button class="w-full bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-semibold py-3 px-6 rounded-lg transition-colors">
+              Check Vehicle History
+            </button>
+          </div>
+          <?php
+          // Output the shortcode directly in a PHP template
+          echo do_shortcode('[site_form type="vhr" color="#FFCB00" vintxt="Search VIN" lptxt="Search License Plate" ymmtxt="Search YMM"]');
+          ?>
+  
+          <!-- Additional Links -->
+          <div class="flex flex-wrap items-center gap-4 justify-between">
+            <a href="https://vehiclehistory.eu/sample-report" target="_blank" class="inline-flex items-center px-4 text-white">
+              <img src="https://vehiclehistory.eu/assets/arrow-right.svg" class="w-5 h-5 mr-2" alt="Check Sample" /> <!-- Placeholder for icon -->
+              View Sample Report
+            </a>
+            <a href="#">
+              <span class="inline-flex items-center text-[#FDE4B0] px-3 py-1 rounded-full bg-[#203E5F]">
+                <img src="https://vehiclehistory.eu/assets/global-icon.svg" class="w-5 h-5 mr-2" alt="World Icon" /> <!-- Placeholder for globe icon -->
+                Pan-European Coverage
+              </span>
+            </a>
+          </div>
+  
+          <!-- Feature Badges -->
+          <div class="flex flex-wrap gap-4 justify-between">
+            <div class="inline-flex items-center text-yellow-400">
+              <img src="https://vehiclehistory.eu/assets/yellow-check.svg" class="w-5 h-5 mr-2" alt="checklist" /> <!-- Placeholder for checkmark -->
+              Reliable
+            </div>
+            <div class="inline-flex items-center text-yellow-400">
+              <img src="https://vehiclehistory.eu/assets/yellow-check.svg" class="w-5 h-5 mr-2" alt="checklist" /> <!-- Placeholder for checkmark -->
+              Detailed
+            </div>
+            <div class="inline-flex items-center text-yellow-400">
+              <img src="https://vehiclehistory.eu/assets/yellow-check.svg" class="w-5 h-5 mr-2" alt="checklist" /> <!-- Placeholder for checkmark -->
+              Accurate
+            </div>
+            <div class="inline-flex items-center text-yellow-400">
+              <img src="https://vehiclehistory.eu/assets/yellow-check.svg" class="w-5 h-5 mr-2" alt="checklist" /> <!-- Placeholder for checkmark -->
+              Affordable
+            </div>
+          </div>
+        </div>
+  
+        <!-- Right Column - Report Preview -->
+        <img src="https://vehiclehistory.eu/assets/section-1-image.webp" alt="Report Sample" class="w-full h-auto" />
+
+      </div>
+    </div>
+  </section>
+  
+<section class="hk-font bg-white py-12 px-4 md:py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          Save Money and Avoid Costly Mistakes
+        </h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-base md:text-lg">
+          Purchasing a vehicle with hidden problems can lead to expensive repairs and decreased resale value. Our comprehensive vehicle history report can save you thousands of euros by revealing potential issues before you buy.
+        </p>
+      </div>
+  
+      <!-- Main Content -->
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <!-- Left Side - Car Image with Labels -->
+        <div class="relative w-full lg:w-1/2 text-center items-center">
+          <!-- Placeholder for car image -->
+          <img src="https://vehiclehistory.eu/assets/section-2-image.webp" alt="Cars Problem" class="relative w-full h-auto" />
+        </div>
+  
+        <!-- Right Side - Statistics -->
+        <div class="w-full lg:w-1/2 space-y-4">
+          <!-- Statistics Items -->
+          <div class="bg-red-50 border border-red-100 rounded-lg p-4 flex items-center gap-3 transition-all duration-300 ease-in-out hover:bg-red-100 hover:border-red-200 hover:shadow-md">
+            <div class="w-6 h-6 flex-shrink-0 relative">
+              <!-- Placeholder for warning icon -->
+              <img src="https://vehiclehistory.eu/assets/red-alert.svg" alt="Red Alert!" layout="fill" objectFit="contain"></img>
+            </div>
+            <p class="text-red-600 text-sm md:text-base">1 in 3 used cars have a hidden problem</p>
+          </div>
+
+          <div class="bg-red-50 border border-red-100 rounded-lg p-4 flex items-center gap-3 transition-all duration-300 ease-in-out hover:bg-red-100 hover:border-red-200 hover:shadow-md">
+            <div class="w-6 h-6 flex-shrink-0 relative">
+              <!-- Placeholder for warning icon -->
+              <img src="https://vehiclehistory.eu/assets/red-alert.svg" alt="Red Alert!" layout="fill" objectFit="contain"></img>
+            </div>
+            <p class="text-red-600 text-sm md:text-base">Up to 30% of used cars in Europe have tampered odometers</p>
+          </div>
+
+          <div class="bg-red-50 border border-red-100 rounded-lg p-4 flex items-center gap-3 transition-all duration-300 ease-in-out hover:bg-red-100 hover:border-red-200 hover:shadow-md">
+            <div class="w-6 h-6 flex-shrink-0 relative">
+              <!-- Placeholder for warning icon -->
+              <img src="https://vehiclehistory.eu/assets/red-alert.svg" alt="Red Alert!" layout="fill" objectFit="contain"></img>
+            </div>
+            <p class="text-red-600 text-sm md:text-base">Around 20% of used cars in Germany have undisclosed damages</p>
+          </div>
+
+          <div class="bg-red-50 border border-red-100 rounded-lg p-4 flex items-center gap-3 transition-all duration-300 ease-in-out hover:bg-red-100 hover:border-red-200 hover:shadow-md">
+            <div class="w-6 h-6 flex-shrink-0 relative">
+              <!-- Placeholder for warning icon -->
+              <img src="https://vehiclehistory.eu/assets/red-alert.svg" alt="Red Alert!" layout="fill" objectFit="contain"></img>
+            </div>
+            <p class="text-red-600 text-sm md:text-base">Approximately 10% of vehicles on European roads have unresolved recall issues</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8 items-center">
+        <a href="https://vehiclehistory.eu/sample-report" target="_blank">
+          <button class="bg-gray-800 text-white px-6 py-2 rounded-md hover:bg-gray-700 transition-colors">
+            View Sample
+          </button>
+        </a>
+        <button class="bg-yellow-500 text-gray-900 px-6 py-2 rounded-md hover:bg-yellow-400 transition-colors" onclick="scrollToForm()">
+          Check Vehicle History!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-font bg-white py-8 px-4 md:py-12 lg:py-16">
+    <div class="max-w-6xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          What is a VIN Number?
+        </h2>
+      </div>
+  
+      <!-- Content wrapper -->
+      <div class="flex flex-col md:flex-row md:items-start md:space-x-8">
+        <!-- Left column: Text content -->
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <p class="text-gray-600 text-base md:text-lg mb-4">
+            A Vehicle Identification Number (VIN) is a unique 17-character code assigned to every car. It's like a car's fingerprint!
+          </p>
+          <p class="text-gray-600 text-base md:text-lg">
+            The VIN number contains crucial information, including the vehicle's manufacturer, model, year, engine type, and country of origin. It also tracks the car's history, such as accidents, repairs, and ownership. A VIN is usually found on the car's dashboard, door frame, or engine block.
+          </p>
+        </div>
+  
+        <!-- Right column: VIN Location Guide -->
+        <div class="md:w-1/2">
+          <img src="https://vehiclehistory.eu/assets/section-3-image.webp" alt="Car Detail" class="w-full h-auto max-w-lg mx-auto" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-font bg-gray-50 px-4 py-12 md:py-16">
+    <div class="max-w-6xl mx-auto ">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Why You Should Run a European VIN Number Check?</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+          With over 52% of used vehicles in Europe with hidden history, a European VIN number lookup will help you avoid financial booby traps and cars with bad histories, ensuring you buy with confidence and drive with peace of mind. Here's why running a VIN number check is essential before closing your next car deal:
+        </p>
+      </div>
+    
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold">Reveal Hidden History</h3>
+          <p class="text-gray-600">
+            1 in 3 used cars has a hidden problem. A European VIN check provides detailed information about a car's past, including accidents, repairs, or ownership changes, ensuring you're not blindsided by undisclosed issues.
+          </p>
+        </div>
+    
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold">Avoid Accidented Cars</h3>
+          <p class="text-gray-600">
+            A car's accident history can reveal whether a car has undergone major repairs that might compromise its safety or performance. A VIN check helps you avoid vehicles with serious damage.
+          </p>
+        </div>
+    
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold">Detect Odometer Fraud</h3>
+          <p class="text-gray-600">
+            Odometer tampering is common with up to 30% of European used cars with tampered odometers. A VIN check uncovers inconsistencies in mileage records, protecting you from paying more for a vehicle with manipulated mileage.
+          </p>
+        </div>
+    
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold">Ensure Title Authenticity</h3>
+          <p class="text-gray-600">
+            A VIN number check verifies that the vehicle's title is clean and free from issues like salvage or rebuilt titles, which could affect the car's value and insurability.
+          </p>
+        </div>
+    
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold">Check for Open Recalls</h3>
+          <p class="text-gray-600">
+            About 10% of vehicles on European roads have unresolved recall issues. A VIN check ensures you're aware of any unresolved recalls, enabling you to address safety concerns before purchasing a car.
+          </p>
+        </div>
+    
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold">Avoid Buying Stolen Cars</h3>
+          <p class="text-gray-600">
+            EU police recorded an average of 697,000 vehicle thefts between 2015 to 2017. Checking the VIN against international databases helps confirm the vehicle hasn't been reported as stolen, saving you from legal troubles or losing the car.
+          </p>
+        </div>
+      </div>
+    
+      <div class="text-center">
+        <button class="bg-[#1A2634] text-white px-6 py-2 rounded-md hover:bg-[#0F1A22] transition-colors" onclick="scrollToForm()">
+          Run a VIN check now!
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hk-font bg-[#FFF0D1] py-12 px-4 md:py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto">
+      <!-- Header -->
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-12">
+        How to Run a European VIN Check
+      </h2>
+  
+      <!-- Steps Container -->
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-9">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-14 h-14 bg-navy-800 rounded-lg flex items-center justify-center mb-5">
+            <!-- Placeholder for search icon -->
+            <img src="https://vehiclehistory.eu/assets/enter-vin.svg" class="w-14 h-14" alt="Step 1" />
+          </div>
+          <p class="text-lg text-gray-800 leading-6">
+            Enter the 17-digit VIN into the VIN search form at the top.
+          </p>
+        </div>
+  
+        <!-- Step 2 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-14 h-14 bg-navy-800 rounded-lg flex items-center justify-center mb-5">
+            <!-- Placeholder for document icon -->
+            <img src="https://vehiclehistory.eu/assets/provide-data.svg" class="w-14 h-14" alt="Step 2" />
+          </div>
+          <p class="text-lg text-gray-800 leading-6">
+            Provide your email and phone number so we can deliver your report securely.
+          </p>
+        </div>
+  
+        <!-- Step 3 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-14 h-14 bg-navy-800 rounded-lg flex items-center justify-center mb-5">
+            <!-- Placeholder for sparkle icon -->
+            <img src="https://vehiclehistory.eu/assets/click-check.svg" class="w-14 h-14" alt="Step 3" />
+          </div>
+          <p class="text-lg text-gray-800 leading-6">
+            Click "Check Vehicle History" to start the process.
+          </p>
+        </div>
+  
+        <!-- Step 4 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-14 h-14 bg-navy-800 rounded-lg flex items-center justify-center mb-5">
+            <!-- Placeholder for clipboard icon -->
+            <img src="https://vehiclehistory.eu/assets/review-details.svg" class="w-14 h-14" alt="Step 4" />
+          </div>
+          <p class="text-lg text-gray-800 leading-6">
+            Review the detailed report to understand the car's history, usage, and condition.
+          </p>
+        </div>
+  
+        <!-- Step 5 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="w-14 h-14 bg-navy-800 rounded-lg flex items-center justify-center mb-5">
+            <!-- Placeholder for checkmark icon -->
+            <img src="https://vehiclehistory.eu/assets/make-informed.svg" class="w-14 h-14" alt="Step 5" />
+          </div>
+          <p class="text-lg text-gray-800 leading-6">
+            Make an informed decision before buying or selling the vehicle.
+          </p>
+        </div>
+      </div>
+  
+      <!-- Bottom Text -->
+      <p class="text-center text-base text-gray-700">
+        It's that easy! Whether you're a buyer or a seller, our tool ensures you have all the facts.
+      </p>
+    </div>
+  </section>
+
+  <section class="lato-font max-w-6xl mx-auto px-4 py-12 md:py-16">
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8">
+      Why You Need European VIN Lookup
+    </h2>
+  
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- For Car Buyers Column -->
+      <div class="bg-[#FFF0D1] rounded-lg p-6 text-[#203E5F]">
+        <h3 class="text-2xl font-semibold mb-4">For Car Buyers</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Avoid Scams:</span> Know the real story of the car before purchase.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Check Ownership:</span> Find out how many people owned the car.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Accident Records:</span> Ensure the vehicle wasn't severely damaged.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Mileage Accuracy:</span> Spot tampered odometers, avoid odometer fraud easily.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Service Records:</span> Confirm the car has been well-maintained.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Theft History:</span> Ensure the car isn't flagged as stolen.
+            </div>
+          </li>
+        </ul>
+      </div>
+  
+      <!-- For Dealerships and Resellers Column -->
+      <div class="bg-[#FFF0D1] rounded-lg p-6 text-[#203E5F]">
+        <h3 class="text-2xl font-semibold mb-4">For Dealerships and Resellers</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Build Trust:</span> Show potential buyers the car's complete history.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Highlight Value:</span> Use car title and condition to increase appeal.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Close Sales Faster:</span> Provide detailed reports to eliminate buyer doubts.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Compliance:</span> Ensure vehicles meet EU legal requirements for sale.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Better resale value:</span> Shows servicing, set fair, market-aligned prices
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4 flex-shrink-0 mt-1"/>
+            <div>
+              <span class="font-semibold">Boost reputation:</span> Establish trustworthiness, attracting repeat customers and referrals.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-font bg-[#F0F4F8] py-12 px-4 md:py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          What Can You Learn from Europe Vehicle History Report
+        </h2>
+        <p class="text-gray-600">Follow these simple steps to get your report:</p>
+      </div>
+  
+      <!-- Report Sections -->
+      <div class="space-y-4">
+        <!-- Detailed Vehicle Specification -->
+        <div class="bg-[#203E5F] text-white rounded-lg p-6">
+          <h3 class="text-2xl font-semibold mb-4">Detailed Vehicle Specification</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 text-base">
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>General specification</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Number of doors and seats</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Body type</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Engine type</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Fuel type</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Displacement information</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Gearbox type</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Auction Records -->
+        <div class="bg-[#203E5F] text-white rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4">Auction Records</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-base">
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Sales status and history</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Engine status (Runs and drives, engine starts, and car keys status)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Auction type, date and location, type of seller</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Title and Condition -->
+        <div class="bg-[#203E5F] text-white rounded-lg p-6">
+          <h3 class="text-2xl font-semibold mb-4">Title and Condition</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-base">
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Title brand (clean, salvage, etc)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Title Description</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Damage (Primary and secondary)</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Technical Specs -->
+        <div class="bg-[#203E5F] text-white rounded-lg p-6">
+          <h3 class="text-2xl font-semibold mb-4">Technical Specs</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 text-base">
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Odometer on title</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Average estimated retail value</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Vehicle color</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Transmission</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Estimated repair cost</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Damage ratio</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Estimated retail value</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Theft Records (Stolen Check) -->
+        <div class="bg-[#203E5F] text-white rounded-lg p-6">
+          <h3 class="text-2xl font-semibold mb-4">Theft Records (Stolen Check)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-3 text-base">
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Reported as Stolen</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Stolen Date</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Location</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>License Plate</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <img src="https://vehiclehistory.eu/assets/green-check.svg" alt="Check" class="w-4 h-4"/>
+              <span>Color</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8 items-center">
+        <a href="https://vehiclehistory.eu/sample-report" target="_blank">
+          <button class="bg-gray-800 text-white px-6 py-2 rounded-md hover:bg-gray-700 transition-colors">
+            Check Sample Report
+          </button>
+        </a>
+        <button class="bg-yellow-500 text-gray-900 px-6 py-2 rounded-md hover:bg-yellow-400 transition-colors" onclick="scrollToForm()">
+          Check VIN Now!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-font max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">Our Reports vs. Competitors</h2>
+    <p class="text-center text-gray-600 mb-8 text-lg">Follow these simple steps to get your report:</p>
+  
+    <!-- Responsive Table (for both desktop and mobile) -->
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse text-sm md:text-base">
+        <thead>
+          <tr>
+            <th class="bg-[#1a2433] text-white p-2 md:p-4 text-left">Features</th>
+            <th class="bg-[#1a2433] text-white p-2 md:p-4 text-center">VHR.eu</th>
+            <th class="bg-[#1a2433] text-white p-2 md:p-4 text-center">Carfax</th>
+            <th class="bg-[#1a2433] text-white p-2 md:p-4 text-center">AutoDNA</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y">
+          <tr>
+            <td class="p-2 md:p-4">Sales History</td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="p-2 md:p-4">Accident Records</td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+          </tr>
+          <tr>
+            <td class="p-2 md:p-4">Auction records (NA)</td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/red-x.svg" alt="Not included" class="w-3 h-3 mx-auto" /></td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/red-x.svg" alt="Not included" class="w-3 h-3 mx-auto" /></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="p-2 md:p-4">Mileage Verification</td>
+            <td class="p-2 md:p-4 text-center">Included</td>
+            <td class="p-2 md:p-4 text-center">Included</td>
+            <td class="p-2 md:p-4 text-center">Included</td>
+          </tr>
+          <tr>
+            <td class="p-2 md:p-4">Auction History & Photos</td>
+            <td class="p-2 md:p-4 text-center">Detailed</td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/red-x.svg" alt="Not included" class="w-3 h-3 mx-auto" /></td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="p-2 md:p-4">Theft Records</td>
+            <td class="p-2 md:p-4 text-center">Recent</td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+            <td class="p-2 md:p-4 text-center"><img src="https://vehiclehistory.eu/assets/green-check.svg" alt="included" class="w-3 h-3 mx-auto" /></td>
+          </tr>
+          <tr>
+            <td class="p-2 md:p-4">Free VIN Lookup</td>
+            <td class="p-2 md:p-4 text-center">Included</td>
+            <td class="p-2 md:p-4 text-center">Paid Only</td>
+            <td class="p-2 md:p-4 text-center">Included</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="p-2 md:p-4">Cost per report</td>
+            <td class="p-2 md:p-4 text-center font-medium">€14.99</td>
+            <td class="p-2 md:p-4 text-center font-medium">€39.99</td>
+            <td class="p-2 md:p-4 text-center font-medium">€19.90</td>
+          </tr>
+          <tr>
+            <td class="p-2 md:p-4">Report Expiration</td>
+            <td class="p-2 md:p-4 text-center">No</td>
+            <td class="p-2 md:p-4 text-center text-red-500">Yes (30 days)</td>
+            <td class="p-2 md:p-4 text-center text-red-500">Yes (12 days)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  <section class="hk-font bg-white py-12 px-4 md:py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-12">
+        Why Choose Our EU VIN Decoder?
+      </h2>
+  
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Fast and Reliable Reports -->
+        <div class="bg-[#fefefe] p-6 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Fast and Reliable Reports</h3>
+          <p class="text-gray-600 text-sm">
+            Access your report instantly with a user-friendly experience and up-to-date information.
+          </p>
+        </div>
+  
+        <!-- Trusted European Databases -->
+        <div class="bg-[#fefefe] p-6 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Trusted European Databases</h3>
+          <p class="text-gray-600 text-sm">
+            Our data comes directly from reliable sources across Europe, ensuring accuracy.
+          </p>
+        </div>
+  
+        <!-- Easy-to-Use Tools -->
+        <div class="bg-[#fefefe] p-6 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Easy-to-Use Tools</h3>
+          <p class="text-gray-600 text-sm">
+            Simply enter the VIN, and our system does the rest in seconds.
+          </p>
+        </div>
+  
+        <!-- Affordable Options -->
+        <div class="bg-[#fefefe] p-6 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Affordable Options</h3>
+          <p class="text-gray-600 text-sm">
+            Choose between free basic checks or detailed premium reports for full insights.
+          </p>
+        </div>
+  
+        <!-- Multilingual Support -->
+        <div class="bg-[#fefefe] p-6 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Multilingual Support</h3>
+          <p class="text-gray-600 text-sm">
+            Available in multiple languages to cater to all European users.
+          </p>
+        </div>
+  
+        <!-- 24/7 Customer Service -->
+        <div class="bg-[#fefefe] p-6 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">24/7 Customer Service</h3>
+          <p class="text-gray-600 text-sm">
+            Get issues resolved on time. Make informed decisions without delay.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-font px-4 py-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Get EU VIN Check Report by Country</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+          No matter where you are in Europe, our VIN check tool has you covered. We provide reports for vehicles across the following European countries:
+        </p>
+      </div>
+    
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <a href="https://vehiclehistory.eu/albania-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Albania</a>
+        <a href="https://vehiclehistory.eu/austria-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Austria</a>
+        <a href="https://vehiclehistory.eu/belgium-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Belgium</a>
+        <a href="https://vehiclehistory.eu/andorra-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Andorra</a>
+        <!-- <a href="#" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Azerbaijan</a> -->
+        <a href="https://vehiclehistory.eu/bosnia-hertzegovina-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Bosnia</a>
+        <a href="https://vehiclehistory.eu/bulgaria-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Bulgaria</a>
+        <a href="https://vehiclehistory.eu/croatia-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Croatia</a>
+        
+        <!-- <a href="#" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Cyprus</a> -->
+        <a href="https://vehiclehistory.eu/czech-republic-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Czech Republic</a>
+        <a href="https://vehiclehistory.eu/denmark-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Denmark</a>
+        <a href="https://vehiclehistory.eu/estonia-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Estonia</a>
+        <a href="https://vehiclehistory.eu/finland-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Finland</a>
+        <a href="https://vehiclehistory.eu/north-macedonia-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">North Macedonia</a>
+        <a href="https://vehiclehistory.eu/france-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">France</a>
+        <!-- <a href="#" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Georgia</a> -->
+        
+        <a href="https://vehiclehistory.eu/germany-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Germany</a>
+        <a href="https://vehiclehistory.eu/greece-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Greece</a>
+        <a href="https://vehiclehistory.eu/hungary-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Hungary</a>
+        <a href="https://vehiclehistory.eu/iceland-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Iceland</a>
+        <a href="https://vehiclehistory.eu/ireland-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Ireland</a>
+        <a href="https://vehiclehistory.eu/italy-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Italy</a>
+        <!-- <a href="#" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Kosovo</a> -->
+        <a href="https://vehiclehistory.eu/latvia-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Latvia</a>
+        
+        <a href="https://vehiclehistory.eu/liechtenstein-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Liechtenstein</a>
+        <a href="https://vehiclehistory.eu/lithuania-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Lithuania</a>
+        <a href="https://vehiclehistory.eu/luxembourg-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Luxembourg</a>
+        <a href="https://vehiclehistory.eu/malta-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Malta</a>
+        <a href="https://vehiclehistory.eu/moldova-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Moldova</a>
+        <a href="https://vehiclehistory.eu/monaco-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Monaco</a>
+        <a href="https://vehiclehistory.eu/montenegro-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Montenegro</a>
+        <a href="https://vehiclehistory.eu/netherlands-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Netherlands</a>
+        
+        <a href="https://vehiclehistory.eu/norway-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Norway</a>
+        <a href="https://vehiclehistory.eu/poland-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Poland</a>
+        <a href="https://vehiclehistory.eu/portugal-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Portugal</a>
+        <a href="https://vehiclehistory.eu/romania-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Romania</a>
+        <a href="https://vehiclehistory.eu/russia-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Russia</a>
+        <a href="https://vehiclehistory.eu/san-marino-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">San Marino</a>
+        <a href="https://vehiclehistory.eu/serbia-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Serbia</a>
+        <a href="https://vehiclehistory.eu/slovakia-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Slovakia</a>
+        
+        <a href="https://vehiclehistory.eu/slovenia-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Slovenia</a>
+        <a href="https://vehiclehistory.eu/spain-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Spain</a>
+        <a href="https://vehiclehistory.eu/sweden-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Sweden</a>
+        <a href="https://vehiclehistory.eu/switzerland-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Switzerland</a>
+        <!-- <a href="#" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Turkey</a> -->
+        <a href="https://vehiclehistory.eu/ukraine-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Ukraine</a>
+        <a href="https://vehiclehistory.eu/united-kingdom-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">United Kingdom</a>
+        <a href="https://vehiclehistory.eu/holy-see-vin-check" target="_blank" class="p-2 text-gray-800 hover:bg-gray-100 rounded transition duration-300 text-center">Holy See</a>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="hk-font bg-[#F0F4F8] py-12 px-4 md:py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-4">
+        Run VIN Check Europe by Makes
+      </h2>
+      <p class="text-center text-gray-600 mb-8">
+        Get detailed vehicle history reports for popular brands. Just choose your car brand and start your VIN check right away!
+      </p>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <a href="https://vehiclehistory.eu/vin-decoder/alfa-romeo" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Alfa Romeo</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/audi" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Audi</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/bmw" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">BMW</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/citroen" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Citreon</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/fiat-vin" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Fiat</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/jaguar" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Jaguar</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/land-rover" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Land Rover</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/mercedes-benz" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Mercedes-Benz</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/mini" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Mini</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/peugeot" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Peugeot</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/porsche" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Porsche</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/renault" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Renault</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/saab" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Saab</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/volkswagen" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Volkswagen</a>
+        <a href="https://vehiclehistory.eu/vin-decoder/volvo" target="_blank" class="p-2 text-gray-800 font-medium hover:bg-gray-200 rounded transition duration-300 text-center">Volvo</a>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="hk-font z-0 hk-font py-16 px-4 bg-white">
+    <div class="container max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-12">Blog</h2>
+    
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto mb-12">
+        <!-- Blog Card 1  -->
+        <a href="https://vehiclehistory.eu/what-is-the-best-used-suv-to-buy-in" class="flex flex-col rounded-lg overflow-hidden border py-6 px-6 border-gray-200 group transition-colors hover:bg-slate-900">
+            <!-- Image placeholder -->
+            <img src="https://vehiclehistory.eu/assets/What-is-the-Best-Used-SUV-to-Buy.webp" class="aspect-[16/9] rounded-md bg-gray-200"/>
+            
+            <div class="pt-6 flex flex-col h-full">
+                <h3 class="text-xl font-semibold mb-4 text-slate-900 group-hover:text-white flex-1">
+                  What is the Best Used SUV to Buy in?
+                </h3>
+                
+                <div class="flex items-center gap-4 mb-4">
+                <div class="flex items-center gap-2">
+                    <!-- Profile image placeholder -->
+                    <img src="https://vehiclehistory.eu/assets/adewale-peter.webp" class="w-6 h-6 rounded-full"/>
+                    <span class="text-sm text-slate-600 group-hover:text-white">Adewale Peter</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <!-- Clock icon placeholder -->
+                    <img src="https://vehiclehistory.eu/assets/time-icon.svg" class="w-4 h-4 group-hover:filter group-hover:invert group-hover:brightness-100" />
+                    <span class="text-sm text-slate-600 group-hover:text-white">Nov 30, 2024</span>
+                </div>
+                </div>
+                
+                <p class="text-lg text-slate-600 group-hover:text-gray-300">
+                  You’ve decided it’s time for an SUV, but the choices feel overwhelming...
+                </p>
+            </div>
+        </a>
+    
+        <!-- Blog Card 2 -->
+        <a href="https://vehiclehistory.eu/best-used-electric-cars" target="_blank" class="flex flex-col rounded-lg overflow-hidden border py-6 px-6 border-gray-200 group transition-colors hover:bg-slate-900">
+            <!-- Image placeholder -->
+            <img src="https://vehiclehistory.eu/assets/7-Best-Electric-Cars-to-Buy-Used-in-2024.webp" class="aspect-[16/9] rounded-md bg-gray-200"/>
+            
+            <div class="pt-6 flex flex-col h-full">
+            <h3 class="text-xl font-semibold mb-4 text-slate-900 group-hover:text-white flex-1">
+              7 Best Electric Cars to Buy Used in 2024
+            </h3>
+            
+            <div class="flex items-center gap-4 mb-4">
+                <div class="flex items-center gap-2">
+                <!-- Profile image placeholder -->
+                <img src="https://vehiclehistory.eu/assets/adewale-peter.webp" class="w-6 h-6 rounded-full"/>
+                <span class="text-sm text-slate-600 group-hover:text-white">Adewale Peter</span>
+                </div>
+                <div class="flex items-center gap-2">
+                <!-- Clock icon placeholder -->
+                <img src="https://vehiclehistory.eu/assets/time-icon.svg" class="w-4 h-4 group-hover:filter group-hover:invert group-hover:brightness-100" />
+                <span class="text-sm text-slate-600 group-hover:text-white">Nov 27, 2024</span>
+                </div>
+            </div>
+            
+            <p class="text-lg text-slate-600 group-hover:text-gray-300">
+              Between 2022 and 2023, the market for used electric cars has been...
+            </p>
+            </div>
+        </a>
+    
+        <!-- Blog Card 3 -->
+        <a href="https://vehiclehistory.eu/best-family-suv-2024" target="_blank" class="flex flex-col rounded-lg overflow-hidden border py-6 px-6 border-gray-200 group transition-colors hover:bg-slate-900">
+            <!-- Image placeholder -->
+            <img src="https://vehiclehistory.eu/assets/Best-Family-SUVs-for-2024.webp" class="aspect-[16/9] rounded-md bg-gray-200"/>
+            
+            <div class="pt-6 flex flex-col h-full">
+            <h3 class="text-xl font-semibold mb-4 text-slate-900 group-hover:text-white flex-1">
+              Best Family SUVs for 2024
+            </h3>
+            
+            <div class="flex items-center gap-4 mb-4">
+                <div class="flex items-center gap-2">
+                <!-- Profile image placeholder -->
+                <img src="https://vehiclehistory.eu/assets/adewale-peter.webp" class="w-6 h-6 rounded-full"/>
+                <span class="text-sm text-slate-600 group-hover:text-white">Adewale Peter</span>
+                </div>
+                <div class="flex items-center gap-2">
+                <!-- Clock icon placeholder -->
+                <img src="https://vehiclehistory.eu/assets/time-icon.svg" class="w-4 h-4 group-hover:filter group-hover:invert group-hover:brightness-100" />
+                <span class="text-sm text-slate-600 group-hover:text-white">Nov 24, 2024</span>
+                </div>
+            </div>
+            
+            <p class="text-lg text-slate-600 group-hover:text-gray-300">
+              Finding the right SUV for your family is not always easy. With so many...
+            </p>
+            </div>
+        </a>
+        </div>
+    
+        <!-- More Post Button -->
+        <div class="text-center">
+            <a href="https://vehiclehistory.eu/blog" target="_blank">
+                <button class="px-8 py-3 bg-slate-900 text-white rounded hover:bg-slate-800 transition-colors">
+                    More Post
+                </button>
+            </a>
+        </div>
+    </div>
+  </section>
+
+  <!-- <section class="hk-font py-12 px-4">
+    <div class="mx-auto max-w-7xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-6">What our Customers say?</h2>
+        <div class="flex items-center justify-center flex-wrap gap-2 mb-2">
+          <span class="font-semibold">Excellent</span>
+          <div class="flex gap-0.5">
+            <img src="https://detailedvehiclehistory.com/assets/Stars-5-Trustpilot.svg" alt="TrustPilot" />
+          </div>
+          <span class="text-gray-700">706 reviews on</span>
+          <img src="https://detailedvehiclehistory.com/assets/Trustpilot.svg" alt="Trustpilot" class="h-5">
+        </div>
+      </div>
+  
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex gap-3 mb-4 items-start">
+            <img src="https://detailedvehiclehistory.com/assets/Vivek-Malkan-Testimonial.webp" alt="Vivek Malkan" class="w-12 h-12 rounded-full">
+            <div>
+              <h3 class="font-semibold">Vivek Malkan</h3>
+              <div class="text-sm text-gray-500">May 02, 2024 • US</div>
+              <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center relative">
+            <div class="absolute left-0 right-0 translate-x-6">
+              <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+            </div>
+          </div>
+          <p class="pt-4 text-gray-700 text-sm">I was looking online to get a copy of my car's window sticker. I came to this website and entered my car's vin number, and instantaneously I received my vehicles history and window sticker. The process was really smooth and efficient and it got me exactly what I was looking for. Once, I received the reports, I wad then contacted by their team, personally via a phone call to make sure I was happy with their service and received what I wanted. This kind of after-sales service is make differentiates a great company from the rest!</p>
+        </div>
+  
+        <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex gap-3 mb-4 items-start">
+            <img src="https://detailedvehiclehistory.com/assets/Martin-Acuna-bermudez-Testimonial.webp" alt="Martin Acuña bermudez" class="w-12 h-12 rounded-full">
+            <div>
+              <h3 class="font-semibold">Martin Acuña bermudez</h3>
+              <div class="text-sm text-gray-500">June 10, 2024 • MX</div>
+              <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center relative">
+            <div class="absolute left-0 right-0 translate-x-6">
+              <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+            </div>
+          </div>
+          <p class="pt-4 text-gray-700 text-sm">I am thoroughly impressed with Detailed Vehicle History for their exceptional service. The comprehensive report I received was on par with industry leaders, yet offered at a fraction of the cost. The efficiency and expertise displayed by the live chat agent were remarkable, providing immediate and knowledgeable assistance without any delay. This level of customer service and value has solidified my decision to exclusively use Detailed Vehicle History for all future vehicle history report needs.</p>
+        </div>
+  
+        <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex gap-3 mb-4 items-start">
+            <img src="https://detailedvehiclehistory.com/assets/testimonial.webp" alt="Michael" class="w-12 h-12 rounded-full">
+            <div>
+              <h3 class="font-semibold">Michael</h3>
+              <div class="text-sm text-gray-500">September 13, 2024 • US</div>
+              <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center relative">
+            <div class="absolute left-0 right-0 translate-x-6">
+              <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+            </div>
+          </div>
+          <p class="pt-4 text-gray-700 text-sm">Recently bought a used 7 year old MB sedan. The dealer had limited info about the specific car and affordable option/ costs at original sale. Read favorable newspaper article about Detailed Vehicle History. Within a few minutes the window sticker came back, it was amazingly detailed, showed all the specific options/ costs and looked just like the original window sticker. Would definitely recommend this invaluable service to others.</p>
+        </div>
+  
+        <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex gap-3 mb-4 items-start">
+            <img src="https://detailedvehiclehistory.com/assets/haDuong-testimonial.webp" alt="Ha Duong" class="w-12 h-12 rounded-full">
+            <div>
+              <h3 class="font-semibold">Ha Duong</h3>
+              <div class="text-sm text-gray-500">August 17, 2024 • US</div>
+              <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center relative">
+            <div class="absolute left-0 right-0 translate-x-6">
+              <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+            </div>
+          </div>
+          <p class="pt-4 text-gray-700 text-sm">I had ordered a window sticker and vehicle history reports for my car. Detailed Vehicle History company helped me to get the report very detailed and accurate at very low price if you compare with carfax, and the window sticker report was very accurately and fast. I am highly recommend this Detailed Vehicle History company for your vehicle history report at very price
+            </p>
+        </div>
+  
+        <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex gap-3 mb-4 items-start">
+            <img src="https://detailedvehiclehistory.com/assets/ConstantinColodezni-Tetimonial.webp" alt="Constantin Colodezni" class="w-12 h-12 rounded-full">
+            <div>
+              <h3 class="font-semibold">Constantin Colodezni</h3>
+              <div class="text-sm text-gray-500">May 7, 2024 • CA</div>
+              <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center relative">
+            <div class="absolute left-0 right-0 translate-x-6">
+              <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+            </div>
+          </div>
+          <p class="pt-4 text-gray-700 text-sm">I was pleasantly surprised by the simplicity and effectiveness of this service for checking the history of my motorcycle. With just the VIN number, Detailed Vehicle History provided me with comprehensive information that was well worth it. It's an easy recommendation for any motorcycle owner looking for detailed insights into their vehicle's history.</p>
+        </div>
+  
+        <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex gap-3 mb-4 items-start">
+            <img src="https://detailedvehiclehistory.com/assets/DE-LOS-SANTOS-JR-CARLOS-TESTIMONIAL.webp" alt="DE LOS SANTOS JR, CARLOS L" class="w-12 h-12 rounded-full">
+            <div>
+              <h3 class="font-semibold">DE LOS SANTOS JR, CARLOS L</h3>
+              <div class="text-sm text-gray-500">May 26, 2024 • US</div>
+              <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center relative">
+            <div class="absolute left-0 right-0 translate-x-6">
+              <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+            </div>
+          </div>
+          <p class="pt-4 text-gray-700 text-sm">I'd like to thank detailed vehicle history for getting me my OEM window sticker it was so easy and seamless and very inexpensive I was looking everywhere and couldn't find any sites or ask people no one knew how to get my OEM window sticker but they made it so easy for me I highly recommend them!</p>
+        </div>
+  
+        <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex gap-3 mb-4 items-start">
+            <img src="https://detailedvehiclehistory.com/assets/Phil-D-Testimonial.webp" alt="Phil D" class="w-12 h-12 rounded-full">
+            <div>
+              <h3 class="font-semibold">Phil D</h3>
+              <div class="text-sm text-gray-500">May 17, 2024 • US</div>
+              <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center relative">
+            <div class="absolute left-0 right-0 translate-x-6">
+              <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+            </div>
+          </div>
+          <p class="pt-4 text-gray-700 text-sm">Incredibly efficient service! One of those rare cases where you get exactly what is advertised. I went onto the DVH website and was able to obtain a window sticker for a 25 year old Porsche within a few minutes. Highly recommended!</p>
+        </div>
+  
+        <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <div class="flex gap-3 mb-4 items-start">
+            <img src="https://detailedvehiclehistory.com/assets/MrEd-Testimonial.webp" alt="Mr. Ed" class="w-12 h-12 rounded-full">
+            <div>
+              <h3 class="font-semibold">Mr. Ed</h3>
+              <div class="text-sm text-gray-500">August 16, 2024 • US</div>
+              <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-center relative">
+            <div class="absolute left-0 right-0 translate-x-6">
+              <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+            </div>
+          </div>
+          <p class="pt-4 text-gray-700 text-sm">Dealership would/could not provide the Monroney label. Other sites noted it was unavailable for my 2003 BMW M5. DVH had it at a great price. Nailed it in fact.</p>
+        </div>
+      </div>
+  
+      <div class="text-center">
+        <a href="https://www.trustpilot.com/review/detailedvehiclehistory.com" target="_blank">
+          <button class="bg-gray-800 text-white px-6 py-2 rounded-md hover:bg-gray-700 transition-colors">
+            See all our Trustpilot Reviews
+          </button>
+        </a>
+      </div>
+    </div>
+  </section> -->
+
+  <section class="hk-font py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+  
+      <!-- Accordion Container -->
+      <div class="space-y-0">
+        <!-- FAQ Item 1 -->
+        <div class="border-b border-gray-200">
+          <button 
+            class="w-full flex items-center justify-between py-4 text-left text-lg text-navy-800 transition-colors"
+            onclick="toggleAccordion(this)"
+            aria-expanded="true"
+            aria-controls="faq-1"
+          >
+            <span>What is the difference between free and paid VIN checks?</span>
+            <div class="w-6 h-6 flex-shrink-0 transition-transform -rotate-90">
+                <img src="https://vehiclehistory.eu/assets/arrow-left.svg"/>
+            </div>
+          </button>
+          <div 
+            id="faq-1" 
+            class="overflow-hidden transition-all duration-200"
+            aria-hidden="false"
+          >
+            <p class="pb-4 text-gray-600">
+              A free VIN check gives basic details like make, model, and year. Paid reports may include ownership history, accidents, theft records, mileage history and more. Use our free VIN lookup tool for quick overviews of vehicle details and paid ones if you're purchasing or selling used cars.
+            </p>
+          </div>
+        </div>
+  
+        <!-- FAQ Item 2 -->
+        <div class="border-b border-gray-200">
+          <button 
+            class="w-full flex items-center justify-between py-4 text-left text-lg text-navy-800 transition-colors"
+            onclick="toggleAccordion(this)"
+            aria-expanded="false"
+            aria-controls="faq-2"
+          >
+            <span>Is your VIN check reliable and accurate?</span>
+            <div class="w-6 h-6 flex-shrink-0 transition-transform">
+                <img src="https://vehiclehistory.eu/assets/arrow-left.svg"/>
+            </div>
+          </button>
+          <div 
+            id="faq-2" 
+            class="overflow-hidden transition-all duration-200 max-h-0"
+            aria-hidden="true"
+          >
+            <p class="pb-4 text-gray-600">
+              Yes, our VIN check is highly reliable and accurate. We source our data from multiple trusted databases and official records to ensure the information provided is up-to-date and comprehensive. However, please note that the accuracy of the report also depends on the timeliness and completeness of the data reported by various sources.
+            </p>
+          </div>
+        </div>
+  
+        <!-- FAQ Item 3 -->
+        <div class="border-b border-gray-200">
+          <button 
+            class="w-full flex items-center justify-between py-4 text-left text-lg text-navy-800 transition-colors"
+            onclick="toggleAccordion(this)"
+            aria-expanded="false"
+            aria-controls="faq-3"
+          >
+            <span>Where is the VIN number on a car?</span>
+            <div class="w-6 h-6 flex-shrink-0 transition-transform">
+                <img src="https://vehiclehistory.eu/assets/arrow-left.svg"/>
+            </div>
+          </button>
+          <div 
+            id="faq-3" 
+            class="overflow-hidden transition-all duration-200 max-h-0"
+            aria-hidden="true"
+          >
+            <p class="pb-4 text-gray-600">
+              The VIN (Vehicle Identification Number) can typically be found in several locations on a car:
+              1. On the driver's side dashboard, visible through the windshield
+              2. Inside the driver's side door jamb
+              3. On the engine block
+              4. In the vehicle registration and insurance documents
+              The exact location may vary depending on the make and model of the car.
+            </p>
+          </div>
+        </div>
+  
+        <!-- FAQ Item 4 -->
+        <div class="border-b border-gray-200">
+          <button 
+            class="w-full flex items-center justify-between py-4 text-left text-lg text-navy-800 transition-colors"
+            onclick="toggleAccordion(this)"
+            aria-expanded="false"
+            aria-controls="faq-4"
+          >
+            <span>What information does a European VIN number contain?</span>
+            <div class="w-6 h-6 flex-shrink-0 transition-transform">
+                <img src="https://vehiclehistory.eu/assets/arrow-left.svg"/>
+            </div>
+          </button>
+          <div 
+            id="faq-4" 
+            class="overflow-hidden transition-all duration-200 max-h-0"
+            aria-hidden="true"
+          >
+            <p class="pb-4 text-gray-600">
+              A European VIN number typically contains 17 characters that provide various details about the vehicle, including:
+              1. World Manufacturer Identifier (first 3 characters)
+              2. Vehicle descriptor section (characters 4-9)
+              3. Vehicle identifier section (last 8 characters)
+              These sections can reveal information such as the country of manufacture, brand, vehicle type, body style, engine size, model year, plant code, and serial number.
+            </p>
+          </div>
+        </div>
+  
+        <!-- FAQ Item 5 -->
+        <div class="border-b border-gray-200">
+          <button 
+            class="w-full flex items-center justify-between py-4 text-left text-lg text-navy-800 transition-colors"
+            onclick="toggleAccordion(this)"
+            aria-expanded="false"
+            aria-controls="faq-5"
+          >
+            <span>I don't have a VIN number, what can I do?</span>
+            <div class="w-6 h-6 flex-shrink-0 transition-transform">
+                <img src="https://vehiclehistory.eu/assets/arrow-left.svg"/>
+            </div>
+          </button>
+          <div 
+            id="faq-5" 
+            class="overflow-hidden transition-all duration-200 max-h-0"
+            aria-hidden="true"
+          >
+            <p class="pb-4 text-gray-600">
+              If you don't have a VIN number, you can try the following:
+              1. Check your vehicle registration or insurance documents
+              2. Look for the VIN plate on your vehicle (common locations mentioned in a previous answer)
+              3. Contact your car dealer or the manufacturer
+              4. Check your car's service history or maintenance records
+              5. If you've recently purchased the car, contact the seller
+              If you still can't find the VIN, consult with a professional mechanic or your local vehicle registration authority for assistance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      function toggleAccordion(button) {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('div');
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other accordions
+        const allButtons = document.querySelectorAll('button[aria-controls^="faq-"]');
+        allButtons.forEach(btn => {
+          if (btn !== button) {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.nextElementSibling.style.maxHeight = '0';
+            btn.querySelector('div').classList.remove('-rotate-90');
+          }
+        });
+  
+        // Toggle the clicked accordion
+        button.setAttribute('aria-expanded', !isExpanded);
+        content.setAttribute('aria-hidden', isExpanded);
+        
+        if (isExpanded) {
+          content.style.maxHeight = '0';
+          icon.classList.remove('-rotate-90');
+        } else {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          icon.classList.add('-rotate-90');
+        }
+      }
+  
+      // Initialize the first accordion as open
+      document.addEventListener('DOMContentLoaded', function() {
+        const firstAccordion = document.querySelector('button[aria-controls="faq-1"]');
+        if (firstAccordion) {
+          const content = firstAccordion.nextElementSibling;
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    </script>
+  </section>
+  <!-- end content -->
+
+
+<!-- footer -->
+<footer id="main-footer" class="hk-font">
+  <div class="footer-container">
+  <div class="footer-content">
+      <div class="footer-col">
+      <div class="footer-logo">
+          <img src="assets/vhreu-logo.svg" alt="Vehicle History Logo">
+      </div>
+      <div class="contact-info">
+          <a href="tel:+(866)-300-0554" target="_blank" aria-label="Phone"><img src="assets/phone-logo.svg" />+(866)-300-0554</a>
+          <a href="mailto:support@vehiclehistory.com" target="_blank" aria-label="Email"><img src="assets/email-logo.svg" />support@vehiclehistory.com</a>
+      </div>
+      <!-- <div class="social-links">
+          <a href="#" target="_blank" aria-label="Facebook"><img src="assets/facebook-logo.svg" /></a>
+          <a href="#" target="_blank" aria-label="Twitter"><img src="assets/twitter-logo.svg" /></a>
+          <a href="#" target="_blank" aria-label="LinkedIn"><img src="assets/linkedin-logo.svg" /></a>
+          <a href="#" target="_blank" aria-label="Instagram"><img src="assets/instagram-logo.svg" /></a>
+      </div> -->
+      </div>
+      
+      <div class="footer-col">
+      <h3>Company</h3>
+      <ul>
+          <li><a href="https://vehiclehistory.eu/contact-us" target="_blank">Contact Us</a></li>
+          <li><a href="https://vehiclehistory.eu/blog" target="_blank">Blog</a></li>
+          <li><a href="https://vehiclehistory.eu/members/login" target="_blank">Login/Sign Up</a></li>
+      </ul>
+      </div>
+
+      <div class="footer-col">
+      <h3>Sample Reports</h3>
+      <ul>
+          <li><a href="https://vehiclehistory.eu/report/vin/NMTER16RX0R073590"  target="_blank">2015 Toyota Corolla</a></li>
+          <li><a href="https://vehiclehistory.eu/report/vin/VF15RE20A55268448" target="_blank">2005 Renault Clio</a></li>
+          <li><a href="https://vehiclehistory.eu/report/vin/W0LBF6EC0HG162855" target="_blank">2017 Vauxhall Astra</a></li>
+      </ul>
+      </div>
+
+      <div class="footer-col">
+      <h3>Decoder By Make</h3>
+      <ul>
+          <li><a href="https://vehiclehistory.eu/ford" target="_blank">Ford VIN Decoder</a></li>
+          <li><a href="https://vehiclehistory.eu/audi" target="_blank">Audi VIN Decoder</a></li>
+          <li><a href="https://vehiclehistory.eu/nissan" target="_blank">Nissan VIN Decoder</a></li>
+          <li><a href="https://vehiclehistory.eu/fiat " target="_blank">Fiat VIN Decoder</a></li>
+      </ul>
+      </div>
+
+      <div class="footer-col">
+      <h3>Quick Link</h3>
+      <ul>
+          <li><a href="https://vehiclehistory.eu/privacy-policy" target="_blank">Privacy Policy</a></li>
+          <li><a href="https://vehiclehistory.eu/terms-of-service" target="_blank">Terms and conditions</a></li>
+          <li><a href="https://vehiclehistory.eu/frequently-asked-questions" target="_blank">FAQs</a></li>
+      </ul>
+      </div>
+  </div>
+  </div>
+  <div class="footer-bottom">
+  <p>&copy; 2024 Vehicle History Europe. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  #main-footer {
+  background-color: #1a202c;
+  color: white;
+  width: 100%;
+  }
+
+  .footer-container {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  }
+
+  .footer-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  }
+
+  .footer-col h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  }
+
+  .footer-logo {
+  margin-bottom: 1.5rem;
+  }
+
+  .footer-logo img {
+  height: 30px;
+  }
+
+  .contact-info {
+  margin-bottom: 1.5rem;
+  }
+
+  .contact-info a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #e2e8f0;
+  }
+
+  .social-links {
+  display: flex;
+  gap: 1rem;
+  }
+
+  .social-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  }
+
+  .social-links a:hover {
+  color: #ffd700;
+  }
+
+  .footer-col ul {
+  list-style: none;
+  padding: 0;
+  }
+
+  .footer-col ul li {
+  margin-bottom: 0.75rem;
+  }
+
+  .footer-col ul li a {
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  }
+
+  .footer-col ul li a:hover {
+  color: #ffd700;
+  }
+
+  .footer-bottom {
+  background-color: #ffd700;
+  color: #1a202c;
+  text-align: center;
+  padding: 1rem;
+  }
+
+  @media screen and (max-width: 1024px) {
+  .footer-content {
+      grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-col:first-child {
+      grid-column: 1 / -1;
+  }
+  }
+
+  @media screen and (max-width: 768px) {
+      .footer-content {
+          grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-col:first-child {
+          grid-column: 1 / -1;
+      }
+  }
+
+  @media screen and (max-width: 480px) {
+      .footer-content {
+          grid-template-columns: 1fr;
+      }
+
+      .footer-container {
+          padding: 2rem 1rem;
+      }
+
+      .footer-col {
+          text-align: left;
+      }
+
+      .contact-info {
+          justify-content: left;
+      }
+
+      .social-links {
+          justify-content: left;
+      }
+  }
+</style>
+<!-- end of footer -->
+
+</body>
+</html>

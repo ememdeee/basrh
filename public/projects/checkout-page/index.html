@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Out</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="myStarterCss.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;260;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="checkout">
+    <div class="container">
+        <div class="checkoutCol col1">
+            <div class="header flex gap_5 mb_25 align_center">
+                <img src="assets/arrow-left.svg" class="back">
+                <img src="assets/DVH_SVG white 1.png">
+                <h1>Detailed Vehicle History</h1>
+            </div>
+            <p class="f_24 mb_10">2008 Honda Element</p>
+            <p class="f_20 mb_20">VIN:<span class="bold">5J6YH287X8L0001333</span></p>
+            <div class="data">
+                <div class="col col1">
+                    <div class="record">
+                        <img src="assets/alert-circle.svg">
+                        <div class="record_data">
+                            <p>Accident check</p>
+                            <p class="bold red">Records available</p>
+                        </div>
+                    </div>
+                    <div class="record">
+                        <img src="assets/alert-circle.svg">
+                        <div class="record_data">
+                            <p>Ownership record</p>
+                            <p class="bold red">Multiple owners</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col2">
+                    <div class="record">
+                        <img src="assets/check_circle.svg">
+                        <div class="record_data">
+                            <p>Lemon check</p>
+                            <p class="bold green">No record found</p>
+                        </div>
+                    </div>
+                    <div class="record">
+                        <img src="assets/check_circle.svg">
+                        <div class="record_data">
+                            <p>Flood check</p>
+                            <p class="bold green">No record found</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="auction flex">
+                <img src="assets/auction.png" class="auctionImage" alt="Auction Image">
+                <p class="auctionText">10+ images found for this vehicle!</p>
+            </div>
+            <div class="coupon">
+                <input type="text" class="input" placeholder="Enter your coupon code" value="DVH20">
+                <button class="bold">Apply</button>
+            </div>
+            <div class="price">
+                <div class="flex space-between package">
+                    <p>Package</p>
+                    <p class="bold">2 Premium Reports</p>
+                </div>
+                <div class="flex space-between discount">
+                    <p>Discount applied:</p>
+                    <p class="bold">20%</p>
+                </div>
+                <div class="flex space-between total">
+                    <p>Total Price</p>
+                    <p class="bold finalPrice"><span class="initialPrice">$30.00</span>$26.00</p>
+                </div>
+            </div>
+            <!-- testimonial -->
+            <!-- First Testimonial Slider -->
+            <div class="testimoni testimonialDesktop">
+                <h2>What our customers say!</h2>
+                <div class="slider-wrapper">
+                    <div class="slider testimonial_data_wrapper">
+                        <div class="slide active">
+                            <div class="slider-header flex">
+                                <img src="https://dummyimage.com/100x100/000/fff&text=BH" class="profilePict" alt="Testimonial 1">
+                                <div class="identity flex flex_col">
+                                    <div class="testimonial_name">
+                                        <p>Bobby Hedrick</p>
+                                        <p>US</p>
+                                    </div>
+                                    <img class="rating" src="assets/stars.svg" alt="Rating">
+                                </div>
+                            </div>
+                            <p class="slider-date bold">Date of experience: <span class="date">August 24, 2023</span></p>
+                            <p class="slider-testimonial">Helpful affordable service that offers accurate information about your vehicle I would choose this over any other vehicle history services.</p>
+                        </div>
+                    </div>
+                    <img src="assets/chevron-left.svg" class="arrow left">
+                    <img src="assets/chevron-right.svg" class="arrow right">
+                    <div class="pagination">
+                        <span class="dot active"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="checkoutCol col2">
+            <div class="paymentMethod">
+                <p class="bold">Choose payment method</p>
+                <div class="tab-list">
+                    <span id="stripeBtn" class="active">Stripe</span>
+                    <span id="paypalBtn">Paypal</span>
+                    <span id="gumroadBtn">Gumroad</span>
+                </div>
+            </div>
+            <div class="stripe active" id="stripe">
+                <div class="stripeChoices">
+                    <p class="bold">Pay with Credit Card or Bank Transfer</p>
+                    <div class="tab-list">
+                        <span id="creditCardBtn" class="active">Credit Card</span>
+                        <span id="bankTranferBtn">Bank Transfer <img src="assets/Nigeria.png"></span>
+                    </div>
+                </div>
+                <div class="creditCard active" id="creditCard">
+                    <p class="bold">Enter your card details</p>
+                    <form>
+                        <label>Name*</label>
+                        <input type="text" placeholder="Enter your name" class="input lettersOnly">
+                        <label>Email*</label>
+                        <input type="email" placeholder="Enter your email" value="fahad@empirepixel.com" class="input">
+                        <div class="card">
+                            <label>Card Details*</label>
+                            <div class="digit_wrapper">
+                                <input type="text" class="input digit numberOnly" placeholder="1234 1234 1234 1234">
+                                <div class="card-icon">
+                                    <img src="assets/mastercard 1.svg" class="mastercard">
+                                    <img src="assets/visa.svg" class="visa">
+                                    <img src="assets/american-express-svgrepo-com.svg" class="american-express">
+                                    <img src="assets/discover.svg" class="discover">
+                                </div>
+                            </div>
+                            <div class="flex relative">
+                                <input type="text" class="input expire" placeholder="MM/YY">
+                                <input type="text" class="input cvc" placeholder="CVC">
+                                <img class="cvcIcon" src="assets/CVC.svg">
+                            </div>
+                        </div>
+                        <label>Postal Code*</label>
+                        <input type="text" class="input" placeholder="Enter postal code">
+                        <button type="submit" class="big-btn blue">Pay $26.00</button>
+                    </form>
+                </div>
+                <div class="bankTranfer" id="bankTranfer">
+                    <label>Name*</label>
+                    <input type="text" placeholder="Enter your name" class="input lettersOnly">
+                    <label>Email*</label>
+                    <input type="email" placeholder="Enter your email" value="fahad@empirepixel.com" class="input">
+                    <label>Bank account details</label>
+                    <div class="bankDetails">
+                        <table>
+                            <tr>
+                                <th>Bank Account No:</th>
+                                <td>0049251093<img src="assets/copy.svg"></td>
+                            </tr>
+                            <tr>
+                                <th>Bank Name:</th>
+                                <td>Guarantee Trust Bank</td>
+                            </tr>
+                            <tr>
+                                <th>Account Holder Name:</th>
+                                <td>Adewale Oluwaseyi Peter</td>
+                            </tr>
+                            <tr>
+                                <th>Speak to Live Chat:</th>
+                                <td><a href="#">+234 814 136 1434<img src="assets/WhatsApp.svg"></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="instructions">
+                        <a class="bold instructionsElement">Instructions to make a payment</a>
+                        <img class="instructionsElement" src="assets/info.svg">
+                        <div class="instructionsWrapper" id="instructionsWrapper">
+                            <ul>
+                                <li>Make a correspondence payment of the Total Price to the mentioned bank account.</li>
+                                <li>When the money transfer process is completed, submit the money transfer receipt by selecting one of two options below to make a payment notification.</li>
+                                <li>After that, you will receive an email or message shortly with the purchase details.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="big-btn blue" id="submitReceiptOnline">Submit Money Tranfer Receipt</button>
+                        <button class="big-btn whatsApp">Submit Receipt through WhatsApp</button>
+                    </div>
+                </div>
+                <div class="error_test">
+                    <p>Unfortunately there was an error while processing your payment. Please try again, or <a>contact support agent on live chat</a> if you continue to have problems.</p>
+                </div>
+            </div>
+            <div class="paypal" id="paypal">
+                <p class="bold">Click the button below to open PayPal window to make your payment</p>
+                <button class="big-btn yellow">
+                    <img src="assets/paypal.svg">
+                </button>
+            </div>
+            <div class="gumroad" id="gumroad">
+                <p class="bold">Click the button below to open Gumroad window to make your payment</p>
+                <button class="big-btn blue">Pay $26.00</button>
+            </div>
+            <div class="trust">
+                <div class="">
+                    <img src="assets/lock.svg" alt="Locked">
+                    <p>Guaranteed safe & secure checkout</p>
+                </div>
+                <div class="">
+                    <img src="assets/secure.svg" alt="Locked">
+                    <p>SSL secure payment</p>
+                </div>
+            </div>
+            <!-- Second Testimonial Slider -->
+            <div class="testimoni testimonialMobile">
+                <h2>What our customers say!</h2>
+                <div class="slider-wrapper">
+                    <div class="slider testimonial_data_wrapper">
+                        <div class="slide active">
+                            <div class="slider-header flex">
+                                <img src="https://dummyimage.com/100x100/000/fff&text=BH" class="profilePict" alt="Testimonial 1">
+                                <div class="identity flex flex_col">
+                                    <div class="testimonial_name">
+                                        <p>Bobby Hedrick</p>
+                                        <p>US</p>
+                                    </div>
+                                    <img class="rating" src="assets/stars.svg" alt="Rating">
+                                </div>
+                            </div>
+                            <p class="slider-date bold">Date of experience: <span class="date">August 24, 2023</span></p>
+                            <p class="slider-testimonial">Helpful affordable service that offers accurate information about your vehicle I would choose this over any other vehicle history services.</p>
+                        </div>
+                    </div>
+                    <img src="assets/chevron-left-mobile.svg" class="arrow left">
+                    <img src="assets/chevron-right-mobile.svg" class="arrow right">
+                    <div class="pagination">
+                        <span class="dot active"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tranferReceiptPopup" class="popup">
+        <div class="window">
+            <img class="close" id="close-icon" src="assets\x.svg" >
+            <label>VIN*</label>
+            <input type="text" class="input capitalize" placeholder="Enter your VIN" value="5NPE24AF9FH146743">
+            <label>Name*</label>
+            <input type="text" placeholder="Enter your name" class="input lettersOnly">
+            <label>Email*</label>
+            <input type="email" placeholder="Enter your email" value="fahad@empirepixel.com" class="input">
+            <label>Amount of money</label>
+            <input type="text" placeholder="Enter the amount of money transferred" class="input numberOnly">
+            <label>Transfer date</label>
+            <input type="date" placeholder="DD-MM-YY" class="input">
+            <!-- <div class="date-input"><img src="assets/calendar.svg" class="dateIcon"></div> -->
+            <label>Receipt of transfer</label>
+            <input type="file" class="input">
+            <button class="big-btn blue">Submit</button>
+        </div>
+        <div id="receiptOverlay" class="overlay"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+

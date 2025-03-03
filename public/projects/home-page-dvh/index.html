@@ -1,0 +1,2890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Vehicle History Report</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <link href="input.css" rel="stylesheet"> -->
+    <link href="dvh-homepage.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <div id="header">
+    <style>
+      #header nav {
+          position: relative;
+          z-index: 2;
+          width: 100%;
+          background: #ffffff;
+          font-family: 'Poppins', sans-serif !important;
+          line-height: 1;
+      }
+    
+      #header .wrapper {
+          max-width: 1160px;
+          padding: 5px 20px;
+          margin: auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+      }
+      #header .logo a{
+          display: flex;
+      }
+    
+      #header .logo img {
+          width: 120px;
+          height: auto;
+      }
+    
+      #header .nav-links {
+          display: flex;
+          gap: 5px;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+      }
+    
+      #header .nav-links li {
+          position: relative;
+      }
+    
+      #header .nav-links a, #header .multi-button a {
+          color: #000000;
+          text-decoration: none;
+          font-size: 16px;
+          font-weight: 500;
+          padding: 10px 12px;
+          display: block;
+          background-color: white;
+          border-radius: 4px;
+          transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      }
+    
+      #header .nav-links a.tools{
+          display: flex;
+          gap: 5px;
+          align-items: center;
+      }
+    
+      #header .nav-links a:hover:not(.tools), #header .multi-button a:hover:not(.signup) {
+          color: white;
+          background-color: #1D4ED8;
+      }
+    
+      #header .multi-button a.signup{
+          color: white;
+          background-color: #1D4ED8;
+          box-shadow: none; /* Inner border effect */
+      }
+      #header .multi-button a.signup:hover{
+          color: #000000;
+          background-color: white;
+          box-shadow: inset 0 0 0 2px #1D4ED8; /* Inner border effect */
+      }
+    
+      #header .mega-box {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 200px;
+          background-color: #ffffff;
+          box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s, visibility 0.3s;
+      }
+    
+      #header .nav-links li:hover .mega-box {
+          opacity: 1;
+          visibility: visible;
+      }
+    
+      #header .mega-links {
+          list-style: none;
+          padding: 0;
+      }
+    
+      #header .mega-links li a {
+          padding: 13px 15px;
+          font-size: 14px;
+          border-bottom: 1px solid #f0f0f0;
+      }
+    
+      #header .multi-button {
+          display: flex;
+          gap: 10px;
+      }
+    
+      #header .menu-icon, #header .close-icon {
+          display: none;
+          font-size: 24px;
+          cursor: pointer;
+      }
+    
+      #header #menu-toggle {
+          display: none;
+      }
+    
+      #header .mobile-only{
+          display: none;
+      }
+    
+      @media screen and (max-width: 1080px) {
+          #header .nav-links {
+              position: fixed;
+              top: 0;
+              right: -100%;
+              height: 100vh;
+              width: 100%;
+              max-width: 350px;
+              background: #ffffff;
+              flex-direction: column;
+              padding: 50px 10px;
+              overflow-y: auto;
+              box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+              transition: right 0.3s ease;
+          }
+    
+          #menu-toggle:checked ~ .nav-links {
+              right: 0;
+          }
+    
+          #header .menu-icon {
+              display: block;
+          }
+    
+          #header .close-icon {
+              display: block;
+              position: absolute;
+              top: 20px;
+              right: 20px;
+          }
+    
+          #header .mega-box {
+              position: static;
+              width: 100%;
+              opacity: 1;
+              visibility: visible;
+              box-shadow: none;
+              max-height: 0;
+              overflow: hidden;
+              transition: max-height 0.3s ease;
+          }
+    
+          #header .nav-links li.active .mega-box {
+              max-height: 1000px;
+          }
+    
+          #header .multi-button {
+              display: none;
+          }
+    
+          #header .mobile-only {
+              display: block;
+          }
+      }
+    </style>
+    <nav>
+      <div class="wrapper">
+          <div class="logo">
+              <a href="https://detailedvehiclehistory.com/">
+                  <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/11/dvh-logo.svg" alt="Detailed Vehicle History Logo" width="120" height="62">
+              </a>
+          </div>
+          <input type="checkbox" id="menu-toggle">
+          <label for="menu-toggle" class="menu-icon"><img width="23px" height="23px" src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/10/solid-bars.svg" alt="bars"></label>
+          <ul class="nav-links">
+              <li>
+                  <a href="#" class="desktop-item tools">Vehicle History <img width="12px" height="12px" src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/10/solid-chevron-down.svg" alt="drop-down"></a>
+                  <div class="mega-box">
+                      <ul class="mega-links">
+                          <li><a href="https://detailedvehiclehistory.com/motorcycle-vin-check">Motorcycle VIN Lookup</a></li>
+                          <li><a href="https://detailedvehiclehistory.com/classic-vin-decoder">Classic Car VIN Lookup</a></li>
+                          <li><a href="https://detailedvehiclehistory.com/truck-vin-lookup">Truck VIN Lookup</a></li>
+                          <li><a href="https://detailedvehiclehistory.com/rv-vin-lookup">RV VIN Lookup</a></li>
+                          <li><a href="https://detailedvehiclehistory.com/trailer-vin-lookup">Trailer VIN Lookup</a></li>
+                          <li><a href="https://detailedvehiclehistory.com/atv-vin-check">ATV VIN Lookup</a></li>
+                      </ul>
+                  </div>
+              </li>
+              <li><a href="https://detailedvehiclehistory.com/window-sticker">Window Sticker</a></li>
+              <li><a href="https://detailedvehiclehistory.com/license-plate-lookup">License Plate Lookup</a></li>
+              <li><a href="https://detailedvehiclehistory.com/sample">Sample</a></li>
+              <li>
+                  <a href="#" class="desktop-item tools">Our Tools <img width="12px" height="12px" src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/10/solid-chevron-down.svg" alt="drop-down"></a>
+                  <div class="mega-box">
+                      <ul class="mega-links">
+                          <li><a href="https://detailedvehiclehistory.com/vin-check">Vehicle History</a></li>
+                          <li><a href="https://detailedvehiclehistory.com/lien-check">Lien Check</a></li>
+                          <li><a href="https://detailedvehiclehistory.com/title-checks">Title Check</a></li>
+                          <li><a href="https://detailedvehiclehistory.com/window-sticker/msrp">MSRP by VIN</a></li>
+                          <li><a href="https://detailedvehiclehistory.com/classic-window-stickers">Classic Window Sticker</a></li>
+                      </ul>
+                  </div>
+              </li>
+              <li class="mobile-only"><a href="https://detailedvehiclehistory.com/members/login">Login / Sign up</a></li>
+    
+              <label for="menu-toggle" class="close-icon"><img width="24px" height="24px" src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/10/solid-xmark.svg" alt="close" ></label>
+          </ul>
+          <div class="multi-button">
+              <a class="signup" href="https://detailedvehiclehistory.com/members/login">Login / Sign up</a>
+          </div>
+      </div>
+    </nav>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileDropdowns = document.querySelectorAll('#header .nav-links > li > a.tools');
+        
+        mobileDropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 970) {
+                    e.preventDefault();
+                    const parentLi = this.parentElement;
+                    const isActive = parentLi.classList.contains('active');
+                    
+                    // Close all dropdowns
+                    mobileDropdowns.forEach(item => item.parentElement.classList.remove('active'));
+                    
+                    // Toggle the clicked dropdown
+                    if (!isActive) {
+                        parentLi.classList.add('active');
+                    }
+                }
+            });
+        });
+      
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 970 && !e.target.closest('#header .nav-links')) {
+                mobileDropdowns.forEach(item => item.parentElement.classList.remove('active'));
+            }
+        });
+      });
+      </script>
+  </div>
+  <!-- End of Header -->
+
+  <div class="text-black max-w-7xl mx-auto" style="font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont">
+  <!-- Background div -->
+  <div class="absolute top-0 left-0 w-full h-[200vh] -z-10 bg-gradient"></div>
+  <style>
+    .bg-gradient {
+      background-image: url('assets/bg-gradient.svg');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  </style>
+
+  <section id="hero" class="py-12 px-4">
+    <div class="mx-auto">
+      <!-- Main Content -->
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <!-- Left Column -->
+        <div>
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 mb-4">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold">Excellent</span>
+              <div class="flex gap-0.5">
+                <img src="https://detailedvehiclehistory.com/assets/Stars-5-Trustpilot.svg" alt="TrustPilot" class="h-5">
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-1 sm:mt-0">
+              <span class="text-gray-700 text-sm sm:text-base">768 reviews on</span>
+              <img src="https://detailedvehiclehistory.com/assets/Trustpilot.svg" alt="Trustpilot" class="h-4 sm:h-5">
+            </div>
+          </div>
+          <span class="text-xl font-bold mb-2 block">Don't buy a problem, check it's history!</span>
+          <h1 class="text-4xl mb-4 font-bold">
+            <span class="text-blue-600">Vehicle History by VIN</span> for Cars, Motorcycles, Trucks, & More
+          </h1>
+          <p class="text-gray-700 mb-8 font-sans">
+            Check car history with the best <a href="https://detailedvehiclehistory.com/blog/carfax-alternatives" class="text-blue-600 hover:underline">Carfax alternative</a>. 
+            Our best-in-class vehicle reports allow access to accident history, title brands, theft records, sales history, open recalls, and more.
+          </p>
+
+          <!-- Form Card -->
+          <div>
+                      <!-- Form Section -->
+          <div class="space-y-4 max-w-xl">
+            <input 
+              type="text" 
+              placeholder="Enter your VIN number" 
+              class="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            >
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              class="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            >
+            <input 
+              type="tel" 
+              placeholder="Enter your phone number" 
+              class="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            >
+            <button class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+              Check Vehicle History
+            </button>
+          </div>
+            <?php
+            // Output the shortcode directly in a PHP template
+            echo do_shortcode('[site_form type="vhr" color="#1955FF" vintxt="Search VIN" lptxt="Search License Plate" ymmtxt="Search YMM" color="#1955FF"]');
+            ?>
+            <div class="pt-4 pb-2 md:pb-3">
+              <div class="flex flex-col sm:flex-row justify-between items-start space-y-2 sm:space-y-0 sm:space-x-4">
+                <button id="vinInfoBtn" class="font-bold text-gray-900 transition duration-300">
+                  Where can I find the VIN?
+                </button>
+                <span class="hidden sm:inline text-gray-500">|</span>
+                <a href="/report/vin/2T1BURHE0FC320645" target="_blank" class="font-bold text-gray-900 transition duration-300">
+                  View Sample
+                </a>
+                <span class="hidden sm:inline text-gray-500">|</span>
+                <a href="/vin-check-rates" target="_blank" id="btn3Text" class="font-bold text-gray-900 transition duration-300">
+                  No VIN/Plate? Get Credits
+                </a>
+              </div>
+            
+              <!-- Popup -->
+              <div id="popupVin" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-20">
+                <div class="bg-white p-3 md:p-6 rounded-lg shadow-xl max-w-2xl w-full m-4 relative">
+                  <button id="closePopupVin" class="text-gray-500 hover:text-gray-700 absolute right-3 top-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                  <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2021/01/how-to-find-the-vin-number.jpg" alt="VIN location" class="w-full h-auto">
+                </div>
+              </div>
+            
+              <script>
+                const vinInfoBtn = document.getElementById('vinInfoBtn');
+                const popup = document.getElementById('popupVin');
+                const closePopup = document.getElementById('closePopupVin');
+            
+                function showPopup() {
+                  popup.classList.remove('hidden');
+                  popup.classList.add('flex');
+                }
+            
+                function hidePopup() {
+                  popup.classList.add('hidden');
+                  popup.classList.remove('flex');
+                }
+            
+                vinInfoBtn.addEventListener('click', showPopup);
+                closePopup.addEventListener('click', hidePopup);
+                popup.addEventListener('click', (e) => {
+                  if (e.target === popup) hidePopup();
+                });
+              </script>
+            </div>
+            <p class="pt-2 md:pt-3 pb-4 mb-2 text-lg">
+              Want to learn about vehicles features, options & packages? <a href="/window-sticker" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors duration-300">Window Sticker Lookup</a>
+            </p>
+            <div class="flex flex-nowrap justify-center items-center gap-2 sm:gap-4">
+              <!-- Google Play Store -->
+              <a href="https://play.google.com/store/apps/details?id=com.vehiclehistory.dvh&utm_source=google&utm_medium=organic&utm_campaign=app_download_android&utm_id=app_download&_gl=1*17o00yv*_gcl_au*NTI3NTkzNjA1LjE3MjkzNjAyMDA.*_ga*ODIzODEzNjMwLjE3MjkzNjAyMDA.*_ga_7Q0W2FSCKP*MTczMTE0NzAwNi4xNy4xLjE3MzExNDc3NDcuNjAuMC4w*_ga_NBT91WK5CH*MTczMTE0NzAwNi4xNy4xLjE3MzExNDc3NDcuMC4wLjA." target="_blank" class="flex-1 max-w-[120px] sm:max-w-[160px] transition-transform hover:scale-105">
+                <img 
+                  src="https://detailedvehiclehistory.com/assets/googlePlay.png" 
+                  alt="Get it on Google Play" 
+                  class="w-full h-auto"
+                >
+              </a>
+            
+              <!-- Apple App Store -->
+              <a href="https://apps.apple.com/app/vin-decoder-vehicle-history/id1576559330?utm_source=google&utm_medium=organic&utm_campaign=app_download_iOS&utm_id=app_download&_gl=1*17o00yv*_gcl_au*NTI3NTkzNjA1LjE3MjkzNjAyMDA.*_ga*ODIzODEzNjMwLjE3MjkzNjAyMDA.*_ga_7Q0W2FSCKP*MTczMTE0NzAwNi4xNy4xLjE3MzExNDc3NDcuNjAuMC4w*_ga_NBT91WK5CH*MTczMTE0NzAwNi4xNy4xLjE3MzExNDc3NDcuMC4wLjA." target="_blank" class="flex-1 max-w-[120px] sm:max-w-[160px] transition-transform hover:scale-105">
+                <img 
+                  src="https://detailedvehiclehistory.com/assets/appStore.png" 
+                  alt="Download on the App Store" 
+                  class="w-full h-auto"
+                >
+              </a>
+            
+              <!-- Windows Store -->
+              <a href="https://detailedvehiclehistory.com/downloads/vin-decoder-app/VIN-Decoder.exe?utm_source=google&utm_medium=organic&utm_campaign=app_download_windows&utm_id=app_download" class="flex-1 max-w-[120px] sm:max-w-[160px] transition-transform hover:scale-105" target="_blank">
+                <img 
+                  src="https://detailedvehiclehistory.com/assets/windows.png" 
+                  alt="Get it on Windows" 
+                  class="w-full h-auto"
+                >
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="flex flex-col">
+          <img class="w-full max-w-2xl self-center" alt="An image showing discrepancies of good dealership listing with bad vehicle history report" src="https://detailedvehiclehistory.com/assets/hero-image.webp">
+          <div class="text-center mb-6">
+            <p class="text-base md:text-lg font-bold text-gray-800">More detailed than a Carfax at a fraction of the cost</p>
+            <p class="text-base md:text-lg font-bold text-gray-800">Compare the reports below</p>
+          </div>
+        
+          <div class="flex flex-col md:flex-row gap-2 justify-center">
+            <!-- Carfax Report Card -->
+            <!-- Desktop version -->
+            <div class="hidden md:flex bg-white rounded-lg p-2 shadow-sm border border-gray-200 flex-col w-full gap-2 justify-between">
+              <div class="flex justify-between items-center gap-2">
+                <h3 class="text-gray-800 font-bold text-base">CARFAX report</h3>
+                <span class="text-base font-bold">$49.99</span>
+              </div>
+              <a href="https://detailedvehiclehistory.com/carfax-sample/comparison/" target="_blank">
+                <button class="mt-auto w-full py-2 px-4 border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-50 transition-colors text-sm">
+                  View Report
+                </button>
+              </a>
+            </div>
+
+            <!-- Mobile version -->
+            <div class="md:hidden bg-white rounded-lg p-2 shadow-sm border border-gray-200 flex flex-row w-full relative justify-between gap-1">
+              <div class="flex flex-col gap-2 justify-between">
+                <h3 class="text-gray-800 font-bold text-base">CARFAX report</h3>
+                <a href="https://detailedvehiclehistory.com/carfax-sample/" target="_blank">
+                  <button class="w-full py-2 px-4 border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-50 transition-colors text-sm">
+                    View Report
+                  </button>
+                </a>
+              </div>
+              <div class="flex text-center flex-col gap-1 self-center">
+                <span class="text-xl font-bold">$49.99</span>
+              </div>
+            </div>
+        
+            <!-- Detailed Vehicle History Card -->
+            <div class="bg-white rounded-lg p-2 shadow-sm border border-blue-100 flex flex-row w-full relative justify-between gap-1">
+              <div class="flex flex-col gap-2 justify-between">
+                <h3 class="font-bold text-base text-blue-600">Detailed Vehicle History</h3>
+                <!-- for mobile -->
+                <a class="block md:hidden" href="https://detailedvehiclehistory.com/report/vin/3FA6P0RU9HR306143" target="_blank">
+                  <button class="w-full py-2 px-4 border bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                    View Detailed Report
+                  </button>
+                </a>
+                <!-- for desktop -->
+                <a class="hidden md:block" href="https://detailedvehiclehistory.com/carfax-sample/comparison/" target="_blank">
+                  <button class="w-full py-2 px-4 border bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                    View Detailed Report
+                  </button>
+                </a>
+              </div>
+              <div class="flex text-center flex-col gap-1 self-center">
+                <span class="text-xl font-bold text-blue-600">$19.99</span>
+                <div class="bg-red-500 text-white text-xs md:text-sm px-1 rounded-sm">67% Cheaper</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+    <section class="py-12 px-4">
+    <div class="max-w-3xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Featured in</h2>
+        <p class="text-gray-700">
+          Over millions vehicles decoded and trusted by people in more than 100 countries.
+        </p>
+      </div>
+
+      <!-- Logo Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center justify-items-center">
+        <img src="https://detailedvehiclehistory.com/assets/north-america.webp" alt="Featured company logo" class="h-14 w-auto">
+        <img src="https://detailedvehiclehistory.com/assets/business-times-journal.webp" alt="Featured company logo" class="h-14 w-auto">
+        <img src="https://detailedvehiclehistory.com/assets/the-america-watch.webp" alt="Featured company logo" class="h-14 w-auto">
+        <img src="https://detailedvehiclehistory.com/assets/canada-business-today.webp" alt="Featured company logo" class="h-14 w-auto">
+      </div>
+    </div>
+    </section>
+
+    <section class="py-12 px-4 pb-6">
+      <h2 class="mb-12 text-4xl font-bold text-center">Why check Vehicle History?</h2>
+      
+      <div class="grid gap-10 md:grid-cols-2">
+        <!-- For Buyers -->
+        <div class="py-6 px-4 md:p-8 rounded-lg bg-[#F2F6FF] shadow-sm transition-shadow duration-300 hover:shadow-lg">
+          <h2 class="mb-4 text-2xl font-semibold">For Buyers</h2>
+          <p class="mb-6 text-gray-700 font-sans">
+            Did you know that buyers who check a vehicle's history are 70% less likely to face major issues after purchase? A check helps to easily spot hidden accidents or title problems, view market value for better negotiations, and save money long-term.
+          </p>
+          <div class="relative h-80 overflow-hidden rounded-lg">
+            <img 
+              src="https://detailedvehiclehistory.com/assets/girl.webp" 
+              alt="Vehicle history report details showing various checks"
+              class="object-cover w-full h-full"
+            >
+          </div>
+        </div>
+
+        <!-- For Sellers -->
+        <div class="py-6 px-4 md:p-8 rounded-lg bg-[#F5F2FF] shadow-sm transition-shadow duration-300 hover:shadow-lg">
+          <h2 class="mb-4 text-2xl font-semibold">For Sellers</h2>
+          <p class="mb-6 text-gray-700 font-sans">
+            Sellers benefit, too. Cars with detailed checks and window stickers often sell 15% higher and more quickly. When customers see detailed vehicle specifications, features, options, and packages on window stickers, they are less likely to contest pricing, which can result in quicker sales.
+          </p>
+          <div class="relative h-80 overflow-hidden rounded-lg">
+            <img 
+              src="https://detailedvehiclehistory.com/assets/girls.webp" 
+              alt="Vehicle specification details and window sticker information"
+              class="object-cover w-full h-full"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-6 px-4">
+        <div class="mx-auto grid md:grid-cols-[360px,1fr] gap-8 items-center py-6 px-4 md:p-8 bg-[#FFFAF2] rounded-lg shadow-sm">
+          <!-- Left Side -->
+          <div>
+            <h2 class="text-2xl font-bold mb-6">Here is what to expect:</h2>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                Uncover hidden issues before you buy
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                Verify mileage and ownership history
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                Check for accidents, repairs, and recalls
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                Exclusive auction photos and historical data
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                Check service and repair history
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                Verify odometer records and mileage history
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                Check for liens and loans
+              </li>
+            </ul>
+          </div>
+      
+          <!-- Right Side -->
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10 h-fit">
+            <!-- Odometer Rollback -->
+            <div class="p-4 bg-white rounded-2xl border transition-shadow duration-300 hover:shadow-lg">
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-semibold">Odometer Rollback</h3>
+              </div>
+              <p class="text-red-500">The vehicle has mileage discrepancy.</p>
+            </div>
+      
+            <!-- Ownership History -->
+            <div class="p-4 bg-white rounded-2xl border transition-shadow duration-300 hover:shadow-lg">
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-semibold">Ownership History</h3>
+              </div>
+              <p class="text-red-500">5 ownership record(s) found.</p>
+            </div>
+      
+            <!-- Accident History -->
+            <div class="p-4 bg-white rounded-2xl border transition-shadow duration-300 hover:shadow-lg">
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-semibold">Accident History</h3>
+              </div>
+              <p class="text-red-500">3 accident record(s) found.</p>
+            </div>
+      
+            <!-- Auction & Sales History -->
+            <div class="p-4 bg-white rounded-2xl border transition-shadow duration-300 hover:shadow-lg">
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-semibold">Auction & Sales history</h3>
+              </div>
+              <p class="text-red-500">2 record(s) found with 10+ images.</p>
+            </div>
+      
+            <!-- Lien/Loan History -->
+            <div class="p-4 bg-white rounded-2xl border transition-shadow duration-300 hover:shadow-lg">
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-semibold">Lien/Loan History</h3>
+              </div>
+              <p class="text-red-500">The vehicle has 2 lien or loan record(s).</p>
+            </div>
+      
+            <!-- Service & Repair History -->
+            <div class="p-4 bg-white rounded-2xl border transition-shadow duration-300 hover:shadow-lg">
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-semibold">Service & Repair History</h3>
+              </div>
+              <p class="text-red-500">The vehicle has 2 service & repair record(s).</p>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="py-12 px-4 pt-6">
+      <div class="bg-blue-50 py-6 px-4 md:p-8 mx-auto grid gap-4 lg:grid-cols-[1fr,auto,1fr,1fr] md:grid-cols-[1fr,auto,1fr] grid-cols-1 rounded-lg shadow-sm">
+        <!-- False Listing Column -->
+        <div class="bg-white rounded-xl p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg">
+          <h2 class="text-red-500 font-semibold mb-4">Dealership Listing</h2>
+          <div class="relative mb-4">
+            <div class="rounded-lg overflow-hidden">
+              <img 
+                src="https://detailedvehiclehistory.com/assets/redImage.webp" 
+                alt="A dealership listing that shows a car in pristine condition"
+                class="w-full h-full object-cover"
+              >
+            </div>
+          </div>
+          <p class="text-gray-700">
+            Don't be fooled by misleading advertisements. A comprehensive vehicle history check can reveal hidden problems and save you from expensive mistakes.
+          </p>
+        </div>
+
+        <!-- VS -->
+        <div class="flex items-center justify-center text-3xl font-bold h-fit my-auto">
+          VS
+        </div>
+
+        <!-- Vehicle History Report Column -->
+        <div class="bg-white rounded-xl p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg">
+          <h2 class="text-emerald-500 font-semibold mb-4">Actual Vehicle History</h2>
+          <div class="relative mb-4">
+            <div class="rounded-lg overflow-hidden">
+              <img 
+                src="https://detailedvehiclehistory.com/assets/greenImage.webp" 
+                alt="An image showing a car with salvage record, accident record, auction brand, and insurance loss record"
+                class="w-full h-full object-cover"
+              >
+            </div>
+          </div>
+          <ul class="space-y-2 text-gray-700">
+            <li class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+              Accident History
+            </li>
+            <li class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+              Salvage Title Information
+            </li>
+            <li class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+              Previous Owners
+            </li>
+            <li class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+              Service Records
+            </li>
+          </ul>
+        </div>
+
+        <!-- Warning Column -->
+        <div class="pb-4 lg:pb-0 lg:pl-4 order-first lg:order-3 lg:col-span-1 md:col-span-3">
+          <h2 class="text-2xl font-bold mb-4">Not everything you see Online is TRUE!</h2>
+          <p class="text-gray-700 lg:mb-8">
+            Dealerships cover up problems with vehicles. Our VIN check reports can save you thousands of dollars from vehicles with undisclosed issues like this.
+          </p>
+          <div class="space-y-4 max-w-56 hidden lg:block">
+            <a href="https://detailedvehiclehistory.com/actual-dealership-listing/" target="_blank" class="block">
+              <button class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                View Dealer Listing
+              </button>
+            </a>
+            <a href="https://detailedvehiclehistory.com/report/vin/4S4BSAJC6K3298326" target="_blank" class="block">
+              <button class="w-full border border-blue-600 text-blue-600 py-3 px-4 rounded-lg hover:bg-blue-100 transition-colors">
+                View History Report
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="md:col-span-3 justify-center gap-4 mt-4 flex flex-wrap lg:hidden">
+          <a href="https://detailedvehiclehistory.com/actual-dealership-listing/" target="_blank" class="block">
+            <button class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+              View Dealer Listing
+            </button>
+          </a>
+          <a href="https://detailedvehiclehistory.com/report/vin/4S4BSAJC6K3298326" target="_blank" class="block">
+            <button class="w-full border border-blue-600 text-blue-600 py-3 px-4 rounded-lg hover:bg-blue-100 transition-colors">
+              View History Report
+            </button>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 px-4">
+      <div class="mx-auto">
+        <!-- Header -->
+        <div class="mb-10">
+          <h2 class="text-3xl font-bold mb-4">How to get your Vehicle Reports?</h2>
+          <p class="text-gray-700">
+            Getting a vehicle report is a breeze! Just enter the VIN to access car facts by VIN, including accident history and more. Our full vehicle history reports cover everything from specs and usage history to mileage readings, ensuring you have all the necessary information.
+          </p>
+        </div>
+
+        <!-- Steps -->
+        <div class="relative mb-10">
+          <!-- Vertical Line -->
+          <div id="lineHeight" class="absolute left-6 top-8 bottom-8 w-0.5 bg-blue-100"></div>
+
+          <!-- Step 1 -->
+          <div class="relative flex gap-6 mb-8 group">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center shrink-0 z-10 transition-all duration-300 group-hover:scale-110">
+              <div class="w-6 h-6 mask-image-search">
+                <img src="https://detailedvehiclehistory.com/assets/search.svg" alt="Search">
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Step 1: Enter the VIN or Search by License Plate</h3>
+              <p class="text-gray-700">
+                Locate your Vehicle Identification Number (VIN) or License plate number and enter it into our search bar.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative flex gap-6 mb-8 group">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center shrink-0 z-10 transition-all duration-300 group-hover:scale-110">
+              <div class="w-6 h-6 mask-image-document">
+                <img src="https://detailedvehiclehistory.com/assets/file-plus.svg" alt="Search">
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Step 2: Choose Your Report</h3>
+              <p class="text-gray-700">
+                Select the type of report you need. Consider getting a window sticker for easy access to vehicle specifications and features.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="relative flex gap-6 mb-8 group">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center shrink-0 z-10 transition-all duration-300 group-hover:scale-110">
+              <div class="w-6 h-6 mask-image-eye">
+                <img src="https://detailedvehiclehistory.com/assets/eye.svg" alt="Search">
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Step 3: Review and Purchase</h3>
+              <p class="text-gray-700">
+                Review the report preview and complete your purchase.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="relative flex gap-6 group">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500 flex items-center justify-center shrink-0 z-10 transition-all duration-300 group-hover:scale-110">
+              <div class="w-6 h-6 mask-image-check">
+                <img src="https://detailedvehiclehistory.com/assets/check.svg" alt="Search">
+              </div>
+            </div>
+            <div>
+              <h3 id="hTrackHeight" class="text-xl font-semibold mb-2">Step 4: Access Your Report</h3>
+              <p id="pTrackHeight" class="text-gray-700">
+                Access your vehicle history report instantly from members area, download PDF or print it easily.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <button onclick="smoothScroll('hero')" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+            Check Vehicle History Now!
+          </button>
+        </div>
+      </div>
+      <script>
+        // Function to log the height of the pTrackHeight element and adjust lineHeight
+        function adjustHeights() {
+          const pTrackElement = document.getElementById('pTrackHeight');
+          const hTrackElement = document.getElementById('hTrackHeight');
+          const lineElement = document.getElementById('lineHeight');
+
+          if (pTrackElement && hTrackElement && lineElement) {
+              const hTrackHeight = hTrackElement.offsetHeight;
+              const pTrackHeight = pTrackElement.offsetHeight;
+              // console.log('pTrackHeight:', pTrackHeight + 'px');
+
+              if (pTrackHeight > 46) {
+                  const newLineHeight = Math.max(0, lineElement.offsetHeight - (pTrackHeight - 46));
+                  lineElement.style.height = newLineHeight + 'px';
+                  // console.log('Height for Text colapsed:', pTrackHeight - 46 + 'px');
+                  // console.log('Adjusted lineHeight:', newLineHeight + 'px');
+              } else {
+                  // console.log('pTrackHeight is not more than 46px, no adjustment needed');
+              };
+
+              if (hTrackHeight > 28) {
+                  const newLineHeight = Math.max(0, lineElement.offsetHeight - (hTrackHeight - 28));
+                  lineElement.style.height = newLineHeight + 'px';
+                  // console.log('Height for Heading colapsed:', hTrackHeight - 28 + 'px');
+                  // console.log('Adjusted lineHeight:', newLineHeight + 'px');
+              } else {
+                  // console.log('hTrackHeight is not more than 28px, no adjustment needed');
+              };
+          } else {
+              // console.log('One or both elements not found');
+          }
+        }
+
+        // Adjust heights on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            adjustHeights();
+        });
+
+        // Adjust heights on window resize
+        window.addEventListener('resize', function() {
+            adjustHeights();
+        });
+      </script>
+    </section>
+
+      <section class="py-12 px-4">
+        <div class="mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">What our VIN History Reports include?</h2>
+            <p class="text-gray-700 max-w-3xl mx-auto">
+              Vehicle history reports give you a detailed overview of a car's past, helping buyers assess reliability and condition before making decisions. With vehicle reports, you can check specs, 
+              <a href="https://detailedvehiclehistory.com/blog/branded-title-meaning" target="_blank" class="text-blue-600">title brand</a> records, accident records, damages, fire damage, ownership records, and more.
+            </p>
+          </div>
+      
+          <!-- Three Columns -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Title Brand Check -->
+            <div class="space-y-4 p-6 border rounded-lg shadow-md transition-shadow duration-300 hover:shadow-lg">
+              <h3 class="text-xl font-bold">Title Brand Check</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Fire brand
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Hail brand
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Flood brand
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Junk or scrapped brand
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Manufacturer buyback brand
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  <a class="underline text-blue-600" target="_blank" href="https://detailedvehiclehistory.com/blog/what-is-a-lemon-title">Lemon brand</a>
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  <a class="underline text-blue-600" target="_blank" href="https://detailedvehiclehistory.com/blog/differences-between-a-salvage-title-and-rebuilt-title">Salvage brand</a>
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Rebuilt brand
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Odometer brand
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Auction brand
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Vandalism brand
+                </li>
+              </ul>
+            </div>
+      
+            <!-- Car History -->
+            <div class="space-y-4 p-6 border rounded-lg shadow-md transition-shadow duration-300 hover:shadow-lg">
+              <h3 class="text-xl font-bold">Car History</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Vehicle usage history
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Ownership history
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Past ownership durations
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Previous registered locations
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Sales history
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Auction history
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Stolen vehicle history
+                </li>
+              </ul>
+            </div>
+      
+            <!-- Vehicle Records -->
+            <div class="space-y-4 p-6 border rounded-lg shadow-md transition-shadow duration-300 hover:shadow-lg">
+              <h3 class="text-xl font-bold">Vehicle Records</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Odometer Rollback
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Accident Records
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Lien/Loan Records
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Repossessed Records
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Duplicate Title Records
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Corrected Title Records
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Theft Records
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Grey Market Title Records
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Inspection Records
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Service and Repair Records
+                </li>
+                <li class="flex items-center gap-2 text-gray-700">
+                  <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+                  Recalls
+                </li>
+              </ul>
+            </div>
+          </div>
+      
+          <!-- Buttons -->
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <button onclick="smoothScroll('hero')" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+              Get VIN History Report
+            </button>
+            <a href="https://detailedvehiclehistory.com/sample" target="_blank">
+              <button class="w-full px-6 py-2 border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 transition-colors">
+                Learn more with a Sample Report
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 px-4">
+        <div class="mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Reports for All Vehicle Types</h2>
+            <p class="text-gray-700 max-w-3xl mx-auto">
+              We offer reports for all vehicle types, from vehicles manufactured after 1981 to classic car history checks, get detailed reports for motorcycles, trucks, trailers, RVs and more.
+            </p>
+          </div>
+      
+          <!-- Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 mb-10 gap-4 md:gap-0">
+            <!-- Cars 1 -->
+            <div class="border md:border-r-0 md:border-t-0 md:border-l md:border-b p-6 hover:bg-gray-50 transition-colors relative group">
+              <div class="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-tr-xl rounded-br-xl w-1 h-5 bg-gray-300 group-hover:bg-blue-600 transition-colors"></div>
+              <div class="flex flex-col sm:flex-row align-baseline justify-between sm:items-center mb-3 gap-1">
+                <h3 class="text-lg font-semibold">Cars</h3>
+                <a href="https://detailedvehiclehistory.com/report/vin/1G1JA5SH4E4153457" target="_blank" class="hover:text-gray-500 text-blue-600 transition-colors inline-flex items-center">
+                  View Sample Report
+                  <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+              <p class="text-gray-700 mb-4">
+                Checkout this car has a branded title, one accident record, and one damage record. It was owned by 5 owners. It has 5 lien or loan records and it was being titled to an insurance company too.
+              </p>
+            </div>
+      
+            <!-- Classic Cars 1 -->
+            <div class="border md:border-l md:border-r md:border-b md:border-t-0 p-6 hover:bg-gray-50 transition-colors relative group">
+              <div class="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-tr-xl rounded-br-xl w-1 h-5 bg-gray-300 group-hover:bg-blue-600 transition-colors"></div>
+              <div class="flex flex-col sm:flex-row align-baseline justify-between sm:items-center mb-3 gap-1">
+                <h3 class="text-lg font-semibold">Classic Cars</h3>
+                <a href="https://detailedvehiclehistory.com/report/vin/252677X172255" target="_blank" class="hover:text-gray-500 text-blue-600 transition-colors inline-flex items-center">
+                  View Sample Report
+                  <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+              <p class="text-gray-700 mb-4">
+                This classic has a branded title, one accident record, and two damage records. It also has two auction records.
+              </p>
+            </div>
+      
+            <!-- Motorcycles 1 -->
+            <div class="border md:border-r md:border-b md:border-t-0 md:border-l-0 p-6 hover:bg-gray-50 transition-colors relative group">
+              <div class="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-tr-xl rounded-br-xl w-1 h-5 bg-gray-300 group-hover:bg-blue-600 transition-colors"></div>
+              <div class="flex flex-col sm:flex-row align-baseline justify-between sm:items-center mb-3 gap-1">
+                <h3 class="text-lg font-semibold">Motorcycles</h3>
+                <a href="https://detailedvehiclehistory.com/report/vin/1HD1KRC10HB628632" target="_blank" class="hover:text-gray-500 text-blue-600 transition-colors inline-flex items-center">
+                  View Sample Report
+                  <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+              <p class="text-gray-700 mb-4">
+                The motorcycle has a branded title, a mileage discrepancy, and one accident record with damage. It also has two lien or loan records and four specific event reports. It was also previously listed for sale online.
+              </p>
+            </div>
+      
+            <!-- Cars 2 -->
+            <div class="border md:border-l md:border-r-0 md:border-t-0 md:border-b-0 p-6 hover:bg-gray-50 transition-colors relative group">
+              <div class="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-tr-xl rounded-br-xl w-1 h-5 bg-gray-300 group-hover:bg-blue-600 transition-colors"></div>
+              <div class="flex flex-col sm:flex-row align-baseline justify-between sm:items-center mb-3 gap-1">
+                <h3 class="text-lg font-semibold">Heavy Duty Trucks</h3>
+                <a href="https://detailedvehiclehistory.com/report/vin/1FUGGLDV6DLFA2220" target="_blank" class="hover:text-gray-500 text-blue-600 transition-colors inline-flex items-center">
+                  View Sample Report
+                  <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+              <p class="text-gray-700 mb-4">
+                This truck has a branded title, one accident and damage record, and 13 open recalls. It also has two lien or loan records, two specific event reports, and one auction record.
+              </p>
+            </div>
+      
+            <!-- Classic Cars 2 -->
+            <div class="border md:border-l md:border-r md:border-t-0 md:border-b-0 p-6 hover:bg-gray-50 transition-colors relative group">
+              <div class="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-tr-xl rounded-br-xl w-1 h-5 bg-gray-300 group-hover:bg-blue-600 transition-colors"></div>
+              <div class="flex flex-col sm:flex-row align-baseline justify-between sm:items-center mb-3 gap-1">
+                <h3 class="text-lg font-semibold">RV</h3>
+                <a href="https://detailedvehiclehistory.com/report/vin/4CH7HT524VM002236" target="_blank" class="hover:text-gray-500 text-blue-600 transition-colors inline-flex items-center">
+                  View Sample Report
+                  <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+              <p class="text-gray-700 mb-4">
+                RV has a branded title, one damage record, and one lien or loan record. It also has two specific event reports and one auction record.
+              </p>
+            </div>
+      
+            <!-- Motorcycles 2 -->
+            <div class="border md:border-r md:border-l-0 md:border-b-0 md:border-t-0 p-6 hover:bg-gray-50 transition-colors relative group">
+              <div class="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-tr-xl rounded-br-xl w-1 h-5 bg-gray-300 group-hover:bg-blue-600 transition-colors"></div>
+              <div class="flex flex-col sm:flex-row align-baseline justify-between sm:items-center mb-3 gap-1">
+                <h3 class="text-lg font-semibold">Trailers</h3>
+                <a href="https://detailedvehiclehistory.com/report/vin/1NFRL372560200157" target="_blank" class="hover:text-gray-500 text-blue-600 transition-colors inline-flex items-center">
+                  View Sample Report
+                  <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+              <p class="text-gray-700 mb-4">
+                This trailer has a branded title, three accident records, two damage records, and one lien or loan record. It also has one specific event reported.
+              </p>
+            </div>
+          </div>
+      
+          <!-- Button -->
+          <div class="text-center">
+            <button onclick="smoothScroll('hero')" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+              Check Vehicle History Now!
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 px-4 pb-5">
+        <div class="mx-auto">
+          <!-- Header -->
+          <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">What set us apart?</h2>
+            <p class="text-gray-700 max-w-3xl">
+              Our vehicle history reports are a cut above the competition. Get more information on ANY vehicle from ANY country, complete with auction and sales photos -- all at a fraction of the cost of others.
+            </p>
+          </div>
+      
+          <!-- Grid -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Unbeatable Prices -->
+            <div class="bg-green-50 rounded-lg p-6 md:p-10 shadow-sm transition-shadow duration-300 hover:shadow-lg">
+              <h3 class="text-xl font-semibold mb-3">Unbeatable Prices</h3>
+              <p class="text-gray-700">
+                We offer the lowest prices in the industry! While Carfax and AutoCheck charge a fortune, we keep history reports 100% affordable.
+              </p>
+            </div>
+      
+            <!-- Exclusive Sales Data -->
+            <div class="bg-blue-50 rounded-lg p-6 md:p-10 shadow-sm transition-shadow duration-300 hover:shadow-lg">
+              <h3 class="text-xl font-semibold mb-3">Exclusive Sales Data</h3>
+              <p class="text-gray-700">
+                View over 70 million unique sales records—data you won't find anywhere else. Make informed decisions with confidence!
+              </p>
+            </div>
+      
+            <!-- Worldwide VIN Coverage -->
+            <div class="bg-red-50 rounded-lg p-6 md:p-10 shadow-sm transition-shadow duration-300 hover:shadow-lg">
+              <h3 class="text-xl font-semibold mb-3">Worldwide VIN Coverage</h3>
+              <p class="text-gray-700">
+                Our vehicle history lookup tool covers VINs from around the globe, giving you access to vehicle histories that other competitors can't match.
+              </p>
+            </div>
+      
+            <!-- Auction Records -->
+            <div class="bg-yellow-50 rounded-lg p-6 md:p-10 shadow-sm transition-shadow duration-300 hover:shadow-lg">
+              <h3 class="text-xl font-semibold mb-3">Auction Records That Reveal All</h3>
+              <p class="text-gray-700">
+                If a vehicle's been through an auction, we've got the details! From sale prices to damages and up to 10 photos, we provide the inside scoop you need.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 px-4 pt-5 hidden md:block">
+        <div class="mx-auto">
+          <div class="grid md:grid-cols-3 gap-6">
+            <!-- Carfax -->
+            <div class="border rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="bg-gray-50 p-4 text-center">
+                <h3 class="text-xl font-semibold">Carfax</h3>
+              </div>
+              <div class="p-6">
+                <div class="text-center mb-6">
+                  <div class="text-4xl font-bold mb-2">$44.99</div>
+                  <div class="text-gray-700">Single Report</div>
+                </div>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Sales listing with photos</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Auction records with photos</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Market value data</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-5 h-5 flex justify-center text-orange-400 mt-0.5">—</div>
+                    <span class="text-gray-700">Detailed vehicle specifications <span class="text-orange-400">(Limited)</span></span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Window stickers</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Support for classic vehicles</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Maintenance recommendation</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Ownership history</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Accident history</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Damage check</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Branded title check</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Salvage title check</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Ownership history map</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Recalls</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Supports for heavy duty trucks, ATVs, trailers & motorcycles</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-5 h-5 flex justify-center text-orange-400 mt-0.5">—</div>
+                    <span class="text-gray-700">Mobile & desktop applications</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+      
+            <!-- Detailed Vehicle History -->
+            <div class="border-2 border-blue-500 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-blue-600">
+              <div class="bg-blue-100 p-4 text-center">
+                <h3 class="text-xl font-semibold">Detailed Vehicle History</h3>
+              </div>
+              <div class="p-6">
+                <div class="text-center mb-6">
+                  <div class="text-4xl font-bold text-blue-600 mb-2">$19.99</div>
+                  <div class="text-gray-700">Single Report</div>
+                </div>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Sales listing with photos</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Auction records with photos</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Market value data</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Detailed vehicle specifications</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Window stickers</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Support for classic vehicles</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Maintenance recommendation</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Ownership history</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Accident history</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Damage check</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Branded title check</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Salvage title check</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19  7"></path></svg>
+                    <span class="text-gray-700">Ownership history map</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Recalls</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Supports for heavy duty trucks, ATVs, trailers & motorcycles</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Mobile & desktop applications</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+      
+            <!-- Autocheck -->
+            <div class="border rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="bg-gray-50 p-4 text-center">
+                <h3 class="text-xl font-semibold">Autocheck</h3>
+              </div>
+              <div class="p-6">
+                <div class="text-center mb-6">
+                  <div class="text-4xl font-bold mb-2">$29.99</div>
+                  <div class="text-gray-700">Single Report</div>
+                </div>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Sales listing with photos</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Auction records with photos</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Market value data</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <div class="w-5 h-5 flex justify-center text-orange-400 mt-0.5">—</div>
+                    <span class="text-gray-700">Detailed vehicle specifications <span class="text-orange-400">(Limited)</span></span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Window stickers</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Support for classic vehicles</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Maintenance recommendation</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Ownership history</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Accident history</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Damage check</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Branded title check</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Salvage title check</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Ownership history map</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="text-gray-700">Recalls</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Supports for heavy duty trucks, ATVs, trailers & motorcycles</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="text-gray-700">Mobile & desktop applications</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 px-4 pt-5 block md:hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="p-1 text-sm text-left">
+                  <div class="text-gray-800">Feature</div>
+                  <div class="font-normal text-sm text-gray-600">Price</div>
+                </th>
+                <th class="p-1 text-sm text-center">
+                  <div class="text-gray-800">Carfax</div>
+                  <div class="font-normal text-sm text-gray-600">$44.99</div>
+                </th>
+                <th class="p-1 text-sm text-center">
+                  <div class="text-gray-800">DVH</div>
+                  <div class="font-normal text-sm text-gray-600">$19.99</div>
+                </th>
+                <th class="p-1 text-sm text-center">
+                  <div class="text-gray-800">Autocheck</div>
+                  <div class="font-normal text-sm text-gray-600">$29.99</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white">
+                <td class="p-1 text-sm border-t text-gray-700">Sales listing with photos</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-1 text-sm border-t text-gray-700">Auction records with photos</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-1 text-sm border-t text-gray-700">Market value data</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-1 text-sm border-t text-gray-700">Detailed vehicle specifications</td>
+                <td class="p-1 text-sm text-center border-t"><span class="text-orange-400">Limited</span></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><span class="text-orange-400">Limited</span></td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-1 text-sm border-t text-gray-700">Window stickers</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-1 text-sm border-t text-gray-700">Support for classic vehicles</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-1 text-sm border-t text-gray-700">Maintenance recommendation</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-1 text-sm border-t text-gray-700">Ownership history</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-1 text-sm border-t text-gray-700">Accident history</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-1 text-sm border-t text-gray-700">Damage check</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-1 text-sm border-t text-gray-700">Branded title check</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-1 text-sm border-t text-gray-700">Salvage title check</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-1 text-sm border-t text-gray-700">Ownership history map</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-1 text-sm border-t text-gray-700">Recalls</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-1 text-sm border-t text-gray-700">Supports for heavy duty trucks, ATVs, trailers & motorcycles</td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="p-1 text-sm border-t text-gray-700">Mobile & desktop applications</td>
+                <td class="p-1 text-sm text-center border-t"><span class="text-orange-400">Limited</span></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/check-solid-green.svg" alt="Included"></td>
+                <td class="p-1 text-sm text-center border-t"><img class="inline-block w-5 h-5" src="https://detailedvehiclehistory.com/assets/xmark-solid-red.svg" alt="Not Included"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="py-12 px-4">
+        <div class="px-4 py-10 md:py-20 bg-white mx-auto text-center rounded-3xl border custom-bg  shadow-lg transition-shadow duration-300 hover:shadow-xl">
+          <h2 class="text-3xl font-bold mb-6">
+            Start your 
+            <span class="text-blue-600">Vehicle Background Check</span>
+            Today!
+          </h2>
+          <p class="text-gray-700 text-lg mb-12 max-w-3xl mx-auto">
+            Don't bring a vehicle with potential problems into your garage. With just a few clicks, you can get an auto history report and view insights into any vehicle's history, ownership, and condition.
+          </p>
+          <button onclick="smoothScroll('hero')" class="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors">
+            Run a VIN Check
+          </button>
+        </div>
+      </section>
+      <style>
+        .custom-bg{
+          background-image: url("assets/Vehicle-Background-Check.webp");
+          background-size: cover;
+        }
+      </style>
+
+      <section class="py-12 px-4">
+        <div class="mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-6">What our Customers say?</h2>
+            <div class="flex items-center justify-center flex-wrap gap-2 mb-2">
+              <span class="font-semibold">Excellent</span>
+              <div class="flex gap-0.5">
+                <img src="https://detailedvehiclehistory.com/assets/Stars-5-Trustpilot.svg" alt="TrustPilot" />
+              </div>
+              <span class="text-gray-700">768 reviews on</span>
+              <img src="https://detailedvehiclehistory.com/assets/Trustpilot.svg" alt="Trustpilot" class="h-5">
+            </div>
+          </div>
+      
+          <!-- Reviews Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Review 1 (Vivek Malkan) -->
+            <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="flex gap-3 mb-4 items-start">
+                <img src="https://detailedvehiclehistory.com/assets/Vivek-Malkan-Testimonial.webp" alt="Vivek Malkan" class="w-12 h-12 rounded-full">
+                <div>
+                  <h3 class="font-semibold">Vivek Malkan</h3>
+                  <div class="text-sm text-gray-500">May 02, 2024 • US</div>
+                  <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+                </div>
+              </div>
+              <div class="w-full flex items-center justify-center relative">
+                <div class="absolute left-0 right-0 translate-x-6">
+                  <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+                </div>
+              </div>
+              <p class="pt-4 text-gray-700 text-sm">I was looking online to get a copy of my car's window sticker. I came to this website and entered my car's vin number, and instantaneously I received my vehicles history and window sticker. The process was really smooth and efficient and it got me exactly what I was looking for. Once, I received the reports, I wad then contacted by their team, personally via a phone call to make sure I was happy with their service and received what I wanted. This kind of after-sales service is make differentiates a great company from the rest!</p>
+            </div>
+      
+            <!-- Review 2 (Martin Acuña bermudez) -->
+            <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="flex gap-3 mb-4 items-start">
+                <img src="https://detailedvehiclehistory.com/assets/Martin-Acuna-bermudez-Testimonial.webp" alt="Martin Acuña bermudez" class="w-12 h-12 rounded-full">
+                <div>
+                  <h3 class="font-semibold">Martin Acuña bermudez</h3>
+                  <div class="text-sm text-gray-500">June 10, 2024 • MX</div>
+                  <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+                </div>
+              </div>
+              <div class="w-full flex items-center justify-center relative">
+                <div class="absolute left-0 right-0 translate-x-6">
+                  <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+                </div>
+              </div>
+              <p class="pt-4 text-gray-700 text-sm">I am thoroughly impressed with Detailed Vehicle History for their exceptional service. The comprehensive report I received was on par with industry leaders, yet offered at a fraction of the cost. The efficiency and expertise displayed by the live chat agent were remarkable, providing immediate and knowledgeable assistance without any delay. This level of customer service and value has solidified my decision to exclusively use Detailed Vehicle History for all future vehicle history report needs.</p>
+            </div>
+      
+            <!-- Review 3 (Michael) -->
+            <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="flex gap-3 mb-4 items-start">
+                <img src="https://detailedvehiclehistory.com/assets/testimonial.webp" alt="Michael" class="w-12 h-12 rounded-full">
+                <div>
+                  <h3 class="font-semibold">Michael</h3>
+                  <div class="text-sm text-gray-500">September 13, 2024 • US</div>
+                  <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+                </div>
+              </div>
+              <div class="w-full flex items-center justify-center relative">
+                <div class="absolute left-0 right-0 translate-x-6">
+                  <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+                </div>
+              </div>
+              <p class="pt-4 text-gray-700 text-sm">Recently bought a used 7 year old MB sedan. The dealer had limited info about the specific car and affordable option/ costs at original sale. Read favorable newspaper article about Detailed Vehicle History. Within a few minutes the window sticker came back, it was amazingly detailed, showed all the specific options/ costs and looked just like the original window sticker. Would definitely recommend this invaluable service to others.</p>
+            </div>
+      
+            <!-- Review 4 (Ha Duong) -->
+            <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="flex gap-3 mb-4 items-start">
+                <img src="https://detailedvehiclehistory.com/assets/haDuong-testimonial.webp" alt="Ha Duong" class="w-12 h-12 rounded-full">
+                <div>
+                  <h3 class="font-semibold">Ha Duong</h3>
+                  <div class="text-sm text-gray-500">August 17, 2024 • US</div>
+                  <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+                </div>
+              </div>
+              <div class="w-full flex items-center justify-center relative">
+                <div class="absolute left-0 right-0 translate-x-6">
+                  <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+                </div>
+              </div>
+              <p class="pt-4 text-gray-700 text-sm">I had ordered a window sticker and vehicle history reports for my car. Detailed Vehicle History company helped me to get the report very detailed and accurate at very low price if you compare with carfax, and the window sticker report was very accurately and fast. I am highly recommend this Detailed Vehicle History company for your vehicle history report at very price
+                </p>
+            </div>
+      
+            <!-- Review 5 (Constantin Colodezni) -->
+            <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="flex gap-3 mb-4 items-start">
+                <img src="https://detailedvehiclehistory.com/assets/ConstantinColodezni-Tetimonial.webp" alt="Constantin Colodezni" class="w-12 h-12 rounded-full">
+                <div>
+                  <h3 class="font-semibold">Constantin Colodezni</h3>
+                  <div class="text-sm text-gray-500">May 7, 2024 • CA</div>
+                  <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+                </div>
+              </div>
+              <div class="w-full flex items-center justify-center relative">
+                <div class="absolute left-0 right-0 translate-x-6">
+                  <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+                </div>
+              </div>
+              <p class="pt-4 text-gray-700 text-sm">I was pleasantly surprised by the simplicity and effectiveness of this service for checking the history of my motorcycle. With just the VIN number, Detailed Vehicle History provided me with comprehensive information that was well worth it. It's an easy recommendation for any motorcycle owner looking for detailed insights into their vehicle's history.</p>
+            </div>
+      
+            <!-- Review 6 (DE LOS SANTOS JR, CARLOS L) -->
+            <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="flex gap-3 mb-4 items-start">
+                <img src="https://detailedvehiclehistory.com/assets/DE-LOS-SANTOS-JR-CARLOS-TESTIMONIAL.webp" alt="DE LOS SANTOS JR, CARLOS L" class="w-12 h-12 rounded-full">
+                <div>
+                  <h3 class="font-semibold">DE LOS SANTOS JR, CARLOS L</h3>
+                  <div class="text-sm text-gray-500">May 26, 2024 • US</div>
+                  <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+                </div>
+              </div>
+              <div class="w-full flex items-center justify-center relative">
+                <div class="absolute left-0 right-0 translate-x-6">
+                  <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+                </div>
+              </div>
+              <p class="pt-4 text-gray-700 text-sm">I'd like to thank detailed vehicle history for getting me my OEM window sticker it was so easy and seamless and very inexpensive I was looking everywhere and couldn't find any sites or ask people no one knew how to get my OEM window sticker but they made it so easy for me I highly recommend them!</p>
+            </div>
+      
+            <!-- Review 7 (Phil D) -->
+            <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="flex gap-3 mb-4 items-start">
+                <img src="https://detailedvehiclehistory.com/assets/Phil-D-Testimonial.webp" alt="Phil D" class="w-12 h-12 rounded-full">
+                <div>
+                  <h3 class="font-semibold">Phil D</h3>
+                  <div class="text-sm text-gray-500">May 17, 2024 • US</div>
+                  <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+                </div>
+              </div>
+              <div class="w-full flex items-center justify-center relative">
+                <div class="absolute left-0 right-0 translate-x-6">
+                  <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+                </div>
+              </div>
+              <p class="pt-4 text-gray-700 text-sm">Incredibly efficient service! One of those rare cases where you get exactly what is advertised. I went onto the DVH website and was able to obtain a window sticker for a 25 year old Porsche within a few minutes. Highly recommended!</p>
+            </div>
+      
+            <!-- Review 8 (Mr. Ed) -->
+            <div class="bg-white p-6 rounded-lg border shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div class="flex gap-3 mb-4 items-start">
+                <img src="https://detailedvehiclehistory.com/assets/MrEd-Testimonial.webp" alt="Mr. Ed" class="w-12 h-12 rounded-full">
+                <div>
+                  <h3 class="font-semibold">Mr. Ed</h3>
+                  <div class="text-sm text-gray-500">August 16, 2024 • US</div>
+                  <div class="text-[#00b67a] text-2xl leading-none">★★★★★</div>
+                </div>
+              </div>
+              <div class="w-full flex items-center justify-center relative">
+                <div class="absolute left-0 right-0 translate-x-6">
+                  <div class="w-[calc(100%+24px)] h-[1px] -ml-6 bg-gradient-to-r from-transparent via-[#d1d1d1] to-transparent" style="background-image: repeating-linear-gradient(to right, #d1d1d1 0%, #d1d1d1 50%, transparent 50%, transparent 100%); background-size: 15px 1px;"></div>
+                </div>
+              </div>
+              <p class="pt-4 text-gray-700 text-sm">Dealership would/could not provide the Monroney label. Other sites noted it was unavailable for my 2003 BMW M5. DVH had it at a great price. Nailed it in fact.</p>
+            </div>
+          </div>
+      
+          <!-- Button -->
+          <div class="text-center">
+            <a href="https://www.trustpilot.com/review/detailedvehiclehistory.com" target="_blank">
+              <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                See all our Trustpilot Reviews
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="py-12 px-4">
+        <div class="mx-auto">
+          <!-- Header -->
+          <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-4">More than just History Reports!</h2>
+            <p class="text-gray-700">
+              Easily access all the tools you need to get a full car background check and make the best decisions:
+            </p>
+          </div>
+      
+          <!-- Content Grid -->
+          <div class="grid gap-6 md:gap-10">
+            <!-- Window Sticker Block -->
+            <div class="bg-blue-50 py-6 px-4 md:p-10 rounded-xl shadow-sm transition-shadow duration-300 hover:shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Get the Original Window Sticker by VIN</h3>
+              <p class="text-gray-700 mb-6">
+                Ever wondered what features and options your car really has? Well, with our window sticker lookup tool, you can find out! It lists all the important data like MSRP, color, features, options, 
+                <a href="https://detailedvehiclehistory.com/blog/what-is-mpg" class="text-blue-600 hover:underline" target="_blank">fuel economy</a>, and warranty details, making it super easy for potential buyers and sellers to see what a ride has to offer.
+              </p>
+              <div class="flex flex-wrap gap-4">
+                <a class="block" href="https://detailedvehiclehistory.com/window-sticker" target="_blank">
+                  <button class="border border-blue-600 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                    Get Window Sticker by VIN
+                  </button>
+                </a>
+                <a class="block" href="https://detailedvehiclehistory.com/sticker/vin/2T3ZFREV7DW018723-986E986E-1A1A-C2BD-EE45-8CA437B89CD1" target="_blank">
+                  <button class="border border-blue-600 text-blue-600 px-6 py-2 rounded-md hover:bg-blue-100 transition-colors">
+                    View Sample Window Sticker
+                  </button>
+                </a>
+              </div>
+            </div>
+      
+            <!-- Two Column Row -->
+            <div class="grid md:grid-cols-2 gap-6 md:gap-10">
+              <!-- Build Sheets Block -->
+              <div class="flex flex-col bg-amber-50 py-6 px-4 md:p-10 rounded-xl shadow-sm transition-shadow duration-300 hover:shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">Get Build Sheets for Classic Vehicles</h3>
+                <p class="text-gray-700 mb-6">
+                  Like window stickers, you can 
+                  <a href="https://detailedvehiclehistory.com/blog/can-i-get-a-build-sheet-from-a-vin-number" class="text-blue-600 hover:underline" target="_blank">get build sheets</a> 
+                  for classic or vintage vehicles with our build sheet lookup tool for classic vehicles with the VIN only. View specifications, features, color, pricing, and more.
+                </p>
+                <div class="flex flex-wrap gap-4 mt-auto">
+                  <a href="https://detailedvehiclehistory.com/classic-window-stickers" target="_blank">
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                      Get Build Sheet
+                    </button>
+                  </a>
+                  <a href="https://detailedvehiclehistory.com/sticker/vin/6R08C204294-D45BD45B-7D7D-32DD-64BE-FA5548C7E29C" target="_blank">
+                    <button class="border border-blue-600 text-blue-600 px-6 py-2 rounded-md hover:bg-blue-50 transition-colors">
+                      View Sample Build Sheet
+                    </button>
+                  </a>
+                </div>
+              </div>
+      
+              <!-- Classic Car History Block -->
+              <div class="flex flex-col bg-red-50 py-6 px-4 md:p-10 rounded-xl shadow-sm transition-shadow duration-300 hover:shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">Classic Car History Report</h3>
+                <p class="text-gray-700 mb-6">
+                  You won't find this anywhere else! Our classic car VIN check provides exclusive records for any old vehicle, giving you a full 
+                  <a href="https://detailedvehiclehistory.com/classic-vin-decoder" target="_blank" class="text-blue-600 hover:underline">classic car vehicle history report</a> 
+                  that Carfax and AutoCheck can't. Check a vintage car's authenticity today!
+                </p>
+                <div class="mt-auto flex flex-wrap gap-4">
+                  <a href="https://detailedvehiclehistory.com/classic-vin-decoder" target="_blank">
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                      Get Classic Car History Report
+                    </button>
+                  </a>
+                  <a href="https://detailedvehiclehistory.com/report/vin/252677X172255" target="_blank">
+                    <button class="border border-blue-600 text-blue-600 px-6 py-2 rounded-md hover:bg-blue-50 transition-colors">
+                      View Sample Report
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 px-4">
+        <div class="mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Get Vehicle History Info by Plate</h2>
+          </div>
+      
+          <!-- States Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 font-sans">
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/alabama" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Alabama</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/alaska" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Alaska</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/arizona" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Arizona</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/arkansas" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Arkansas</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/california" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>California</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/colorado" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Colorado</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/connecticut" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Connecticut</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/delaware" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Delaware</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/florida" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Florida</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/georgia" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Georgia</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/hawaii" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Hawaii</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/idaho" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Idaho</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/illinois" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Illinois</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/indiana" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Indiana</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/iowa" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Iowa</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/kansas" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Kansas</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/kentucky" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Kentucky</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/louisiana" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Louisiana</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/maine" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Maine</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/maryland" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Maryland</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/massachusetts" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Massachusetts</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/michigan" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Michigan</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/minnesota" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Minnesota</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/mississippi" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Mississippi</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/missouri" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Missouri</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/montana" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Montana</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/nebraska" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Nebraska</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/nevada" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Nevada</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/new-hampshire" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>New Hampshire</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/new-jersey" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>New Jersey</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/new-mexico" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>New Mexico</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/new-york" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>New York</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/north-carolina" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>North Carolina</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/north-dakota" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>North Dakota</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/ohio" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Ohio</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/oklahoma" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Oklahoma</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/oregon" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Oregon</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/pennsylvania" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Pennsylvania</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/rhode-island" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Rhode Island</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/south-carolina" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>South Carolina</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/south-dakota" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>South Dakota</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/tennessee" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Tennessee</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/texas" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Texas</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/utah" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Utah</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/vermont" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Vermont</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/virginia" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Virginia</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/washington" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Washington</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/west-virginia" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>West Virginia</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/wisconsin" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Wisconsin</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/license-plate-lookup/wyoming" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Wyoming</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="py-12 px-4">
+        <div class="mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Get Vehicle History Info by Make</h2>
+          </div>
+      
+          <!-- Makes Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 font-sans">
+            <a href="https://detailedvehiclehistory.com/vin-decoder/acura" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Acura</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/alfa-romeo" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Alfa Romeo</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/am-general" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>AM General</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/aston-martin" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Aston Martin</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/audi" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Audi</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/bentley" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Bentley</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/bmw" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>BMW</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/buick" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Buick</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/cadillac" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Cadillac</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/chevrolet" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Chevrolet</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/chrysler" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Chrysler</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/daewoo" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Daewoo</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/dodge" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Dodge</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/ferrari" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Ferrari</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/fiat" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Fiat</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/fisker" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Fisker</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/ford" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Ford</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/genesis" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Genesis</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/gmc" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>GMC</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/honda" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Honda</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/hummer" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Hummer</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/hyundai" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Hyundai</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/infiniti" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Infiniti</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/isuzu" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Isuzu</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/jaguar" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Jaguar</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/jeep" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Jeep</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/kia" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>KIA</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/lamborghini" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Lamborghini</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/land-rover" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Land Rover</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/lexus" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Lexus</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/lincoln" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Lincoln</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/lotus" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Lotus</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/maserati" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Maserati</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/maybach" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Maybach</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/mazda" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Mazda</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/mclaren" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Mclaren</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/mercedes-benz" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Mercedes-Benz</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/mercury" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Mercury</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/mini" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Mini</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/mitsubishi" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Mitsubishi</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/nissan" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Nissan</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/oldsmobile" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Oldsmobile</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/panoz" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Panoz</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/plymouth" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Plymouth</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/polestar" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Polestar</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/pontiac" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Pontiac</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/porsche" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Porsche</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/ram" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>RAM</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/rolls-royce" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Rolls-Royce</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/saab" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Saab</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/saturn" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Saturn</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/scion" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Scion</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/smart" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Smart</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/subaru" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Subaru</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/suzuki" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Suzuki</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/tesla" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Tesla</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/toyota" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Toyota</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/volkswagen" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Volkswagen</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/vin-decoder/volvo" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Volvo</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 px-4">
+        <div class="max-w-4xl mx-auto">
+          <!-- Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">VIN Check by Vehicle Type</h2>
+            <p class="text-gray-700">
+              Our VIN check covers a wide range of vehicle types. Select your vehicle type to get started.
+            </p>
+          </div>
+      
+          <!-- Vehicle Types Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 font-sans">
+            <!-- Row 1 -->
+            <a href="https://detailedvehiclehistory.com/motorcycle-vin-check" target="_blank" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Motorcycle VIN Check</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/rv-vin-lookup" target="_blank" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>RV VIN Check</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/classic-vin-decoder" target="_blank" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Classic Car VIN Check</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+      
+            <!-- Row 2 -->
+            <a href="https://detailedvehiclehistory.com/atv-vin-check" target="_blank" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>ATV VIN Check</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/truck-vin-lookup" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Truck VIN Check</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+            <a href="https://detailedvehiclehistory.com/trailer-vin-lookup" target="_blank" class="flex items-center justify-between px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors shadow-sm">
+              <span>Trailer VIN Checks</span>
+              <img width="8px" height="8px" src="https://detailedvehiclehistory.com/assets/chevron-right-solid.svg" alt="Check">
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Header -->
+          <h2 class="text-3xl font-bold text-center mb-12">Latest from our Blog</h2>
+      
+          <!-- Blog Posts Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border flex flex-col">
+              <img 
+                src="https://detailedvehiclehistory.com/assets/Can-I-Get-Build-Sheet-by-VIN-700x394.webp" 
+                srcset="
+                  assets/Can-I-Get-Build-Sheet-by-VIN-300w.webp 300w,
+                  assets/Can-I-Get-Build-Sheet-by-VIN-600w.webp 600w,
+                  assets/Can-I-Get-Build-Sheet-by-VIN-900w.webp 900w
+                "
+                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                alt="People discussing used car purchase" 
+                class="w-full h-48 object-cover"
+                loading="lazy"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-bold mb-3">VIN Build Sheet: What It Is and How to Get One</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  A VIN build sheet details equipment and options automakers use before assembling cars.
+                </p>
+                <a href="https://detailedvehiclehistory.com/blog/can-i-get-a-build-sheet-from-a-vin-number" target="_blank" class="text-blue-600 hover:text-blue-700 inline-flex items-center mt-auto">
+                  Read more
+                  <span class="ml-1">›</span>
+                </a>
+              </div>
+            </div>
+      
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border flex flex-col">
+              <img 
+                src="https://detailedvehiclehistory.com/assets/VIN-to-Year-Decoding-Chart.webp" 
+                srcset="
+                  assets/VIN-to-Year-Decoding-Chart-300w.webp 300w,
+                  assets/VIN-to-Year-Decoding-Chart-600w.webp 600w,
+                  assets/VIN-to-Year-Decoding-Chart-900w.webp 900w
+                "
+                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                alt="VIN to Year Decoding Chart" 
+                class="w-full h-48 object-cover"
+                loading="lazy"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-bold mb-3">VIN Number Year Chart</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  What character encodes information about the manufacturer's model year of a vehicle? The 10th character!
+                </p>
+                <a href="https://detailedvehiclehistory.com/vin-decoder/year-chart" target="_blank" class="text-blue-600 hover:text-blue-700 inline-flex items-center mt-auto">
+                  Read more
+                  <span class="ml-1">›</span>
+                </a>
+              </div>
+            </div>
+      
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border flex flex-col">
+              <img 
+                src="https://detailedvehiclehistory.com/assets/Featured-images-of-Country-Codes-in-VIN-Number.webp" 
+                srcset="
+                  assets/Featured-images-of-Country-Codes-in-VIN-Number-300w.webp 300w,
+                  assets/Featured-images-of-Country-Codes-in-VIN-Number-600w.webp 600w,
+                  assets/Featured-images-of-Country-Codes-in-VIN-Number-900w.webp 900w
+                "
+                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                alt="Country Codes in VIN Number" 
+                class="w-full h-48 object-cover"
+                loading="lazy"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-bold mb-3">Complete List of VIN Number Country Codes</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  VINs identify vehicles worldwide, including origin, plant, and car-specific manufacturing details.
+                </p>
+                <a href="https://detailedvehiclehistory.com/blog/vin-country-codes" target="_blank" class="text-blue-600 hover:text-blue-700 inline-flex items-center mt-auto">
+                  Read more
+                  <span class="ml-1">›</span>
+                </a>
+              </div>
+            </div>
+          </div>
+      
+          <!-- View All Button -->
+          <div class="text-center">
+            <a href="https://detailedvehiclehistory.com/blog" target="_blank" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              View all Blog posts
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 px-4">
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+      
+          <!-- Accordion Container -->
+          <div>
+            <!-- FAQ Item 1 -->
+            <div class="overflow-hidden border-b border-dashed border-gray-200">
+              <button 
+                class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+                onclick="toggleAccordion(this)"
+                aria-expanded="true"
+                aria-controls="faq-1"
+              >
+                <h3 class="font-semibold">What is a VIN?</h3>
+                <span class="text-blue-600 text-2xl transition-transform duration-200 rotate-45">+</span>
+              </button>
+              <div 
+                id="faq-1" 
+                class="overflow-hidden transition-all duration-200 max-h-[1000px]"
+                aria-hidden="false"
+              >
+                <p class="p-4 pt-0 text-gray-700">
+                  A Vehicle Identification Number (VIN) is a unique 17-character code assigned to every vehicle. It serves as the vehicle's fingerprint, providing essential information about its make, model, year, and manufacturing details. You can find the VIN on the dashboard, near the windshield, or inside the driver's door jamb. Usually vehicles manufactured after 1981 have with VIN which is 17 character long, but vehicles which are manufactured before 1981 also known as classic vehicles or vintage cars have a VIN ranging from 5-13 characters.
+                </p>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 2 -->
+            <div class="overflow-hidden border-b border-dashed border-gray-200">
+              <button 
+                class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+                onclick="toggleAccordion(this)"
+                aria-expanded="false"
+                aria-controls="faq-2"
+              >
+                <h3 class="font-semibold">What information is included in a car history report?</h3>
+                <span class="text-blue-600 text-2xl transition-transform duration-200">+</span>
+              </button>
+              <div 
+                id="faq-2" 
+                class="overflow-hidden transition-all duration-200 max-h-0"
+                aria-hidden="true"
+              >
+                <p class="p-4 pt-0 text-gray-700">
+                  A car history report includes detailed information about the vehicle's past, including accident history, service records, ownership changes, mileage readings, and title status. It also shows if the vehicle has been involved in any major incidents or has outstanding liens.
+                </p>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 3 -->
+            <div class="overflow-hidden border-b border-dashed border-gray-200">
+              <button 
+                class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+                onclick="toggleAccordion(this)"
+                aria-expanded="false"
+                aria-controls="faq-3"
+              >
+                <h3 class="font-semibold">What are the benefits of a vehicle report?</h3>
+                <span class="text-blue-600 text-2xl transition-transform duration-200">+</span>
+              </button>
+              <div 
+                id="faq-3" 
+                class="overflow-hidden transition-all duration-200 max-h-0"
+                aria-hidden="true"
+              >
+                <p class="p-4 pt-0 text-gray-700">
+                  A vehicle report helps you make informed decisions by revealing potential issues, verifying mileage accuracy, confirming ownership history, and identifying any previous damage or accidents. This information can help you avoid costly surprises and negotiate a fair price.
+                </p>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 4 -->
+            <div class="overflow-hidden border-b border-dashed border-gray-200">
+              <button 
+                class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+                onclick="toggleAccordion(this)"
+                aria-expanded="false"
+                aria-controls="faq-4"
+              >
+                <h3 class="font-semibold">Is there a free car history report?</h3>
+                <span class="text-blue-600 text-2xl transition-transform duration-200">+</span>
+              </button>
+              <div 
+                id="faq-4" 
+                class="overflow-hidden transition-all duration-200 max-h-0"
+                aria-hidden="true"
+              >
+                <p class="p-4 pt-0 text-gray-700">
+                  While some basic vehicle information may be available for free, comprehensive vehicle history reports typically require a fee. This is because they compile data from multiple sources and provide detailed information about the vehicle's past.
+                </p>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 5 -->
+            <div class="overflow-hidden border-b border-dashed border-gray-200">
+              <button 
+                class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+                onclick="toggleAccordion(this)"
+                aria-expanded="false"
+                aria-controls="faq-5"
+              >
+                <h3 class="font-semibold">How can I get car facts by VIN?</h3>
+                <span class="text-blue-600 text-2xl transition-transform duration-200">+</span>
+              </button>
+              <div 
+                id="faq-5" 
+                class="overflow-hidden transition-all duration-200 max-h-0"
+                aria-hidden="true"
+              >
+                <p class="p-4 pt-0 text-gray-700">
+                  Simply enter your VIN in our search tool, and we'll provide you with a comprehensive report about the vehicle. Our database includes information from multiple reliable sources to give you the most accurate vehicle history.
+                </p>
+              </div>
+            </div>
+      
+            <!-- FAQ Item 6 -->
+            <div class="overflow-hidden border-b border-dashed border-gray-200">
+              <button 
+                class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+                onclick="toggleAccordion(this)"
+                aria-expanded="false"
+                aria-controls="faq-6"
+              >
+                <h3 class="font-semibold">Is there a cheaper alternative to Carfax?</h3>
+                <span class="text-blue-600 text-2xl transition-transform duration-200">+</span>
+              </button>
+              <div 
+                id="faq-6" 
+                class="overflow-hidden transition-all duration-200 max-h-0"
+                aria-hidden="true"
+              >
+                <p class="p-4 pt-0 text-gray-700">
+                  Yes, our vehicle history reports provide comprehensive information at a more affordable price than Carfax. We offer the same detailed vehicle history information, including accidents, ownership, and maintenance records, at a competitive rate.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <script>
+          function toggleAccordion(button) {
+            // Toggle the current accordion
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('span:last-child');
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+            
+            // Update ARIA attributes
+            button.setAttribute('aria-expanded', !isExpanded);
+            content.setAttribute('aria-hidden', isExpanded);
+            
+            // Toggle max-height and icon rotation
+            if (isExpanded) {
+              content.style.maxHeight = '0';
+              icon.style.transform = 'rotate(0deg)';
+            } else {
+              content.style.maxHeight = content.scrollHeight + 'px';
+              icon.style.transform = 'rotate(45deg)';
+            }
+          }
+      
+          // Initialize the first accordion as open
+          // document.addEventListener('DOMContentLoaded', function() {
+          //   const firstAccordion = document.querySelector('.overflow-hidden');
+          //   if (firstAccordion) {
+          //     const content = firstAccordion.querySelector('div[id^="faq-"]');
+          //     content.style.maxHeight = content.scrollHeight + 'px';
+          //   }
+          // });
+        </script>
+      </section>
+      <script>
+        function smoothScroll(targetId) {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+          <!-- Main Navigation Grid -->
+          <div class="footer-nav">
+              <!-- Logo -->
+              <div class="footer-logo">
+                  <a href="/">
+                      <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/11/DVH-Logo.svg" alt="Detailed Vehicle History" width="160">
+                  </a>
+              </div>
+  
+              <!-- Vehicle History Report -->
+              <div class="footer-col">
+                  <p class="heading">Vehicle Report</p>
+                  <ul>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/vin-check">Cars</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/classic-vin-decoder">Classic Cars</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/motorcycle-vin-check">Motorcycle</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/truck-vin-lookup">Heavy Duty Trucks</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/trailer-vin-lookup">Trailers</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/rv-vin-lookup">RVs and Motorhomes</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/atv-vin-check">ATVs</a></li>
+                  </ul>
+              </div>
+  
+              <!-- Tools -->
+              <div class="footer-col">
+                  <p class="heading">Tools</p>
+                  <ul>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/window-sticker">Window Sticker Lookup</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/window-sticker/msrp">MSRP by VIN</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/build-sheet-by-vin">Build Sheet by VIN</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/service-records-by-vin">Service Record by VIN</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/warranty-by-vin">Warranty by VIN</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/vin-decoder">Free VIN Decoder</a></li>
+                  </ul>
+              </div>
+  
+              <div class="footer-col">
+                  <p class="heading">Other Tools</p>
+                  <ul>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/license-plate-lookup">License Plate Lookup</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/vin-decoder/transmission">Transmission by VIN</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/vin-decoder/engine-type">Engine Type by VIN</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/vehicle-recalls">Recall Check</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/classic-vin-decoder/motorcycle">Classic Motorcycle Check</a></li>
+                  </ul>
+              </div>
+  
+              <!-- Resources -->
+              <div class="footer-col">
+                  <p class="heading">Resources</p>
+                  <ul>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/sample">Sample Reports</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/blog">Blog</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/vin-decoder/year-chart">VIN to Year Chart</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/blog/carfax-alternatives">Carfax Alternatives</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/vin-check-rates">Pricing</a></li>
+                  </ul>
+              </div>
+  
+              <!-- About Us -->
+              <div class="footer-col">
+                  <p class="heading">About Us</p>
+                  <ul>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/sitemap_index.xml">Sitemap</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/faq">FAQs</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/request-a-refund">Request a Refund</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/contact-us">Contact Us</a></li>
+                      <li><a target="_blank" href="https://vehiclehistoryreports.freshdesk.com/en/support/home">Help</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/affiliate-program">Affiliates</a></li>
+                      <li><a target="_blank" href="https://detailedvehiclehistory.com/dealers">For Dealers</a></li>
+                  </ul>
+              </div>
+          </div>
+  
+          <!-- Bottom Bar -->
+          <div class="footer-bottom">
+              <!-- Social Icons -->
+              <div class="social-icons">
+                  <a href="https://www.facebook.com/DetailedVehicleHistory" target="_blank" class="social-icon">
+                      <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/11/facebook-icon-white.svg" alt="Facebook" width="24">
+                  </a>
+                  <a href="https://twitter.com/DetailedVehicle" target="_blank" class="social-icon">
+                      <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/11/x-icon-white.svg" alt="Twitter" width="24">
+                  </a>
+                  <a href="https://www.linkedin.com/company/search-detailed-vehicle-history/" target="_blank" class="social-icon">
+                      <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/11/linkind-icon-white.svg" alt="LinkedIn" width="24">
+                  </a>
+                  <a href="https://www.instagram.com/detailedvehiclehistory/" target="_blank" class="social-icon">
+                      <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/11/instagram-icon-white.svg" alt="Instagram" width="24">
+                  </a>
+                  <a href="https://www.youtube.com/channel/UCBVm1Oh-dC9Y_yoWh9B1Fow" target="_blank" class="social-icon">
+                      <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2024/11/youtube-icon-white.svg" alt="YouTube" width="24">
+                  </a>
+              </div>
+  
+              <!-- Copyright -->
+              <div class="copyright">
+                  © 2024 Detailed Vehicle History. All rights reserved.
+                  <br>
+                  <a href="https://detailedvehiclehistory.com/privacy" target="_blank" class="legal-link">Privacy Policy</a> | 
+                  <a href="https://detailedvehiclehistory.com/terms-of-service" target="_blank" class="legal-link">Terms and Conditions</a>
+              </div>
+  
+              <!-- App Downloads -->
+              <div class="app-downloads">
+                  <a href="https://play.google.com/store/apps/details?id=com.vehiclehistory.dvh" target="_blank">
+                      <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2023/08/googleplay.svg" alt="Get it on Google Play" width="120">
+                  </a>
+                  <a href="https://apps.apple.com/app/vin-decoder-vehicle-history/id1576559330" target="_blank">
+                      <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2023/12/appstore.svg" alt="Download on the App Store" width="120">
+                  </a>
+                  <a href="https://detailedvehiclehistory.com/downloads/vin-decoder-app/VIN-Decoder.exe" target="_blank">
+                      <img src="https://detailedvehiclehistory.com/wp-content/uploads/sites/3/2023/08/windows.svg" alt="Get it on Windows" width="120">
+                  </a>
+              </div>
+          </div>
+      </div>
+  </footer>
+  
+  <style>
+  .footer {
+      background-color: black;
+      color: #fff;
+      padding: 60px 0 40px;
+      font-family: 'Poppins', sans-serif !important;
+      line-height: 1.5;
+  }
+  
+  .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+  }
+  
+  .footer-nav {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 30px;
+      margin-bottom: 60px;
+  }
+  
+  .footer-logo img {
+      max-width: 160px;
+      height: auto;
+  }
+  
+  .footer-col .heading {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 20px;
+  }
+  
+  .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  }
+  
+  .footer-col ul li {
+      margin-bottom: 12px;
+  }
+  
+  .footer-col ul li a {
+      color: #9CA3AF;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+  }
+  
+  .footer-col ul li a:hover {
+      color: #fff;
+  }
+  
+  .footer-bottom {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .social-icons {
+      display: flex;
+      gap: 16px;
+  }
+  
+  .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+  }
+  
+  .social-icon:hover {
+      background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .social-icon img {
+      width: 26px;
+      height: 26px;
+  }
+  
+  .copyright {
+      color: #9CA3AF;
+      font-size: 14px;
+      text-align: center;
+  }
+  
+  .legal-link {
+      color: #9CA3AF;
+      text-decoration: none;
+      transition: color 0.2s;
+  }
+  
+  .legal-link:hover {
+      color: #fff;
+  }
+  
+  .app-downloads, .app-downloads a {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+  }
+  
+  .app-downloads img {
+      height: 36px;
+      width: auto;
+      background-color: #E8E8F0;
+      border-radius: 3px;
+      overflow: hidden;
+      padding: 8px;
+  }
+  
+  @media (max-width: 1024px) {
+      .footer-nav {
+          grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .footer-logo {
+          grid-column: 1 / -1;
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .footer-nav {
+          grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-bottom {
+          grid-template-columns: 1fr;
+          text-align: center;
+      }
+      
+      .social-icons {
+          justify-content: center;
+      }
+      
+      .app-downloads {
+          justify-content: center;
+      }
+  }
+  
+  @media (max-width: 480px) {
+      .footer-nav {
+          grid-template-columns: 1fr;
+      }
+      
+      .app-downloads {
+          flex-wrap: wrap;
+      }
+  }
+  </style>
+    <!-- End of Footer -->
+</body>
+</html>

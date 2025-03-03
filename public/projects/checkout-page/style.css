@@ -1,0 +1,704 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+p{
+    font-weight: 500;
+    line-height: 1.5;
+}
+body{
+    background: #f1f0f5;
+}
+body.checkout, .light_gray{
+    background: linear-gradient(to right, #1B4582 50%, #f1f0f5 50%);
+}
+.blue{
+    background: #1B4582;
+    color: white;
+}
+.whatsApp{
+    background: #189D0E;
+    color: white;
+}
+.yellow{
+    background: #FFC439;
+}
+.container{
+    display: flex;
+    padding-top: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 60px;
+    max-width: 1440px !important;
+    margin: auto;
+    justify-content: space-evenly;
+}
+.checkoutCol{
+    box-sizing: border-box;
+    position: relative;
+    width: 50%;
+    max-width: 550px;
+}
+.checkoutCol.col1{
+    color: white;
+    padding-right: 30px;
+}
+.checkoutCol.col2{
+    padding-left: 30px;
+}
+.header h1{
+    font-size: 28px;
+}
+.header .back{
+    margin-left: -10px;
+    cursor: pointer;
+}
+.data{
+    display: flex;
+    gap: 20px;
+}
+.data .col{
+    width: auto;
+}
+.data .col .record:first-child{
+    margin-bottom: 20px;
+}
+.data .col .record{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.data .col .record .record_data{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auction{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 25px 0px;
+}
+.auctionImage{
+    border-radius: 8px;
+}
+.auctionText{
+    font-weight: 700;
+    width: 200px; 
+    word-break: break-word;
+}
+.coupon{
+    display: flex;
+    gap: 15px;
+    padding: 20px 0px;
+    border: solid #CBCBD3;
+    border-width: 1px 0px;
+}
+.coupon input{
+    flex: 0.8;
+}
+.coupon button{
+    flex: 0.2;
+    background-color: #1E1E1E;
+    border-radius: 8px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.initialPrice{
+    font-weight: 500;
+    text-decoration: line-through;
+    color: #FF4D50;
+    margin-right: 10px;
+    font-size: 20px;
+}
+.price{
+    padding: 25px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.total{
+    font-size: 24px;
+}
+.paymentMethod{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 25px;
+    border-bottom: solid 1px #D1D1D1;
+}
+.testimoni{
+    padding: 25px 0px;
+}
+/* Basic styling for the slider */
+.testimoni {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.slider-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+.slider {
+    display: flex;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    /* min-width: 100%; */
+    max-width: 500px;
+    box-sizing: border-box;
+    display: none;
+    padding: 20px 30px;
+}
+
+.slide.active {
+    display: block;
+}
+
+.slider-header {
+    display: flex;
+}
+.slider-header .profilePict{
+    width: 54px;
+    height: 54px;
+    border-radius: 100px;
+    display: none;
+}
+
+.identity {
+    /* margin-left: 20px; */
+    align-items: flex-start;
+}
+.testimonial_name{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    row-gap: 0px;
+}
+.date{
+    font-weight: 500;
+}
+.slider-date {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.slider-testimonial {
+    margin-top: 10px;
+    font-style: italic;
+    text-align: left;
+    height: 75px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+.rating{
+    max-height: 22px;
+}
+.testimonialMobile .rating{
+    filter: invert(1) brightness(0);
+}
+
+/* Styling for navigation arrows */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.arrow.left {
+    left: 0px;
+}
+
+.arrow.right {
+    right: 0px;
+}
+.testimonialMobile{
+    display: none;
+    border-top: solid 1px #D1D1D1;
+}
+/* Styling for pagination circles */
+.pagination {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #CAD8FF;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #1955FF;
+}
+
+.tab-list{
+    border: 2px solid #1B4582;
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+    justify-content: end;
+}
+.tab-list span{
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    text-align: center;
+    cursor: pointer;
+    height: 43px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 300ms;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.tab-list span:hover{
+    background-color: #e3e4e7;
+}
+.tab-list span.active{
+    background-color: #1B4582;
+    color: white;
+}
+.stripeChoices{
+    padding: 25px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.stripeChoices .tab-list{
+    max-width: 420px;
+}
+.stripeChoices .tab-list img{
+    height: 18px;
+    width: auto;
+}
+.creditCard{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 20px;
+}
+.creditCard label, .bankTranfer label, .popup label {
+    display: block;
+    margin-bottom: 5px;
+}
+.creditCard input, .bankTranfer input, .popup input{
+    margin-bottom: 10px;
+}
+.creditCard .card input {
+    margin-bottom: 0px;
+}
+.card{
+    margin-bottom: 10px;
+}
+.card .digit{
+    border-radius: 8px 8px 0px 0px;
+}
+.digit_wrapper{
+    position: relative;
+    transition: all 300ms;
+}
+.card-icon {
+    position: absolute;
+    right: 10px; /* Position it to the right inside the input */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* So it doesn't interfere with clicking/typing */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 300ms;
+}
+.card-icon img{
+    width: auto;
+    height: 30px; /* Adjust based on your icon size */
+}
+.card-icon img.discover{
+    height: 40px; /* Adjust based on your icon size */
+}
+.digit_wrapper input:focus + .card-icon,
+.digit_wrapper input:not(:placeholder-shown) + .card-icon {
+    opacity: 0;
+}
+.card .expire{
+    border-radius: 0px 0px 0px 8px;
+    border-width: 0px 1px 1px 1px;
+    width: 50%;
+}
+.card .cvc{
+    border-radius: 0px 0px 8px 0px;
+    border-width: 0px 1px 1px 0px;
+    width: 50%;
+}
+.cvc_wrapper{
+    position: relative;
+}
+img.cvcIcon{
+    position: absolute;
+    right: 10px; /* Position it to the right inside the input */
+    top: calc(50% - 2px);
+    transform: translateY(-50%);
+    pointer-events: none; /* So it doesn't interfere with clicking/typing */
+}
+.creditCard button{
+    margin-top: 15px;
+}
+.bankDetails table {
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    border-radius: 8px;
+    background: white;
+    padding: 15px 8px;
+    border-spacing: 0px 10px;
+}
+.bankDetails table th {
+    text-align: left;
+    vertical-align: top;
+    font-weight: 500;
+}
+.bankDetails table td {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 700;
+}
+.bankDetails table td a{
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: black;
+    text-decoration: underline;
+}
+.bankDetails table td img {
+    width: 25px;
+    cursor: pointer;
+}
+.instructions{
+    padding: 10px 0px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.instructions a{
+    text-decoration: underline;
+}
+.instructionsWrapper{
+    display: none;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    position: absolute;
+    bottom: 44px;
+    box-shadow:
+  0px 0px 2.2px rgba(0, 0, 0, 0.02),
+  0px 0px 5.3px rgba(0, 0, 0, 0.028),
+  0px 0px 10px rgba(0, 0, 0, 0.035),
+  0px 0px 17.9px rgba(0, 0, 0, 0.042),
+  0px 0px 33.4px rgba(0, 0, 0, 0.05),
+  0px 0px 80px rgba(0, 0, 0, 0.07)
+;
+}
+.instructionsWrapper.active{
+    display: block;
+}
+.instructionsWrapper ul {
+    list-style-type: decimal; /* This makes the list use numbers */
+    margin-left: 20px; /* Adds some left margin for better readability */
+    padding-left: 0; /* Removes default padding */
+}
+
+.instructionsWrapper li {
+    margin-bottom: 10px; /* Adds some space between list items */
+}
+.bankTranfer .buttons{
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.error_test {
+    font-weight: 500;
+    border: solid 1px #FF4D50;
+    border-radius: 8px;
+    background-color: #FFEEEE;
+    padding: 15px 10px;
+}
+.error_test a {
+    text-decoration: underline;
+    color: #0073F0;
+    cursor: pointer;
+}
+.paypal, .gumroad{
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.paypal img{
+    width: 100px;
+    height: auto;
+}
+.stripe, .paypal, .gumroad, .creditCard, .bankTranfer{
+    display: none;
+}
+.active.stripe, .active.bankTranfer{
+    display: inherit;
+}
+.active.paypal, .active.gumroad, .active.creditCard{
+    display: flex;
+}
+.trust{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 0px;
+}
+.trust div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.trust img{
+    width: 30px;
+    height: auto;
+}
+.popup{
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 0px 10px;
+    display: none;
+}
+.popup.active{
+    display: flex;
+}
+.popup .overlay{
+    background: #1e1e1e54;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+.popup .window{
+    background: white;
+    max-width: 700px;
+    margin: auto;
+    padding: 40px 20px;
+    border-radius: 8px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+.popup .window button {
+    margin-top: 20px;
+}
+.date-input{
+    position: relative;
+    margin-bottom: 10px;
+}
+.date-input input{
+    margin-bottom: 0px;
+}
+.dateIcon {
+    position: absolute;
+    right: 10px; /* Position from the right edge of the input */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    pointer-events: none; /* Allow clicking through the icon */
+    width: 20px; /* Adjust width to fit your needs */
+    height: 20px; /* Adjust height to fit your needs */
+}
+.close{
+    background: #1B4582;
+    border-radius: 5px;
+    padding: 3px;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+}
+/* form input */
+.input{
+    background-color: white;
+    min-height: 35px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #CBCBD3;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    font-size: 16px;
+}
+[type="file"].input{
+    min-height: inherit;
+    padding: 10px;
+}
+/* Thankyou Page */
+.thankyou .container{
+    text-align: center;
+    padding-top: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 60px;
+}
+.thankyou .container img{
+    max-width: 100px;
+    align-self: center;
+}
+.thankyouMassage{
+    padding: 30px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.thankyouMassage .heading{
+    font-size: 28px;
+}
+.loginMassage{
+    padding: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.helpMassage{
+    padding: 30px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: solid 1px #A1A1A1;
+}
+.helpMassage .buttons{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+/* btn */
+.big-btn{
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 10px 5px;
+    min-height: 50px;
+    font-size: 17px;
+    cursor: pointer;
+}
+.med-size{
+    max-width: 280px;
+    align-self: center;
+}
+@media only screen and (max-width: 767px) {
+    body.checkout{
+        background: #f1f0f5;
+    }
+    .container{
+        flex-direction: column;
+        padding: 0;
+    }
+    .checkoutCol{
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+        width: 100%;
+        max-width: inherit;
+    }
+    .checkoutCol.col1{
+        background: #1B4582;
+    }
+    .header img {
+        max-height: 45px;
+    }
+    .header h1{
+        font-size: 20px;
+    }
+    .initialPrice{
+        font-size: 18px;
+        margin-right: 5px;
+    }
+    .total{
+        font-size: 20px;
+    }
+    .card-icon img{
+        width: auto;
+        height: 20px; /* Adjust based on your icon size */
+    }
+    .card-icon img.discover{
+        height: 25px; /* Adjust based on your icon size */
+    }
+    .testimonialDesktop{
+        display: none;
+    }
+    .testimonialMobile{
+        display: block;
+    }
+    .thankyou .container{
+        text-align: center;
+        padding-top: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 40px;
+    }
+    .helpMassage .buttons{
+        flex-direction: column;
+    }
+    img.cvcIcon{
+        max-height: 16px;
+    }
+}
+@media only screen and (max-width: 374px) {
+    .data{
+        gap: 0;
+    }
+    .instructionsWrapper{
+        bottom: 60px;
+    }
+}
+
+
+/* other */
+/* For Chrome, Safari, Edge, and Opera */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For Firefox */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+/* General styling to ensure uniform appearance */
+input[type='number'] {
+    appearance: textfield;
+    /* You can add other styles here, like border, width, etc. */
+}

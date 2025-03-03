@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buildsheet Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<style>
+    body * {
+        font-family: 'Chivo', sans-serif;
+        transition: all 0.3s ease-in-out;
+    }
+    .specifications-container {
+        column-count: 2;
+        column-gap: 2rem;
+    }
+    .specification-category {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+    .zoom:hover {
+        transform: scale(1.1);
+        padding: 12px;
+        border-radius: 4px;
+        background: #FFFDF5;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        /* border: 1px solid #E0C12B; */
+    }
+
+    @media print {
+    @page {
+        size: A4 portrait; /* Standard portrait layout */
+        margin: 10mm; /* Optional: adjust for printer margins */
+    }
+
+    /* General body styles for print */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 1000px; /* Adjust width for smaller content without distorting layout */
+        background-color: white !important; /* Ensure white background */
+        color: black !important; /* Print-friendly text color */
+    }
+
+    /* Tailwind font size adjustments */
+    .text-3xl {
+        font-size: 20px !important; /* Scale large headers */
+        line-height: 1.5 !important;
+    }
+
+    .text-xl {
+        font-size: 18px !important;
+        line-height: 1.5 !important;
+    }
+
+    .text-lg {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+    }
+
+    .text-base {
+        font-size: 14px !important;
+        line-height: 1.2 !important;
+    }
+
+    .text-sm {
+        font-size: 12px !important; /* Smallest text */
+        line-height: 1.2 !important;
+    }
+
+    /* Padding adjustments */
+    .p-2{
+        padding: 4px !important; /* Keep minimal spacing for print */
+    }
+    .px-2{
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .py-2{
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    .p-1 {
+        padding: 2px !important;
+    }
+    .px-1{
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    .py-1{
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    /* Size adjustments */
+    .w-5 {
+        min-width: 15px !important;
+        width: 15px !important;
+    }
+
+    .h-5 {
+        min-height: 15px !important;
+        height: 15px !important;
+    }
+
+    /* Ensure colors and styles for print */
+    * {
+        page-break-inside: avoid; /* Prevent page breaks inside elements */
+        color-adjust: exact; /* Ensure consistent color in print */
+        -webkit-print-color-adjust: exact; /* Safari/Chrome */
+        print-color-adjust: exact; /* Standard */
+    }
+
+    /* Hide elements not needed for print */
+    .no-print {
+        display: none !important;
+    }
+}
+
+</style>
+<body class="bg-gray-100 p-4">
+    <table class="w-full h-full max-w-[1340px] mx-auto bg-[#FFFDF5] border-8 border-black">
+        <tr>
+            <td colspan="2" class="px-2 pt-2">
+                <!-- Header -->
+                <table class="w-full">
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td class="pr-4">
+                                        <div class="w-20 h-20 rounded-xl p-1 border-2 text-black border-black">
+                                            <img src="assets/logo.png" alt="Logo" class="w-full h-full object-cover">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h1 class="text-xl leading-snug font-bold uppercase">Vehicle Description</h1>
+                                        <h2 class="text-3xl leading-none font-bold">1963 Dodge Polara</h2>
+                                        <p class="text-xl leading-snug font-bold">Its a B-500 Series</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="text-right">
+                            <table class="ml-auto">
+                                <tr>
+                                    <td class="pr-4 align-middle">
+                                        <p class="text-base font-bold">Scan to view build sheet</p>
+                                        <button class="bg-[#E0C12B] mt-1 text-sm font-semibold w-full py-2 px-1.5 border-2 border-[#1B1C1E] rounded-lg hover:bg-[#F2D94E] hover:text-[#1B1C1E] transition-colors duration-300 print:hidden">Download</button>
+                                    </td>
+                                    <td class="align-middle">
+                                        <img src="assets/barcode.svg" class="w-20 h-20">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="pl-2 content-baseline pb-1">
+                <!-- Left Column - Specifications -->
+                <h3 class="text-xl font-medium mb-2">Standard Specifications</h3>
+                <div id="specificationsContainer" class="specifications-container pb-4">
+                    <!-- JavaScript will populate this -->
+                </div>
+                <table class="w-full zoom">
+                    <tr>
+                        <td colspan="2">
+                            <!-- Market Value -->
+                            <h3 class="font-bold bg-black text-center text-white py-2">Market Value</h3>
+                            <table class="w-full text-center">
+                                <tr>
+                                    <td class="border border-black p-2 w-1/4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <span class="font-bold text-2xl">♦</span>
+                                            <span class="font-bold">Rough</span>
+                                        </div>
+                                        <p class="text-sm">Runs fine, visible flaws</p>
+                                        <p class="text-base pt-1">$30,100</p>
+                                    </td>
+                                    <td class="border border-black p-2 w-1/4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <span class="font-bold text-2xl">♦</span>
+                                            <span class="font-bold">Average</span>
+                                        </div>
+                                        <p class="text-sm">Drives well, minor flaws.</p>
+                                        <p class="text-base pt-1">$48,800</p>
+                                    </td>
+                                    <td class="border border-black p-2 w-1/4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <span class="font-bold text-2xl">♦</span>
+                                            <span class="font-bold">Good</span>
+                                        </div>
+                                        <p class="text-sm">Like new, show-ready</p>
+                                        <p class="text-base pt-1">$70,200</p>
+                                    </td>
+                                    <td class="border border-black p-2 w-1/4">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <span class="font-bold text-2xl">♦</span>
+                                            <span class="font-bold">Outstanding</span>
+                                        </div>
+                                        <p class="text-sm">World-class, competition-level.</p>
+                                        <p class="text-base pt-1">$83,200</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            
+            <td class="pl-1 pr-2" style="min-width: 256px; width: 30%;">
+                <!-- Right Column - Price and Equipment -->
+                <table class="w-full h-full border-[#1B1C1E] border-2 border-b-0 mb-[-4px]" style="background-image: url('assets/motif-grayed.svg'); background-repeat: repeat; background-size: 250px 250px;">
+                    <tr>
+                        <td class="flex-col flex h-full justify-between">
+                            <table class="w-full h-fit border-separate [border-spacing:0_10px] px-2">
+                                <tr>
+                                    <td class="bg-[#E0C12B] p-2">
+                                        <p class="text-base">Original Base Price</p>
+                                        <p class="text-xl font-bold">$3,195.00</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-[#F2E5D7] text-center text-base p-2">
+                                        <p class="text-base">No. Produced: 7,300</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <ul class="text-sm" id="equipmentList">
+                                            <!-- JavaScript will populate this -->
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-[#F2E5D7] text-center p-2">
+                                        <p class="font-medium">VIN: <span class="font-bold">6432153670</span></p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="w-full h-fit border-separate [border-spacing:0_10px] px-2">
+                                <tr>
+                                    <td class="p-2 bg-[#F2E5D7] text-center">
+                                        <h4 class="font-bold text-lg mb-2">Get 20% Off Classic Vehicle History Reports!</h4>
+                                        <p class="text-base mb-4">Uncover your classic car's past with detailed records, including:</p>
+                                        <ul class="text-base list-disc pl-4 mb-4">
+                                            <li>Auction & Sales History</li>
+                                            <li>Accident & Title Records</li>
+                                            <li>Mileage, Theft, Lien Checks & more</li>
+                                        </ul>
+                                        <button class="bg-[#E0C12B] text-sm font-semibold w-full py-3 px-2 border-2 border-[#1B1C1E] rounded-lg hover:bg-[#F2D94E] hover:text-[#1B1C1E] transition-colors duration-300">Get Your Report Now</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table class="w-full">
+                                            <tr>
+                                                <td class="pr-4 align-middle">
+                                                    <p class="text-base font-bold leading-5">Order Build Sheet with your Smartphone</p>
+                                                </td>
+                                                <td class="align-middle w-20">
+                                                    <img src="assets/barcode.svg" class="w-20 h-20">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">
+                                        <img class="w-full max-w-44 mb-1" src="assets/CD-Logo.svg" />
+                                        <p class="font-semibold">support@classicdecoder.com</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="px-2">
+                <!-- Exterior Colors -->
+                <div class="flex border-2 border-black p-2">
+                    <div class="w-6 relative items-baseline flex justify-center text-center">
+                        <span class="w-1 h-2 bg-[#FFFDF5] top-0 absolute"></span>
+                        <img src="assets/icon-only.svg" class="w-3 h-3 top-0 absolute" alt="">
+                        <span class="w-[3px] flex h-[87%] bg-black"></span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-1">Exterior Colors (Paint Type)</h3>
+                        <p class="text-sm">Colors: All colors may not be available in all models. Turquoise Metallic, Gray, Light Blue, Medium Blue Metallic, Dark Blue Metallic, Black, Ivory, Steel Gray Metallic, Vermillion, Polar No. 2, Beige, Sandalwood Metallic</p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="px-2">
+                <p class="text-sm bg-black text-white p-4 mt-[-2px] leading-5">This build sheet is generated in accordance with the Federal Automobile Information Disclosure Act of 1958. The disclosure of this information does not interfere with the buyer’s freedom to bargain over the price of the car or the dealer’s right to sell the new car for any price he desires, but it does assure that the purchaser will start the negotiations with the minimum necessary information. Please note that dealer installed options or accessories are not included in this build sheet.</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="p-2">
+                <p class="text-sm text-center">© 2025 Classic Decoder. All Rights Reserved.</p>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        // The JavaScript code remains unchanged
+        const specifications = {
+            "Body": [
+                "Body Maker: Dodge",
+                "No. Doors: 2",
+                "Passengers:",
+                "Model Number:",
+                "Weight: 3,455lbs"
+            ],
+            "Dimension": [
+                "Wheelbase: 119 inches",
+                "Length: 208.1 inches",
+                "Width: 78.5 inches",
+                "Height: 53.9 inches",
+                "Front Tread: 58.5 inches",
+                "Rear Tread: 57.5 inches"
+            ],
+            "Engine": [
+                "Type: V8, Valve-in-head",
+                "Displacement: 382.9 cu. in.",
+                "Cylinders: 8",
+                "Bore & Stroke: 4 1/32 9 3 3/4 inches",
+                "Compression Ratio-Std: 10.0 to 1",
+                "Compression Ratio-Opt: Not applicable",
+                "Brake Horsepower: 305@4600",
+                "Rated Horsepower: 52",
+                "Torque: 410@2400",
+                "Main Bearings: 5",
+                "Valve Lifters: Hydraulic",
+                "Block Material:",
+                "Engine Numbers:",
+                "Engine No. Location: On the right side of the block",
+                "Lubrication: Pressure to all bearings excluding wrist pin"
+            ],
+            "Carburetor": [
+                "Type: Dual downdraft",
+                "Make: Ball and Ball"
+            ],
+            "Suspension": [
+                "Front: Independent torsion bar",
+                "Rear: Longitudinal leaf spring",
+                "Steering Gear:"
+            ],
+            "Brakes": [
+                "Service: 4 wheel hydraulic drum",
+                "Front Size: 10 inches",
+                "Rear Size: 10 inches",
+                "Emergency: Rear service brakes",
+                "Size: 10 inches"
+            ],
+            "Transmission": [
+                "Type: Unknown at time of publication",
+                "Drive: Rear wheel drive",
+                "No. Of Gears: 3",
+                "Gear Ratios:",
+                "1st: 2.55 to 1",
+                "2nd: 1.49",
+                "3rd: 1 to 1",
+                "4th: Not applicable",
+                "5th: Not applicable",
+                "Reverse: 3.34",
+                "Clutch Type: Single plate dry disc",
+                "Clutch Size: 10.5 inches",
+                "Axle Type: Semifloating",
+                "Differential: Hypoid",
+                "Differential Ratio: 3.23 to 1"
+            ],
+            "Other Systems Specifications": [
+                "Exhaust System: Single with crossover",
+                "Ignition System: Distributor and coil",
+                "Battery: 12 volt storage battery",
+                "Cooling System: Centrifugal pump with thermostat, 16 Quarts",
+                "Radiator: Tube and spacer",
+                "Fuel Type:",
+                "Mileage:"
+            ],
+            "Wheels, Rims & Tires": [
+                "Wheel Type:",
+                "Wheel Material:",
+                "Wheel Size:",
+                "Tire Type:",
+                "Tire Size: 7 x 14",
+                "Spare Location: Trunk"
+            ],
+            "Capacities": [
+                "Fuel: 20 Gallons",
+                "Oil: 4 Quarts",
+                "Transmission: 4.5 Pints",
+                "Cooling System: Centrifugal pump with thermostat, 16 Quarts",
+                "Rear Differential: 4 Pints",
+                "Front Differential: Not applicable",
+                "Transfer Case: Not applicable",
+                "Classic Rating: Not Rated"
+            ]
+        };
+
+        const equipment = {
+            "Standard/Optional Equipment": [
+                "1963 Dodge Polara B-500 Series",
+                "Standard Specifications",
+                "Power Brakes",
+                "Power steering",
+                "Push-button radio"
+            ]
+        };
+
+        function createSpecifications() {
+            const container = document.getElementById('specificationsContainer');
+
+            Object.entries(specifications).forEach(([category, items]) => {
+                const section = document.createElement('div');
+                section.className = 'mb-2 specification-category zoom';
+
+                // Create title container for flex layout
+                const titleContainer = document.createElement('div');
+                titleContainer.className = 'flex items-center gap-1';
+
+                // Create icon
+                const icon = document.createElement('img');
+                icon.src = 'assets/icon.svg';
+                icon.className = 'w-5 h-5 -mb-3';
+                icon.alt = '';
+
+                // Create title
+                const title = document.createElement('h4');
+                title.className = 'font-bold text-lg';
+                title.textContent = category;
+
+                // Append title and icon to container
+                titleContainer.appendChild(icon);
+                titleContainer.appendChild(title);
+                section.appendChild(titleContainer);
+
+                const list = document.createElement('ul');
+                list.className = 'text-base';
+
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'text-base leading-5 flex items-start gap-1';
+
+                    // Create dot element
+                    const dot = document.createElement('span');
+                    dot.textContent = '•';
+                    dot.className = 'w-5 h-5 text-xl leading-5 text-center';
+
+                    // Create text node for item content
+                    const textNode = document.createTextNode(item);
+
+                    // Append dot and text to list item
+                    li.appendChild(dot);
+                    li.appendChild(textNode);
+
+                    list.appendChild(li);
+                });
+
+                section.appendChild(list);
+                container.appendChild(section);
+            });
+        }
+
+        function createEquipmentList() {
+            const container = document.getElementById('equipmentList');
+
+            Object.entries(equipment).forEach(([category, items]) => {
+                const section = document.createElement('div');
+                section.className = 'mb-2 equipment-category zoom';
+
+                // Create title container for flex layout
+                const titleContainer = document.createElement('div');
+                titleContainer.className = 'flex items-center gap-1';
+
+                // Create icon
+                const icon = document.createElement('img');
+                icon.src = 'assets/icon.svg';
+                icon.className = 'w-5 h-5 -mb-3';
+                icon.alt = '';
+
+                // Create title
+                const title = document.createElement('h4');
+                title.className = 'font-bold text-xl';
+                title.textContent = category;
+
+                // Append title and icon to container
+                titleContainer.appendChild(icon);
+                titleContainer.appendChild(title);
+                section.appendChild(titleContainer);
+
+                const list = document.createElement('ul');
+                list.className = 'text-base';
+
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'text-base leading-5 flex items-start gap-1 justify-between';
+
+                    // Create dot element
+                    const dot = document.createElement('span');
+                    dot.textContent = '•';
+                    dot.className = 'w-5 h-5 text-xl leading-5 text-center';
+
+                    // Create text container for item content
+                    const textContainer = document.createElement('div');
+                    textContainer.className = 'flex-grow';
+                    const textNode = document.createTextNode(item);
+                    textContainer.appendChild(textNode);
+
+                    // Create 'Opt' element
+                    const opt = document.createElement('span');
+                    opt.textContent = 'Opt';
+                    opt.className = 'text-xs text-gray-600 ml-2 leading-5 self-end';
+
+                    // Append dot, text, and 'Opt' to list item
+                    li.appendChild(dot);
+                    li.appendChild(textContainer);
+                    li.appendChild(opt);
+
+                    list.appendChild(li);
+                });
+
+                section.appendChild(list);
+                container.appendChild(section);
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            createSpecifications();
+            createEquipmentList();
+        });
+    </script>
+</body>
+</html>
