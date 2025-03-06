@@ -35,7 +35,7 @@ export default function IdGrabberForm() {
     console.log("Processed Links:", processedLinks)
 
     try {
-      const res = await fetch("http://localhost:3000/api/idgrabber", {
+      const res = await fetch("/api/idgrabber", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
