@@ -16,7 +16,7 @@ export default function NavBar({
   settings: Content.SettingsDocument;
 }) {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
 
 
   return (
