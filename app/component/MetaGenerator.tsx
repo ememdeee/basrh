@@ -20,7 +20,7 @@ export function generateMetadataHelper(content: Content): Metadata {
 
   const siteName = process.env.SITE_NAME ?? "ChassisVIN"
   const defaultDescription = `Welcome to ${siteName}`
-  const defaultImageUrl = "/default-og-image.png"
+  const defaultImageUrl = process.env.DOMAIN_NAME + "default-og-image.png"
   const defaultAuthor = {
     name: process.env.OWNER_NAME ?? "Ethan J. Caldwell",
     url: process.env.OWNER_PAGE ?? "/author/ethan",
