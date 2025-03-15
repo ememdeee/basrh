@@ -10,6 +10,17 @@ type BlogPostDocumentDataSlicesSlice = ImageBlockSlice | TextBlockSlice;
  * Content for Blog Post documents
  */
 interface BlogPostDocumentData {
+    /**
+   * Index field in *Page*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.index
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  index?: prismic.SelectField<"Index" | "No Index">
+  
   /**
    * Title field in *Blog Post*
    *
@@ -178,6 +189,17 @@ type PageDocumentDataSlicesSlice =
  * Content for Page documents
  */
 interface PageDocumentData {
+    /**
+   * Index field in *Page*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.index
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  index?: prismic.SelectField<"Index" | "No Index">
+
   /**
    * Slice Zone field in *Page*
    *
@@ -239,6 +261,17 @@ type ProjectDocumentDataSlicesSlice = ImageBlockSlice | TextBlockSlice;
  * Content for Project documents
  */
 interface ProjectDocumentData {
+    /**
+   * Index field in *Page*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.index
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  index?: prismic.SelectField<"Index" | "No Index">
+
   /**
    * Title field in *Project*
    *
