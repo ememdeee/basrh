@@ -9,6 +9,8 @@ export const components = {
   hero: dynamic(() => import("./Hero")),
   id_grabber_form: dynamic(() => import("./IdGrabberForm")),
   image_block: dynamic(() => import("./ImageBlock")),
+  rich_text: dynamic(() => import("./RichText")),
   tech_list: dynamic(() => import("./TechList")),
   text_block: dynamic(() => import("./TextBlock")),
+  video_slice: dynamic(() => import("./VideoSlice")),
 };

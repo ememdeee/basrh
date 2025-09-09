@@ -74,6 +74,15 @@
           "thumbnails": []
         },
         "type": "Image"
+      },
+      "index": {
+        "type": "Select",
+        "config": {
+          "label": "Index",
+          "placeholder": "",
+          "options": ["Index", "No Index"],
+          "default_value": "Index"
+        }
       }
     }
   }

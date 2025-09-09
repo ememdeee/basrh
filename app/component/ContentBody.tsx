@@ -15,8 +15,8 @@ export default function ContentBody({
   return (
     <Bounded as="article">
       <div className="rounded-2xl border-2 border-slate-800 bg-slate-900 px-4 py-10 md:px-8 md:py-20">
-        <Heading as="h1">{page.data.title}</Heading>
-        <div className="flex gap-4 text-yellow-400">
+        <Heading as="h1" className="mb-2 md:mb-4">{page.data.title}</Heading>
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-yellow-400">
           {page.tags.map((tag, index) => (
             <span key={index} className="text-xl font-bold">
               {tag}
@@ -26,7 +26,7 @@ export default function ContentBody({
         <p className="mt-8 border-b border-slate-600 text-xl font-medium text-slate-300">
           {formattedDate}
         </p>
-        <div className="prose prose-lg prose-invert mt-12 w-full max-w-none md:mt-20">
+        <div className="prose prose-lg prose-invert mt-6 w-full max-w-none md:mt-8">
           <SliceZone slices={page.data.slices} components={components} />
         </div>
       </div>

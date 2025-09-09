@@ -1,4 +1,4 @@
-// v 1.0.1
+// v 1.0.2 - Fixed index logic for Prismic Select field
 import type { Metadata } from "next"
 
 interface Content {
@@ -12,7 +12,7 @@ interface Content {
     name: string
     url: string
   }
-  seo: string[];
+  index?: string // "Index" or "No Index" from Prismic Select field
 }
 
 export function generateMetadataHelper(content: Content): Metadata {
@@ -20,35 +20,32 @@ export function generateMetadataHelper(content: Content): Metadata {
 
   const siteName = process.env.SITE_NAME ?? "ChassisVIN"
   const defaultDescription = `Welcome to ${siteName}`
-  const defaultImageUrl = (process.env.DOMAIN_NAME ? process.env.DOMAIN_NAME : '/') + "default-og-image.png"
+  const defaultImageUrl = (process.env.DOMAIN_NAME ? process.env.DOMAIN_NAME : "/") + "default-og-image.png"
   const defaultAuthor = {
     name: process.env.OWNER_NAME ?? "Ethan J. Caldwell",
     url: process.env.OWNER_PAGE ?? "/author/ethan",
   }
 
-  const showIndex = !content.seo.some(tag => tag.toLowerCase().includes('noindex'))
-  const showFollow = !content.seo.some(tag => tag.toLowerCase().includes('nofollow'))
-  const showType = content.seo.some(tag => tag.toLowerCase().includes('article')) ? 'article' : 'website';
-
+  const showIndex = content.index !== "No Index" // Default to true unless explicitly set to "No Index"
+  const showFollow = true // No nofollow logic in current schema, defaulting to true
+  const showType = "website" // No article type logic in current schema, defaulting to website
 
   return {
     title: content.metaTitle ?? siteName,
     description: content.metaDescription ?? defaultDescription,
     icons: {
       icon: [
-        { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },
-        { url: '/favicon.svg', type: 'image/svg+xml' },
-        { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+        { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
       ],
-      apple: [
-        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-      ],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
       other: [
-        { url: '/web-app-manifest-192x192.png', sizes: '192x192', type: 'image/png' },
-        { url: '/web-app-manifest-512x512.png', sizes: '512x512', type: 'image/png' },
+        { url: "/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png" },
+        { url: "/web-app-manifest-512x512.png", sizes: "512x512", type: "image/png" },
       ],
     },
-    manifest: '/site.webmanifest',
+    manifest: "/site.webmanifest",
     alternates: {
       canonical: content.canonical,
     },
@@ -80,9 +77,9 @@ export function generateMetadataHelper(content: Content): Metadata {
       follow: showFollow,
       googleBot: {
         noimageindex: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
   }

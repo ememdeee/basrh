@@ -17,6 +17,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "rich_text": {
+              "type": "SharedSlice"
+            },
+            "video_slice": {
+              "type": "SharedSlice"
+            },
             "id_grabber_form": {
               "type": "SharedSlice"
             },
@@ -61,6 +67,15 @@
           "thumbnails": []
         },
         "type": "Image"
+      },
+      "index": {
+        "type": "Select",
+        "config": {
+          "label": "index",
+          "placeholder": "",
+          "options": ["Index", "No Index"],
+          "default_value": "Index"
+        }
       }
     }
   }

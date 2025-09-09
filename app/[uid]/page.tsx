@@ -31,6 +31,7 @@ export async function generateMetadata({params,}: {params: Params;}): Promise<Me
     description: page.data.meta_description || "Welcome to Muhammad Basurah's official website. Explore insights, projects, and updates from Muhammad Basurah.",
     type: "website" as const,
     seo: [],
+    index: page.data.index,
   }
 
   // Use the helper function to generate metadata

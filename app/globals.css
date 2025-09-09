@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+img {
+    justify-self: center;
+}
+
 .background-gradient {
     background: radial-gradient(
     circle at top center,

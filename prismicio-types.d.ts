@@ -10,17 +10,6 @@ type BlogPostDocumentDataSlicesSlice = ImageBlockSlice | TextBlockSlice;
  * Content for Blog Post documents
  */
 interface BlogPostDocumentData {
-    /**
-   * Index field in *Page*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.index
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  index?: prismic.SelectField<"Index" | "No Index">
-  
   /**
    * Title field in *Blog Post*
    *
@@ -95,6 +84,18 @@ interface BlogPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
+
+  /**
+   * Index field in *Blog Post*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Index
+   * - **API ID Path**: blog_post.index
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  index: prismic.SelectField<"Index" | "No Index", "filled">;
 }
 
 /**
@@ -179,6 +180,8 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | RichTextSlice
+  | VideoSliceSlice
   | IdGrabberFormSlice
   | ExperienceSlice
   | ContentIndexSlice
@@ -189,17 +192,6 @@ type PageDocumentDataSlicesSlice =
  * Content for Page documents
  */
 interface PageDocumentData {
-    /**
-   * Index field in *Page*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.index
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  index?: prismic.SelectField<"Index" | "No Index">
-
   /**
    * Slice Zone field in *Page*
    *
@@ -241,6 +233,18 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
+
+  /**
+   * index field in *Page*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Index
+   * - **API ID Path**: page.index
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  index: prismic.SelectField<"Index" | "No Index", "filled">;
 }
 
 /**
@@ -261,17 +265,6 @@ type ProjectDocumentDataSlicesSlice = ImageBlockSlice | TextBlockSlice;
  * Content for Project documents
  */
 interface ProjectDocumentData {
-    /**
-   * Index field in *Page*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.index
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  index?: prismic.SelectField<"Index" | "No Index">
-
   /**
    * Title field in *Project*
    *
@@ -346,6 +339,18 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
+
+  /**
+   * Index field in *Project*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Index
+   * - **API ID Path**: project.index
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  index: prismic.SelectField<"Index" | "No Index", "filled">;
 }
 
 /**
@@ -1008,6 +1013,149 @@ export type ImageBlockSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *RichText → Primary*
+ */
+export interface RichTextSliceDefaultPrimary {
+  /**
+   * Heading Text field in *RichText → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.primary.heading_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading_text: prismic.KeyTextField;
+
+  /**
+   * Heading Tag field in *RichText → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: H1
+   * - **API ID Path**: rich_text.primary.heading_tag
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  heading_tag: prismic.SelectField<
+    "H1" | "H2" | "H3" | "H4" | "H5" | "H6",
+    "filled"
+  >;
+
+  /**
+   * Heading Size field in *RichText → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Extra Large
+   * - **API ID Path**: rich_text.primary.heading_size
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  heading_size: prismic.SelectField<
+    "Extra Large" | "Large" | "Medium" | "Small",
+    "filled"
+  >;
+
+  /**
+   * Rich Text field in *RichText → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.primary.rich_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  rich_text: prismic.RichTextField;
+
+  /**
+   * Alignment field in *RichText → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Left
+   * - **API ID Path**: rich_text.primary.alignment
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  alignment: prismic.SelectField<"Left" | "Center" | "Right", "filled">;
+
+  /**
+   * image field in *RichText → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text Image Position field in *RichText → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Text Left / Image Right
+   * - **API ID Path**: rich_text.primary.text_image_position
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  text_image_position: prismic.SelectField<
+    "Text Left / Image Right" | "Image Left / Text Right",
+    "filled"
+  >;
+}
+
+/**
+ * Primary content in *RichText → Items*
+ */
+export interface RichTextSliceDefaultItem {
+  /**
+   * Button Label field in *RichText → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.items[].button_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_label: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *RichText → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.items[].button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Default variation for RichText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RichTextSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<RichTextSliceDefaultPrimary>,
+  Simplify<RichTextSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *RichText*
+ */
+type RichTextSliceVariation = RichTextSliceDefault;
+
+/**
+ * RichText Shared Slice
+ *
+ * - **API ID**: `rich_text`
+ * - **Description**: RichText
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RichTextSlice = prismic.SharedSlice<
+  "rich_text",
+  RichTextSliceVariation
+>;
+
+/**
  * Primary content in *TechList → Primary*
  */
 export interface TechListSliceDefaultPrimary {
@@ -1122,6 +1270,81 @@ export type TextBlockSlice = prismic.SharedSlice<
   TextBlockSliceVariation
 >;
 
+/**
+ * Primary content in *VideoSlice → Primary*
+ */
+export interface VideoSliceSliceDefaultPrimary {
+  /**
+   * Video Embed field in *VideoSlice → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_slice.primary.video_embed
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  video_embed: prismic.EmbedField;
+
+  /**
+   * CTA Label field in *VideoSlice → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_slice.primary.cta_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_label: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *VideoSlice → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_slice.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_link: prismic.LinkField;
+
+  /**
+   * CTA Drop Time field in *VideoSlice → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 0
+   * - **API ID Path**: video_slice.primary.cta_drop_time
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  cta_drop_time: prismic.NumberField;
+}
+
+/**
+ * Default variation for VideoSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideoSliceSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *VideoSlice*
+ */
+type VideoSliceSliceVariation = VideoSliceSliceDefault;
+
+/**
+ * VideoSlice Shared Slice
+ *
+ * - **API ID**: `video_slice`
+ * - **Description**: VideoSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSliceSlice = prismic.SharedSlice<
+  "video_slice",
+  VideoSliceSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1174,6 +1397,11 @@ declare module "@prismicio/client" {
       ImageBlockSliceDefaultPrimary,
       ImageBlockSliceVariation,
       ImageBlockSliceDefault,
+      RichTextSlice,
+      RichTextSliceDefaultPrimary,
+      RichTextSliceDefaultItem,
+      RichTextSliceVariation,
+      RichTextSliceDefault,
       TechListSlice,
       TechListSliceDefaultPrimary,
       TechListSliceDefaultItem,
@@ -1183,6 +1411,10 @@ declare module "@prismicio/client" {
       TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,
       TextBlockSliceDefault,
+      VideoSliceSlice,
+      VideoSliceSliceDefaultPrimary,
+      VideoSliceSliceVariation,
+      VideoSliceSliceDefault,
     };
   }
 }
