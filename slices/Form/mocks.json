@@ -1,0 +1,30 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "national",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Adipisicing anim voluptate non sint. Do irure ex minim nulla nostrud ea cupidatat aute ipsum adipisicing ullamco enim consectetur. Et commodo tempor pariatur eu fugiat magna anim in."
+						}
+					}
+				]
+			},
+			"form": {
+				"__TYPE__": "FieldContent",
+				"value": "Other Form",
+				"type": "Select"
+			}
+		},
+		"items": []
+	}
+]

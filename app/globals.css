@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Style */
+.large-text {
+  @apply prose prose-xl prose-slate prose-invert;
+}
+
 img {
     justify-self: center;
 }
@@ -35,6 +40,9 @@ img {
 /* Custom CSS for transition effect */
 .fade-in {
     animation: fadeIn ease 1s;
+}
+.fade-in-fast {
+    animation: fadeIn ease 300ms;
 }
 
 @keyframes fadeIn {
