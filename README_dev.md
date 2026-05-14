@@ -6,4 +6,4 @@ npm run slicemachine
 
 Global Style available in /dev
 
-Always Use my own cred to push (basurah.muhammad.mb@gmail.com - ememdeee) 
+Always Use my own cred to push (basurah.muhammad.mb@gmail.com - ememdeee)
