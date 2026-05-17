@@ -1093,12 +1093,44 @@ section {
     justify-content: center;
   }
 
-  /* Pull scroll indicator out of absolute flow so it sits below the terminal */
+  .terminal-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .terminal-container::before {
+    width: 100%;
+    height: 100%;
+  }
+
+  .tag-1 {
+    top: auto;
+    bottom: -44px;
+    left: 16px;
+    right: auto;
+    transform: none;
+    width: max-content;
+  }
+
+  .tag-2 {
+    top: auto;
+    bottom: -44px;
+    right: 16px;
+    left: auto;
+    transform: none;
+    width: max-content;
+  }
+
+  .tag-3 {
+    display: none;
+  }
+
+  /* Pull scroll indicator out of absolute flow so it sits below the tags */
   .scroll-indicator {
     position: static;
     transform: none;
     align-self: center;
-    margin-top: calc(35px - 60px); /* net 16px spacing after the 60px flex gap */
+    margin-top: 54px;
   }
 
   .projects-grid {
@@ -1134,11 +1166,6 @@ section {
     gap: 16px;
   }
 
-  .terminal-container {
-    width: 100%;
-    margin: 0 auto;
-  }
-
   .terminal-body {
     padding: 16px;
     font-size: 0.75rem;
@@ -1150,17 +1177,6 @@ section {
 
   .tag-wrapper {
     position: absolute !important;
-  }
-
-  /* Stack tags cleanly on mobile instead of overlapping */
-  .tag-1 { top: -20px; left: 50%; transform: translateX(-50%); width: max-content; }
-  .tag-2 { top: auto; bottom: -20px; right: auto; left: 50%; transform: translateX(-50%); width: max-content; }
-  .tag-3 { display: none; }
-
-  /* Fix terminal glow bleeding outside viewport */
-  .terminal-container::before {
-    width: 100%;
-    height: 100%;
   }
 
   /* Hamburger visible; primary links collapse into slide panel */
