@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://basrh.com/sitemap.xml
+Sitemap: https://www.basrh.com/sitemap.xml
