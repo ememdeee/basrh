@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <title>Muhammad Basurah · Front-End Engineer</title>
+    <meta name="description" content="Muhammad Basurah is a Front-End Engineer with 5+ years building fast, pixel-perfect web experiences. Specializing in Next.js, WordPress, and performance optimization.">
+    <meta name="robots" content="noindex, follow">
+    <meta property="article:published_time" content="2026-05-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-05-17T00:00:00+00:00">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.basrh.com/">
+    <meta property="og:title" content="Muhammad Basurah · Front-End Engineer">
+    <meta property="og:description" content="Muhammad Basurah is a Front-End Engineer with 5+ years building fast, pixel-perfect web experiences. Specializing in Next.js, WordPress, and performance optimization.">
+    <meta property="og:image" content="https://www.basrh.com/og.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Muhammad Basurah · Front-End Engineer">
+    <meta name="twitter:description" content="Muhammad Basurah is a Front-End Engineer with 5+ years building fast, pixel-perfect web experiences. Specializing in Next.js, WordPress, and performance optimization.">
+    <meta name="twitter:image" content="https://www.basrh.com/og.jpg">
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="style-v3.css">
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
+
+    <div class="background-wrapper">
+        <div class="dot-overlay"></div>
+        <div class="glow-overlay glow-1"></div>
+        <div class="glow-overlay glow-2"></div>
+        <div id="cursor-glow" class="cursor-glow"></div>
+    </div>
+
+    <div class="nav-backdrop" id="nav-backdrop"></div>
+
+    <nav class="navbar reveal">
+        <div class="container nav-container">
+            <span class="logo">Basrh</span>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+                <span class="bars" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-left reveal">
+                <div class="hero-availability">
+                    <span class="status-dot"></span>
+                    <span class="availability-full">Available for new projects · 2026</span>
+                    <span class="availability-short">Available · 2026</span>
+                </div>
+                <h1 class="hero-title">Building Modern <br><span class="text-gradient" data-scramble="Experiences">Experiences</span> for <br>the Web</h1>
+                <p class="hero-desc">I craft fast, interactive web applications with pixel-perfect detail — motion, performance, and design systems that feel inevitable.</p>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-glow magnetic-btn">
+                        Explore Work <i class="ph ph-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-outline magnetic-btn">
+                        <i class="ph ph-sparkle"></i> Hire Me
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">5+ YRS SHIPPING</div>
+                    <div class="stat-item">40+ PROJECTS</div>
+                    <div class="stat-item">100/100 LIGHTHOUSE</div>
+                </div>
+            </div>
+
+            <div class="hero-right reveal delay-2">
+                <div class="terminal-container">
+                    <!-- Floating Tags -->
+                    <div class="tag-wrapper tag-1 reveal delay-3">
+                        <div class="floating-tag float-anim-1">
+                            <div class="tag-icon"><i class="ph ph-cube"></i></div>
+                            <div class="tag-text">
+                                <strong>Bento UI Kit</strong>
+                                <span>12 components</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tag-wrapper tag-2 reveal delay-4">
+                        <div class="floating-tag float-anim-2">
+                            <div class="tag-icon"><i class="ph ph-lightning"></i></div>
+                            <div class="tag-text">
+                                <strong>Edge API</strong>
+                                <span>98 ms ping</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tag-wrapper tag-3 reveal delay-3">
+                        <div class="floating-tag float-anim-3">
+                            <div class="tag-icon"><i class="ph ph-code"></i></div>
+                            <div class="tag-text">
+                                <strong>Design System</strong>
+                                <span>v2.1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terminal Window -->
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="mac-btns">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="terminal-title">~/basrh — zsh</div>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="term-line"><span class="term-prompt">$</span> whoami</div>
+                            <div class="term-output">frontend-engineer</div>
+                            <div class="term-line"><span class="term-prompt">$</span> stack --current</div>
+                            <div class="term-output highlight">&gt; <span id="typewriter"></span><span class="cursor">_</span></div>
+                            <div class="term-line"><span class="term-prompt">$</span> deploy --prod</div>
+                            <div class="term-output success">✓ shipped in 0.42s</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator reveal delay-4">
+                <span>SCROLL</span>
+                <div class="mouse-pill"><div></div></div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <h2 class="section-title reveal">Selected <span class="text-gradient">Projects</span></h2>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card reveal delay-1">
+                    <div class="project-header">
+                        <a href="https://chassisvin.com/" target="_blank" rel="noopener noreferrer">
+                            <h3 class="project-title">Chassis VIN - Vehicle History Report <i class="ph ph-arrow-up-right"></i></h3>
+                        </a>
+                        <div class="project-tech">
+                            <span class="tech-pill mini">Next.js</span>
+                            <span class="tech-pill mini">Tailwind</span>
+                            <span class="tech-pill mini">API Integration</span>
+                        </div>
+                    </div>
+                    <p class="project-desc">A comprehensive VIN decoder platform for US and Canadian vehicles, featuring advanced SEO optimization, server-side rendering, and dynamic search indexing for maximum discoverability.</p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card reveal delay-2">
+                    <div class="project-header">
+                        <a href="https://healthyboostplan.com/" target="_blank" rel="noopener noreferrer">
+                            <h3 class="project-title">Healthy Boost Plan - E-Course Platform <i class="ph ph-arrow-up-right"></i></h3>
+                        </a>
+                        <div class="project-tech">
+                            <span class="tech-pill mini">Next.js</span>
+                            <span class="tech-pill mini">GTM</span>
+                            <span class="tech-pill mini">Meta Pixel</span>
+                        </div>
+                    </div>
+                    <p class="project-desc">High-converting quiz funnel with custom admin dashboard for A/B testing, advanced conversion tracking via GTM and Meta Pixel, and mobile-first design optimized for paid ad campaigns.</p>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card reveal delay-1">
+                    <div class="project-header">
+                        <a href="https://sbenrc.com.au/" target="_blank" rel="noopener noreferrer">
+                            <h3 class="project-title">SBENRC - Research Library <i class="ph ph-arrow-up-right"></i></h3>
+                        </a>
+                        <div class="project-tech">
+                            <span class="tech-pill mini">WordPress</span>
+                            <span class="tech-pill mini">ACF</span>
+                            <span class="tech-pill mini">Custom Post Types</span>
+                        </div>
+                    </div>
+                    <p class="project-desc">Advanced research database featuring custom taxonomy architecture, streamlined content management workflows, and successful migration of legacy datasets into a modern CMS.</p>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card reveal delay-2">
+                    <div class="project-header">
+                        <a href="https://beyourkind.com/" target="_blank" rel="noopener noreferrer">
+                            <h3 class="project-title">Be Your Kind - Brand Website <i class="ph ph-arrow-up-right"></i></h3>
+                        </a>
+                        <div class="project-tech">
+                            <span class="tech-pill mini">WordPress</span>
+                            <span class="tech-pill mini">Gutenberg</span>
+                            <span class="tech-pill mini">ACF Blocks</span>
+                        </div>
+                    </div>
+                    <p class="project-desc">Custom WordPress theme with drag-and-drop ACF blocks and Gutenberg integration, empowering non-technical editors with flexible, developer-grade page-building capabilities.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience">
+            <h2 class="section-title reveal">My <span class="text-gradient">Journey</span></h2>
+
+            <div class="experience-list">
+                <!-- Exp 1 - Clue -->
+                <div class="exp-item active reveal delay-1">
+                    <div class="exp-left">
+                        <div class="exp-year text-primary">2025</div>
+                        <p class="exp-duration">– Present</p>
+                    </div>
+                    <div class="exp-right">
+                        <div class="exp-content">
+                            <h3 class="exp-role" aria-label="Front-End Engineer at Clue">Front-End Engineer <span class="sr-only">at Clue</span></h3>
+                            <p class="exp-company">Clue · South Perth, Australia</p>
+                            <div class="exp-details">
+                                <ul>
+                                    <li>Architected 10+ custom WordPress themes with advanced Gutenberg block systems, reducing content update workflows by 40% through reusable component libraries.</li>
+                                    <li>Engineered 20+ HubSpot modules and modular front-end components, accelerating page deployment by 30%.</li>
+                                    <li>Optimized Core Web Vitals to 80+ scores across multiple sites, achieving up to 50% reduction in load times through performance audits and code optimization.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="exp-expand-btn"><i class="ph ph-caret-down"></i></button>
+                    </div>
+                </div>
+
+                <!-- Exp 2 - Digital Marketing Agency -->
+                <div class="exp-item reveal delay-2">
+                    <div class="exp-left">
+                        <div class="exp-year text-primary">2023</div>
+                        <p class="exp-duration">– May 2025</p>
+                    </div>
+                    <div class="exp-right">
+                        <div class="exp-content">
+                            <h3 class="exp-role" aria-label="Front-End Engineer, Team Leader at Digital Marketing Agency">Front-End Engineer, Team Leader <span class="sr-only">at Digital Marketing Agency</span></h3>
+                            <p class="exp-company">Digital Marketing Agency · Ormeaux, Canada</p>
+                            <div class="exp-details">
+                                <ul>
+                                    <li>Developed custom WordPress plugins with RESTful API integrations to extend platform capabilities and automate content workflows.</li>
+                                    <li>Led front-end development for 30+ WordPress sites, building SEO-optimized custom themes with advanced performance tuning and scalable architecture.</li>
+                                    <li>Transformed homepage experience from a 72 to 95 Lighthouse score through strategic code splitting, lazy loading, and optimized rendering patterns.</li>
+                                    <li>Translated complex Figma designs into production-ready interfaces using Next.js and modern CSS, ensuring responsive experiences across all devices.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="exp-expand-btn"><i class="ph ph-caret-down"></i></button>
+                    </div>
+                </div>
+
+                <!-- Exp 3 - Desk Team 360 -->
+                <div class="exp-item reveal delay-3">
+                    <div class="exp-left">
+                        <div class="exp-year text-primary">2022</div>
+                        <p class="exp-duration">– Nov 2023</p>
+                    </div>
+                    <div class="exp-right">
+                        <div class="exp-content">
+                            <h3 class="exp-role" aria-label="Front-End Engineer, Team Leader at Desk Team 360">Front-End Engineer, Team Leader <span class="sr-only">at Desk Team 360</span></h3>
+                            <p class="exp-company">Desk Team 360 · Gilbert, United States</p>
+                            <div class="exp-details">
+                                <ul>
+                                    <li>Directed a 5-person development team across 8+ international projects, delivering WordPress, HubSpot, and headless CMS solutions while managing QA processes and client communications.</li>
+                                    <li>Engineered deployment automation pipelines that accelerated project delivery cycles by 30%.</li>
+                                    <li>Maintained 95% on-time delivery rate through effective sprint planning and cross-functional coordination.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="exp-expand-btn"><i class="ph ph-caret-down"></i></button>
+                    </div>
+                </div>
+
+                <!-- Exp 4 - Ma Chung University -->
+                <div class="exp-item reveal delay-1">
+                    <div class="exp-left">
+                        <div class="exp-year text-primary">2022</div>
+                        <p class="exp-duration">– May 2022</p>
+                    </div>
+                    <div class="exp-right">
+                        <div class="exp-content">
+                            <h3 class="exp-role" aria-label="Full-Stack Engineer at Ma Chung University">Full-Stack Engineer <span class="sr-only">at Ma Chung University</span></h3>
+                            <p class="exp-company">Ma Chung University (Thesis) · Malang, Indonesia</p>
+                            <div class="exp-details">
+                                <ul>
+                                    <li>Built AI-powered Progressive Web App featuring facial recognition with liveness detection for secure user verification.</li>
+                                    <li>Implemented anti-spoofing algorithms using Face-api.js to detect and prevent photo/video replay attacks.</li>
+                                    <li>Developed object detection layer to identify and block spoofed device inputs, reducing verification time by 40%.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="exp-expand-btn"><i class="ph ph-caret-down"></i></button>
+                    </div>
+                </div>
+
+                <!-- Exp 5 - Girisa Technology -->
+                <div class="exp-item reveal delay-2">
+                    <div class="exp-left">
+                        <div class="exp-year text-primary">2021</div>
+                        <p class="exp-duration">– Dec 2021</p>
+                    </div>
+                    <div class="exp-right">
+                        <div class="exp-content">
+                            <h3 class="exp-role" aria-label="Full-Stack Engineer at Girisa Technology">Full-Stack Engineer <span class="sr-only">at Girisa Technology</span></h3>
+                            <p class="exp-company">Girisa Technology (Internship) · Malang, Indonesia</p>
+                            <div class="exp-details">
+                                <ul>
+                                    <li>Engineered GPS-validated attendance system using Laravel and Bootstrap with real-time location verification.</li>
+                                    <li>Optimized database queries and implemented Redis caching, achieving 60% reduction in page load times.</li>
+                                    <li>Delivered production-grade solution with positive client feedback on reliability and user experience.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="exp-expand-btn"><i class="ph ph-caret-down"></i></button>
+                    </div>
+                </div>
+
+                <!-- Exp 6 - Zona Media Indonesia -->
+                <div class="exp-item reveal delay-3">
+                    <div class="exp-left">
+                        <div class="exp-year text-primary">2021</div>
+                        <p class="exp-duration">– Jun 2021</p>
+                    </div>
+                    <div class="exp-right">
+                        <div class="exp-content">
+                            <h3 class="exp-role" aria-label="Front-End Engineer at Zona Media Indonesia">Front-End Engineer <span class="sr-only">at Zona Media Indonesia</span></h3>
+                            <p class="exp-company">Zona Media Indonesia · Malang, Indonesia</p>
+                            <div class="exp-details">
+                                <ul>
+                                    <li>Rebuilt company newsletter platform with custom WordPress theme, modern component architecture, and performance-first approach.</li>
+                                    <li>Redesigned UI/UX with accessibility and readability focus, improving Lighthouse performance score from 30 to 90.</li>
+                                    <li>Implemented fully responsive design system, contributing to 40% increase in user engagement and traffic.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="exp-expand-btn"><i class="ph ph-caret-down"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="footer">
+        <h2 class="footer-title reveal">Let's build something <span class="text-gradient">amazing</span></h2>
+        <p class="footer-subtitle reveal delay-1">Feel free to reach out for collaborations or just a friendly hello!</p>
+
+        <div class="contact-circle-wrapper reveal delay-2">
+            <a href="mailto:basurah@basrh.com" class="contact-circle">
+                <div class="circle-text">
+                    <svg viewBox="0 0 100 100" class="rotating-text">
+                        <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
+                        <text>
+                            <textPath href="#circlePath" startOffset="0%" textLength="220" lengthAdjust="spacingAndGlyphs">
+                                SEND ME A MESSAGE | GET IN TOUCH |
+                            </textPath>
+                        </text>
+                    </svg>
+                </div>
+                <div class="circle-icon">
+                    <i class="ph ph-paper-plane-tilt"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer-socials reveal delay-3">
+            <a href="https://www.linkedin.com/in/muhammad-basurah/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+            <a href="https://github.com/ememdeee" target="_blank" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+            <a href="https://wa.link/5j0xdl" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+            <a href="mailto:basurah@basrh.com" aria-label="Email"><i class="ph ph-envelope-simple"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Typing Effect for Terminal
+        const words = ["Tailwind CSS", "React.js", "TypeScript", "Node.js", "Next.js"];
+        let i = 0;
+        let timer;
+        const typewriterEl = document.getElementById('typewriter');
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    typewriterEl.innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000); // Wait 2s before deleting
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 100); // Typing speed
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = typewriterEl.innerHTML.split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    typewriterEl.innerHTML = word.join("");
+                } else {
+                    i = (i + 1) % words.length;
+                    setTimeout(typingEffect, 500); // Wait 0.5s before typing next word
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 50); // Deleting speed
+            };
+            loopDeleting();
+        }
+
+        // Initialize typewriter
+        typewriterEl.innerHTML = "";
+        typingEffect();
+
+        // Mouse tracking for cursor glow & 3D tilt
+        const cursorGlow = document.getElementById('cursor-glow');
+        const terminalContainer = document.querySelector('.terminal-container');
+        const dotOverlay = document.querySelector('.dot-overlay');
+
+        // Custom Cursor Elements
+        const customCursor = document.getElementById('custom-cursor');
+        const customCursorFollower = document.getElementById('custom-cursor-follower');
+        let followerX = window.innerWidth / 2;
+        let followerY = window.innerHeight / 2;
+
+        let currentX = window.innerWidth / 2;
+        let currentY = window.innerHeight / 2;
+        let targetX = currentX;
+        let targetY = currentY;
+
+        // 3D Tilt variables
+        let currentTiltX = 0;
+        let currentTiltY = 0;
+        let targetTiltX = 0;
+        let targetTiltY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+
+            // Custom Cursor direct placement
+            customCursor.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%)`;
+
+            // Calculate tilt based on mouse position relative to center of screen
+            const xAxis = (window.innerWidth / 2 - e.clientX) / 200;
+            const yAxis = (window.innerHeight / 2 - e.clientY) / 200;
+
+            targetTiltY = xAxis;
+            targetTiltX = -yAxis;
+
+            // Parallax Background Grid
+            const bgX = (e.clientX - window.innerWidth / 2) * -0.05;
+            const bgY = (e.clientY - window.innerHeight / 2) * -0.05;
+            if (dotOverlay) {
+                dotOverlay.style.transform = `translate(${bgX}px, ${bgY}px)`;
+            }
+        });
+
+        function animateFrame() {
+            // Glow interpolation
+            currentX += (targetX - currentX) * 0.08;
+            currentY += (targetY - currentY) * 0.08;
+            cursorGlow.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
+
+            // Cursor Follower interpolation
+            followerX += (targetX - followerX) * 0.15;
+            followerY += (targetY - followerY) * 0.15;
+            customCursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+
+            // Tilt interpolation
+            currentTiltX += (targetTiltX - currentTiltX) * 0.08;
+            currentTiltY += (targetTiltY - currentTiltY) * 0.08;
+
+            if (terminalContainer) {
+                terminalContainer.style.transform = `perspective(1200px) rotateY(${currentTiltY}deg) rotateX(${currentTiltX}deg)`;
+            }
+
+            requestAnimationFrame(animateFrame);
+        }
+        animateFrame();
+
+        // Custom Cursor Hover Logic
+        const hoverElements = document.querySelectorAll('a, button, .magnetic-btn, .exp-expand-btn, .project-card');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
+        });
+
+        // Magnetic Buttons Logic
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                // Move button slightly towards mouse
+                this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = `translate(0px, 0px)`;
+            });
+        });
+
+        /* ——— Per-character scramble effect ———
+           Each target letter becomes a fixed-width <span class="ch">.
+           During scramble the span cycles random glyphs; when its
+           per-char timer ends it locks to the real letter and gets
+           class .settled (gentle rise + glow-out). */
+        (function initScramble() {
+            const scrambleEl = document.querySelector('[data-scramble]');
+            if (!scrambleEl) return;
+
+            const targetText = scrambleEl.getAttribute('data-scramble') || scrambleEl.textContent;
+            const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!?<>-_/\\=+*&^%$#@';
+            const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function measureChars(text) {
+                const style = window.getComputedStyle(scrambleEl);
+                const probe = document.createElement('span');
+                probe.style.cssText = [
+                    'position:absolute',
+                    'visibility:hidden',
+                    'white-space:pre',
+                    'pointer-events:none',
+                    'top:-9999px',
+                    'left:-9999px',
+                    `font: ${style.font}`,
+                    `font-weight: ${style.fontWeight}`,
+                    `letter-spacing: ${style.letterSpacing}`,
+                ].join(';');
+                document.body.appendChild(probe);
+                const widths = [];
+                for (const c of text) {
+                    probe.textContent = c;
+                    widths.push(probe.getBoundingClientRect().width);
+                }
+                probe.textContent = text;
+                const total = probe.getBoundingClientRect().width;
+                document.body.removeChild(probe);
+                return { widths, total };
+            }
+
+            function buildSpans() {
+                const { widths, total } = measureChars(targetText);
+                scrambleEl.textContent = '';
+                scrambleEl.style.setProperty('--word-w', total + 'px');
+                let offset = 0;
+                const spans = [];
+                for (let i = 0; i < targetText.length; i++) {
+                    const ch = document.createElement('span');
+                    ch.className = 'ch';
+                    if (targetText[i] === ' ') {
+                        ch.innerHTML = '&nbsp;';
+                        ch.style.width = widths[i] + 'px';
+                        ch.dataset.space = '1';
+                    } else {
+                        ch.textContent = targetText[i];
+                        ch.style.width = widths[i] + 'px';
+                    }
+                    ch.style.backgroundPosition = `-${offset}px 0`;
+                    offset += widths[i];
+                    scrambleEl.appendChild(ch);
+                    spans.push(ch);
+                }
+                return spans;
+            }
+
+            function runScramble(spans) {
+                const STAGGER = 55;
+                const DURATION = 520;
+                const CYCLE_MS = 38;
+
+                if (PREFERS_REDUCED) {
+                    spans.forEach((ch, i) => {
+                        ch.textContent = targetText[i] === ' ' ? ' ' : targetText[i];
+                        ch.classList.remove('scrambling');
+                        ch.classList.add('settled');
+                    });
+                    return;
+                }
+
+                spans.forEach((ch, i) => {
+                    if (ch.dataset.space === '1') {
+                        ch.classList.add('settled');
+                        return;
+                    }
+                    const finalChar = targetText[i];
+                    let elapsed = 0;
+                    setTimeout(() => {
+                        ch.classList.add('scrambling');
+                        const interval = setInterval(() => {
+                            elapsed += CYCLE_MS;
+                            if (elapsed >= DURATION) {
+                                clearInterval(interval);
+                                ch.textContent = finalChar;
+                                ch.classList.remove('scrambling');
+                                ch.classList.add('settled');
+                            } else {
+                                ch.textContent = GLYPHS[(Math.random() * GLYPHS.length) | 0];
+                            }
+                        }, CYCLE_MS);
+                    }, i * STAGGER);
+                });
+            }
+
+            let spans = [];
+
+            function rebuild() { spans = buildSpans(); }
+
+            function trigger() {
+                if (!spans.length) rebuild();
+                spans.forEach((ch) => { ch.classList.remove('settled', 'scrambling'); });
+                void scrambleEl.offsetWidth;
+                runScramble(spans);
+            }
+
+            const startInitial = () => {
+                rebuild();
+                setTimeout(trigger, 250);
+            };
+
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(startInitial);
+            } else {
+                window.addEventListener('load', startInitial);
+            }
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    rebuild();
+                    spans.forEach((ch) => ch.classList.add('settled'));
+                }, 120);
+            });
+
+            scrambleEl.parentElement.addEventListener('mouseenter', () => {
+                if (scrambleEl.dataset.busy === '1') return;
+                scrambleEl.dataset.busy = '1';
+                trigger();
+                setTimeout(() => { delete scrambleEl.dataset.busy; }, 900);
+            });
+        })();
+
+        // Mobile navbar toggle
+        (function initNav() {
+            const toggle = document.getElementById('nav-toggle');
+            const links = document.getElementById('nav-links');
+            const backdrop = document.getElementById('nav-backdrop');
+            if (!toggle || !links) return;
+
+            function setOpen(open) {
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                links.classList.toggle('open', open);
+                if (backdrop) backdrop.classList.toggle('open', open);
+                document.body.classList.toggle('nav-open', open);
+            }
+
+            toggle.addEventListener('click', () => {
+                setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+            });
+
+            links.querySelectorAll('a').forEach((a) => {
+                a.addEventListener('click', () => setOpen(false));
+            });
+
+            if (backdrop) backdrop.addEventListener('click', () => setOpen(false));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') setOpen(false);
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) setOpen(false);
+            });
+        })();
+
+        // Exp Items Dropdown logic
+        document.querySelectorAll('.exp-expand-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.exp-item');
+                item.classList.toggle('active');
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+        const revealOptions = {
+            threshold: 0.05,
+            rootMargin: "0px 0px 0px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once revealed
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+    </script>
+</body>
+</html>
