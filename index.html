@@ -161,8 +161,10 @@ body.fine,body.fine *{cursor:none!important}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .tag{font-size:14px;font-weight:800;padding:6px 12px;border-radius:10px;background:var(--lilac);border:2px solid var(--ink)}
 
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,24px);margin-top:clamp(18px,3vh,32px)}
-.card{height:clamp(230px,42vh,340px);perspective:1100px;border-radius:22px}
+.cards{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,24px);margin-top:clamp(18px,3vh,32px)}
+.slot{height:clamp(230px,42vh,340px)}
+.card{height:100%;perspective:1100px;border-radius:22px;-webkit-tap-highlight-color:transparent}
+.card.big{position:absolute;z-index:6}
 .card-in{position:relative;width:100%;height:100%;transform-style:preserve-3d}
 .face{position:absolute;inset:0;border:3px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .front{display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
@@ -171,13 +173,28 @@ body.fine,body.fine *{cursor:none!important}
 .seal{position:absolute;top:14px;left:14px;width:58px;height:58px;border-radius:50%;background:#fff;color:var(--ink);border:3px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:15px;animation:wob 2.4s ease-in-out infinite}
 @keyframes wob{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg) scale(1.06)}}
 .cname{position:relative;font-size:clamp(20px,2.3vw,32px);font-weight:800;line-height:1;margin:0;letter-spacing:-.02em}
-.back{transform:rotateY(180deg);background:#fff;color:var(--ink);padding:18px;display:flex;flex-direction:column}
+.back{transform:rotateY(180deg);background:#fff;color:var(--ink);padding:18px;display:flex;flex-direction:column;visibility:hidden}
+.card.flipped .back{visibility:visible}
+.card.flipped .front{visibility:hidden}
+.card.flipped .seal{animation-play-state:paused}
 .bname{font-size:clamp(18px,1.9vw,26px);font-weight:800;margin:0;line-height:1.05}
+.bbody{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+.bbody::-webkit-scrollbar{display:none}
+.bbody.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 26px),transparent);mask-image:linear-gradient(#000 calc(100% - 26px),transparent)}
 .bdesc{font-size:clamp(13px,1.3vw,16px);margin:8px 0 0;line-height:1.4}
 .bstack{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .bstack span{font-size:12px;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--sky);border:2px solid var(--ink)}
-.blink{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:clamp(13px,1.2vw,15px);color:var(--ink);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.blink{flex:none;margin-top:10px;display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:clamp(13px,1.2vw,15px);color:var(--ink);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 .blink svg{width:14px;height:14px;flex:none}
+.bx{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:2.5px solid var(--ink);display:none;place-items:center}
+.bx svg{width:15px;height:15px}
+.card.big .bx{display:grid}
+.card.big .back{padding:20px 18px 18px}
+.card.big .bname{font-size:26px;line-height:1.05;padding-right:46px}
+.card.big .bdesc{font-size:16px;line-height:1.45;margin-top:10px}
+.card.big .bstack{gap:8px;margin-top:16px}
+.card.big .bstack span{font-size:13px;padding:5px 11px}
+.card.big .blink{justify-content:center;margin-top:14px;padding:13px 16px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font-size:15px}
 
 .head4{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .field{position:relative;flex:1;min-height:220px;max-height:480px;margin-top:20px}
@@ -264,7 +281,7 @@ body.fine #cur,body.fine #ring{opacity:1}
   .pblob{width:110px;height:110px;right:-40px;top:-40px}
   .lab{font-size:12px}.chip{font-size:12px}.tag{font-size:12px}
   .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-  .card{height:clamp(160px,25vh,230px)}
+  .slot{height:clamp(160px,25vh,230px)}
   .back{padding:12px}.front{padding:12px}
   .seal{width:44px;height:44px;font-size:12px;top:10px;left:10px}
   .bstack span{font-size:10.5px;padding:3px 7px}
@@ -284,7 +301,7 @@ body.fine #cur,body.fine #ring{opacity:1}
   .row.outline span{-webkit-text-stroke:2px var(--ink)}
 }
 @media (max-width:760px) and (max-height:700px){.marq{top:2.5%}.row{font-size:36px}.h2how{font-size:30px}.steps{gap:10px;margin-top:10px}.how>.btn{margin-top:12px}.sdesc{font-size:12.5px}.shead{margin-bottom:6px}.sface{width:30px;height:30px}.snum{font-size:22px}}
-@media (max-height:720px) and (min-width:761px){.panel{min-height:0}.card{height:clamp(200px,38vh,300px)}}
+@media (max-height:720px) and (min-width:761px){.panel{min-height:0}.slot{height:clamp(200px,38vh,300px)}}
 @media (max-height:780px) and (min-width:761px){.marq{top:6%}.row{font-size:clamp(52px,7.5vw,112px)}}
 @media (prefers-reduced-motion:reduce){.route .dash,.ct b,.seal,.sseal,.ping::after{animation:none}}
 </style>
@@ -644,28 +661,56 @@ const PROJ=[
   {name:"Be Your Kind",desc:"Brand website.",stack:["WordPress","Gutenberg","ACF blocks"],url:"https://beyourkind.com/",host:"beyourkind.com",c:"pink",sh:"ring",sc:"orange"}
 ];
 const EXT='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>';
+const XIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 const cardsEl=document.getElementById('cards');
-const cards=PROJ.map(p=>{const d=document.createElement('div');d.className='card';d.setAttribute('role','button');d.tabIndex=0;d.setAttribute('aria-expanded','false');
-  d.setAttribute('aria-label','Open '+p.name);d.dataset.hover='pop';d._c=C[p.c];d._base=0;d._open=false;
+const MOB=matchMedia('(max-width:760px)');
+const cards=PROJ.map(p=>{const slot=document.createElement('div');slot.className='slot';
+  const d=document.createElement('div');d.className='card';d.setAttribute('role','button');d.tabIndex=0;d.setAttribute('aria-expanded','false');
+  d.setAttribute('aria-label','Open '+p.name);d.dataset.hover='pop';d._c=C[p.c];d._base=0;d._open=false;d._back=false;
   const fg=p.c==='blue'?'#fff':INK;
   d.innerHTML='<div class="card-in"><div class="face front" style="background:'+C[p.c]+';color:'+fg+'"><div class="fshape">'+SH[p.sh](C[p.sc])+'</div><span class="seal">Pop</span><h3 class="cname">'+p.name+'</h3></div>'+
-    '<div class="face back"><h3 class="bname">'+p.name+'</h3><p class="bdesc">'+p.desc+'</p><div class="bstack">'+p.stack.map(s=>'<span>'+s+'</span>').join('')+'</div>'+
+    '<div class="face back"><span class="bx" style="background:'+C[p.c]+';color:'+fg+'" aria-hidden="true">'+XIC+'</span><h3 class="bname">'+p.name+'</h3>'+
+    '<div class="bbody"><p class="bdesc">'+p.desc+'</p><div class="bstack">'+p.stack.map(s=>'<span>'+s+'</span>').join('')+'</div></div>'+
     '<a class="blink" href="'+p.url+'" target="_blank" rel="noopener" tabindex="-1">'+p.host+EXT+'</a></div></div>';
-  cardsEl.appendChild(d);const inn=d.firstChild;
+  slot.appendChild(d);cardsEl.appendChild(slot);const inn=d.firstChild;d._bb=d.querySelector('.bbody');d._sync=()=>side(d);
+  d._bb.addEventListener('scroll',()=>fade(d),{passive:true});
   d.addEventListener('click',e=>{if(e.target.closest('a')){burstAt(e.target.closest('a'),20);return}flip(d,!d._open)});
-  d.addEventListener('keydown',e=>{if(e.target!==d)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();flip(d,!d._open)}});
+  d.addEventListener('keydown',e=>{if(e.key==='Escape'&&d._open){e.preventDefault();flip(d,false);d.focus();return}
+    if(e.target!==d)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();flip(d,!d._open)}});
   d.addEventListener('pointermove',e=>{if(RM||e.pointerType!=='mouse')return;const r=d.getBoundingClientRect(),dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5;
-    gsap.to(inn,{rotationY:d._base+dx*20,rotationX:-dy*16,duration:.5,ease:'power2.out',overwrite:'auto'})});
-  d.addEventListener('pointerleave',()=>{if(RM)return;gsap.to(inn,{rotationY:d._base,rotationX:0,duration:.9,ease:'elastic.out(1,.5)',overwrite:'auto'})});
+    gsap.to(inn,{rotationY:d._base+dx*20,rotationX:-dy*16,duration:.5,ease:'power2.out',overwrite:'auto',onUpdate:d._sync})});
+  d.addEventListener('pointerleave',()=>{if(RM)return;gsap.to(inn,{rotationY:d._base,rotationX:0,duration:.9,ease:'elastic.out(1,.5)',overwrite:'auto',onUpdate:d._sync})});
   return d});
+/* show exactly one face, switched edge-on at 90deg: iOS Safari leaks the front's animated seal through backface-visibility */
+function side(d){const y=((gsap.getProperty(d.firstChild,'rotationY')%360)+360)%360,b=y>90&&y<270;
+  if(b!==d._back){d._back=b;d.classList.toggle('flipped',b);if(b)fade(d)}}
+function fade(d){const b=d._bb;b.classList.toggle('more',b.scrollHeight-b.clientHeight-b.scrollTop>2)}
+/* phones: an open card lifts out of its slot and covers the whole grid */
+const slotBox=d=>{const s=d.parentNode;return{left:s.offsetLeft,top:s.offsetTop,width:s.offsetWidth,height:s.offsetHeight}};
+const gridBox=()=>({left:0,top:0,width:cardsEl.clientWidth,height:cardsEl.clientHeight});
+const BOX='left,top,width,height';
+function grow(d,big,instant){const was=d.classList.contains('big');
+  cards.forEach(c=>{if(c!==d)c.inert=big});
+  if(big){if(!was){d.classList.add('big');gsap.set(d,slotBox(d))}
+    if(instant){gsap.killTweensOf(d,BOX);gsap.set(d,gridBox());fade(d)}
+    else gsap.to(d,{...gridBox(),duration:.45,ease:'power3.out',overwrite:'auto',onComplete:()=>fade(d)})}
+  else if(was){const end=()=>{d.classList.remove('big');gsap.set(d,{clearProps:BOX});d._bb.scrollTop=0;fade(d)};
+    if(instant){gsap.killTweensOf(d,BOX);end()}
+    else gsap.to(d,{...slotBox(d),duration:.45,ease:'power3.out',overwrite:'auto',onComplete:end})}}
 function flip(d,open,instant){const inn=d.firstChild;d._open=open;d._base=open?180:0;d.setAttribute('aria-expanded',open?'true':'false');
   d.setAttribute('aria-label',(open?'Close ':'Open ')+d.querySelector('.cname').textContent);d.dataset.hover=open?'close':'pop';ring._k=null;
   d.querySelector('.blink').tabIndex=open?0:-1;
-  if(RM||instant){gsap.killTweensOf(inn);gsap.set(inn,{rotationY:d._base,rotationX:0,scaleX:1,scaleY:1});return}
+  const big=open&&MOB.matches;
+  if(big)cards.forEach(c=>{if(c!==d&&c._open)flip(c,false,true)});
+  grow(d,big,RM||instant);
+  if(RM||instant){gsap.killTweensOf(inn);gsap.set(inn,{rotationY:d._base,rotationX:0,scaleX:1,scaleY:1});side(d);return}
   if(open){gsap.timeline().to(inn,{scaleX:1.12,scaleY:.86,duration:.12,ease:'power2.out',overwrite:'auto'})
       .add(()=>burstAt(d,44,[d._c,'#fff',INK,C.yellow],1.25))
-      .to(inn,{scaleX:1,scaleY:1,rotationY:180,rotationX:0,duration:.9,ease:'back.out(1.5)'})}
-  else gsap.to(inn,{rotationY:0,rotationX:0,duration:.75,ease:'back.out(1.3)',overwrite:'auto'})}
+      .to(inn,{scaleX:1,scaleY:1,rotationY:180,rotationX:0,duration:.9,ease:'back.out(1.5)',overwrite:'auto',onUpdate:d._sync})}
+  else gsap.to(inn,{rotationY:0,rotationX:0,duration:.75,ease:'back.out(1.3)',overwrite:'auto',onUpdate:d._sync})}
+let crs;addEventListener('resize',()=>{clearTimeout(crs);crs=setTimeout(()=>cards.forEach(d=>{
+  if(d.classList.contains('big')){gsap.killTweensOf(d,BOX);if(MOB.matches&&d._open){gsap.set(d,gridBox());fade(d)}else grow(d,false,true)}
+  else fade(d)}),150)});
 
 /* slide 6: physics stickers */
 const field=document.getElementById('field');
@@ -816,7 +861,7 @@ document.getElementById('again').addEventListener('click',e=>go(0,e.clientX,e.cl
 
 addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('[role=tablist]'))return;
   if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(cur+1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}});
-let wl=0;addEventListener('wheel',e=>{const d=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX,now=Date.now();
+let wl=0;addEventListener('wheel',e=>{const sb=e.target.closest&&e.target.closest('.bbody');if(sb&&sb.scrollHeight>sb.clientHeight+1)return;const d=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX,now=Date.now();
   if(Math.abs(d)<25||now-wl<1200)return;wl=now;go(cur+(d>0?1:-1))},{passive:true});
 let sx=null,sy=null,moved=false;
 app.addEventListener('pointerdown',e=>{if(e.target.closest('[data-drag],#field,.tabs'))return;sx=e.clientX;sy=e.clientY;moved=false});
@@ -824,6 +869,7 @@ addEventListener('pointercancel',()=>{sx=null});
 addEventListener('pointerup',e=>{if(sx==null)return;const dx=e.clientX-sx,dy=e.clientY-sy;
   if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.3){moved=true;go(cur+(dx<0?1:-1),e.clientX,e.clientY)}else if(Math.hypot(dx,dy)>10)moved=true;sx=null});
 app.addEventListener('click',e=>{if(moved){moved=false;return}
+  const big=cards.find(c=>c._open&&c.classList.contains('big'));if(big&&!e.target.closest('.card,button,a')){flip(big,false);return}
   if(e.target.closest('button,a,[data-drag],.deco,.block,#yrs,#field,.card,.pin,[role=tab]'))return;burst(e.clientX,e.clientY,32)});
 
 /* start */
