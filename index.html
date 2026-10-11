@@ -189,12 +189,32 @@ body.fine,body.fine *{cursor:none!important}
 .btn.ink{background:var(--ink);color:#fff;border-color:var(--ink)}
 .btn.small{font-size:15px;padding:10px 18px;border-width:2px}
 .marq{position:absolute;left:0;right:0;top:9%;z-index:1;display:flex;flex-direction:column;gap:4px}
-.row{overflow:hidden;white-space:nowrap;font-size:clamp(64px,11vw,170px);font-weight:800;line-height:1.02;letter-spacing:-.03em;color:var(--ink)}
+.row{overflow:hidden;white-space:nowrap;font-size:clamp(52px,8.5vw,136px);font-weight:800;line-height:1.02;letter-spacing:-.03em;color:var(--ink)}
 .track{display:inline-flex;align-items:center;gap:.25em;padding-right:.25em}
 .track svg{width:.55em;height:.55em;flex:none}
-.row.outline span{color:transparent;-webkit-text-stroke:2.5px var(--ink)}
+.row.outline span{color:transparent;-webkit-text-stroke:2.5px var(--ink);transition:color .5s}
 .s7 .content{justify-content:flex-end}
-.s7 .btn{margin-top:24px}
+.how{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px;align-items:end}
+.h2how{font-size:clamp(36px,5vw,76px);max-width:none}
+.how>.btn{grid-column:2;grid-row:1;margin-bottom:2px}
+.btn svg{width:20px;height:20px;flex:none}
+.steps{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,24px);margin-top:clamp(16px,2.6vh,26px)}
+.step{font:inherit;text-align:left;color:var(--ink);background:var(--sc);border:3px solid var(--ink);border-radius:20px;box-shadow:5px 5px 0 var(--ink);padding:clamp(14px,1.6vw,20px);display:flex;flex-direction:column;align-items:stretch;transition:box-shadow .25s}
+.step.done{box-shadow:2px 2px 0 var(--ink)}
+.shead{display:flex;align-items:center;justify-content:space-between;margin-bottom:clamp(10px,1.6vh,16px)}
+.snum{font-size:clamp(30px,3vw,44px);font-weight:800;line-height:1;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:2px var(--ink);transition:color .4s}
+.step.done .snum{color:var(--ink)}
+.sseal{flex:none;animation:wob 2.4s ease-in-out infinite}
+.step:nth-child(2) .sseal{animation-delay:-.6s}.step:nth-child(3) .sseal{animation-delay:-1.2s}.step:nth-child(4) .sseal{animation-delay:-1.8s}
+.step.done .sseal{animation:none}
+.sface{width:clamp(40px,3.4vw,48px);height:clamp(40px,3.4vw,48px);border-radius:50%;background:#fff;border:3px solid var(--ink);display:grid;place-items:center}
+.sface svg{grid-area:1/1;width:62%;height:62%}
+.sok{display:none}
+.step.done .sface{background:var(--ink)}
+.step.done .sic{display:none}
+.step.done .sok{display:block}
+.stitle{font-size:clamp(22px,2.4vw,32px);font-weight:800;line-height:1;letter-spacing:-.02em}
+.sdesc{font-size:clamp(14px,1.25vw,16px);line-height:1.4;margin-top:8px}
 
 .s8 .content{align-items:center;text-align:center}
 .s8 .h2{max-width:12ch;font-size:clamp(46px,8.5vw,132px)}
@@ -251,9 +271,22 @@ body.fine #cur,body.fine #ring{opacity:1}
   .face{box-shadow:4px 4px 0 var(--ink)}
   .contact{font-size:15px;padding:11px 16px}
   .btn{font-size:16px;padding:12px 20px}
+  .how{grid-template-columns:minmax(0,1fr)}
+  .how>.btn{grid-column:1;grid-row:auto;margin:16px 0 0;justify-self:start}
+  .h2how{font-size:36px}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+  .step{border-radius:16px;box-shadow:4px 4px 0 var(--ink);padding:11px 12px 12px}
+  .shead{margin-bottom:8px}
+  .snum{font-size:26px;-webkit-text-stroke:1.5px var(--ink)}
+  .sface{width:34px;height:34px;border-width:2.5px}
+  .stitle{font-size:19px}
+  .sdesc{font-size:13px;line-height:1.35;margin-top:5px}
+  .row.outline span{-webkit-text-stroke:2px var(--ink)}
 }
+@media (max-width:760px) and (max-height:700px){.marq{top:2.5%}.row{font-size:36px}.h2how{font-size:30px}.steps{gap:10px;margin-top:10px}.how>.btn{margin-top:12px}.sdesc{font-size:12.5px}.shead{margin-bottom:6px}.sface{width:30px;height:30px}.snum{font-size:22px}}
 @media (max-height:720px) and (min-width:761px){.panel{min-height:0}.card{height:clamp(200px,38vh,300px)}}
-@media (prefers-reduced-motion:reduce){.route .dash,.ct b,.seal,.ping::after{animation:none}}
+@media (max-height:780px) and (min-width:761px){.marq{top:6%}.row{font-size:clamp(52px,7.5vw,112px)}}
+@media (prefers-reduced-motion:reduce){.route .dash,.ct b,.seal,.sseal,.ping::after{animation:none}}
 </style>
 </head>
 <body>
@@ -346,15 +379,41 @@ body.fine #cur,body.fine #ring{opacity:1}
     </div>
   </section>
 
-  <section class="slide s7" aria-label="Basrh" aria-hidden="true">
+  <section class="slide s7" aria-label="How I work" aria-hidden="true">
     <div class="marq" aria-hidden="true">
       <div class="row"><div class="track"></div></div>
       <div class="row outline"><div class="track"></div></div>
     </div>
     <div class="content">
-      <h2 class="h2 split-w">I also run Basrh.com.</h2>
-      <p class="body" data-a>My own studio, building sites for freelance clients.</p>
-      <a class="btn ink magnet" data-a href="https://basrh.com" target="_blank" rel="noopener">See the studio</a>
+      <div class="how">
+        <div>
+          <h2 class="h2 h2how split-w">Here's how a project goes.</h2>
+          <p class="hintline" id="howhint" data-a aria-live="polite">Tap a step to tick it off.</p>
+        </div>
+        <div class="steps" id="steps">
+          <button class="step" style="--sc:var(--yellow)" data-k="Brief" data-c="yellow" data-rot="-2" data-hover="tick" aria-pressed="false">
+            <span class="shead"><span class="snum">01</span><span class="sseal" aria-hidden="true"><span class="sface"><svg class="sic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5h16v11.5H10l-6 4z" fill="var(--yellow)"/><path d="M10 8.6a2 2 0 1 1 2.8 1.8c-.5.3-.8.6-.8 1.2v.3M12 13.9v.01"/></svg><svg class="sok" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></span></span>
+            <span class="stitle">Brief</span>
+            <span class="sdesc">We talk. I ask the annoying questions early.</span>
+          </button>
+          <button class="step" style="--sc:var(--sky)" data-k="Build" data-c="sky" data-rot="1.5" data-hover="tick" aria-pressed="false">
+            <span class="shead"><span class="snum">02</span><span class="sseal" aria-hidden="true"><span class="sface"><svg class="sic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5" fill="var(--sky)"/><path d="M3 9h18M9.5 13l-2 2 2 2M14.5 13l2 2-2 2"/></svg><svg class="sok" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></span></span>
+            <span class="stitle">Build</span>
+            <span class="sdesc">A live staging link, not a pile of screenshots.</span>
+          </button>
+          <button class="step" style="--sc:var(--pink)" data-k="Ship" data-c="pink" data-rot="-1" data-hover="tick" aria-pressed="false">
+            <span class="shead"><span class="snum">03</span><span class="sseal" aria-hidden="true"><span class="sface"><svg class="sic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.2L21 3l-6.6 18-3.1-7.2z" fill="var(--pink)"/><path d="M11.3 13.8L21 3"/></svg><svg class="sok" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></span></span>
+            <span class="stitle">Ship</span>
+            <span class="sdesc">Go live with tracking set up and speed checked.</span>
+          </button>
+          <button class="step" style="--sc:var(--mint)" data-k="Support" data-c="mint" data-rot="2" data-hover="tick" aria-pressed="false">
+            <span class="shead"><span class="snum">04</span><span class="sseal" aria-hidden="true"><span class="sface"><svg class="sic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5" fill="var(--mint)"/><circle cx="12" cy="12" r="3.5" fill="#fff"/><path d="M6 6l3.5 3.5M14.5 14.5L18 18M18 6l-3.5 3.5M9.5 14.5L6 18"/></svg><svg class="sok" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></span></span>
+            <span class="stitle">Support</span>
+            <span class="sdesc">I stick around after launch. No ghosting.</span>
+          </button>
+        </div>
+        <button class="btn ink magnet" id="startp" data-a>Start a project<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
     </div>
   </section>
 
@@ -580,7 +639,7 @@ selectJob(0,false);
 /* slide 5: project cards */
 const PROJ=[
   {name:"Chassis VIN",desc:"Vehicle history reports.",stack:["Next.js","Tailwind"],url:"https://chassisvin.com/",host:"chassisvin.com",c:"blue",sh:"star",sc:"yellow"},
-  {name:"Healthy Boost Plan",desc:"Quiz funnel with A/B testing dashboard.",stack:["Next.js","GTM","Meta Pixel"],url:"https://healthyboostplan.com/",host:"healthyboostplan.com",c:"mint",sh:"circle",sc:"pink"},
+  {name:"Healthy Boost Plan",desc:"Quiz funnel with A/B testing dashboard.",stack:["Next.js","GTM","Meta Pixel"],url:"https://healthyboostplan.basrh.com/",host:"healthyboostplan.basrh.com",c:"mint",sh:"circle",sc:"pink"},
   {name:"SBENRC",desc:"Research library.",stack:["WordPress","ACF","Custom post types"],url:"https://sbenrc.com.au/",host:"sbenrc.com.au",c:"yellow",sh:"plus",sc:"blue"},
   {name:"Be Your Kind",desc:"Brand website.",stack:["WordPress","Gutenberg","ACF blocks"],url:"https://beyourkind.com/",host:"beyourkind.com",c:"pink",sh:"ring",sc:"orange"}
 ];
@@ -652,12 +711,34 @@ document.getElementById('shake').addEventListener('click',e=>{burst(e.clientX,e.
   else if(!RM)gsap.fromTo(stickers,{y:0},{keyframes:{y:[-30,0],rotation:[R(-10,10),0]},duration:.5,stagger:.04,ease:'power2.out'})});
 let rsz;addEventListener('resize',()=>{clearTimeout(rsz);rsz=setTimeout(()=>{if(phys){makeBodies();buildWalls();if(cur===5)drop()}},200)});
 
-/* slide 7: marquee */
+/* slide 7: marquee + process steps */
 const star='<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5L61 38H95L67 58L78 92L50 71L22 92L33 58L5 38H39Z" fill="'+INK+'"/></svg>';
-const tls=[...document.querySelectorAll('.track')].map((t,i)=>{let h='';for(let k=0;k<3;k++)h+='<span>Basrh.com</span>'+star;t.innerHTML=h+h;
-  const tl=gsap.fromTo(t,{xPercent:i?-50:0},{xPercent:i?0:-50,duration:20,ease:'none',repeat:-1});if(RM)tl.pause();
+const steps=[...document.querySelectorAll('.step')],howHint=document.getElementById('howhint'),startBtn=document.getElementById('startp');
+const tls=[...document.querySelectorAll('.track')].map((t,i)=>{let h='';for(let k=0;k<2;k++)steps.forEach(st=>{h+='<span data-k="'+st.dataset.k+'">'+st.dataset.k+'</span>'+star});t.innerHTML=h+h;
+  const tl=gsap.fromTo(t,{xPercent:i?-50:0},{xPercent:i?0:-50,duration:24,ease:'none',repeat:-1});if(RM)tl.pause();
   const row=t.parentNode;row.addEventListener('pointerenter',()=>{if(!RM)gsap.to(tl,{timeScale:5,duration:.6})});
   row.addEventListener('pointerleave',()=>{if(!RM)gsap.to(tl,{timeScale:1,duration:1})});return tl});
+const outW=st=>document.querySelectorAll('.row.outline span[data-k="'+st.dataset.k+'"]');
+function setHint(n,anim){const L=steps.length;
+  howHint.textContent=n===0?'Tap a step to tick it off.':n<L?n+' of '+L+' ticked off.':"That's the whole process. Your turn.";
+  if(anim&&!RM)gsap.fromTo(howHint,{y:14,opacity:0},{y:0,opacity:1,duration:.45,ease:'back.out(2.4)'})}
+function paintStep(st){st.classList.toggle('done',st._on);outW(st).forEach(sp=>sp.style.color=st._on?'var(--'+st.dataset.c+')':'')}
+function resetSteps(){steps.forEach(st=>{if(st._tl)st._tl.kill();st._on=false;st.setAttribute('aria-pressed','false');paintStep(st);gsap.set(st.querySelector('.sface'),{rotationY:0})});setHint(0)}
+steps.forEach(st=>{const base=+st.dataset.rot,face=st.querySelector('.sface');st._on=false;gsap.set(st,{rotation:base});
+  st.addEventListener('click',()=>{st._on=!st._on;st.setAttribute('aria-pressed',st._on?'true':'false');
+    const n=steps.filter(s=>s._on).length;setHint(n,true);
+    if(RM){paintStep(st);return}
+    if(st._tl)st._tl.kill();
+    st._tl=gsap.timeline().to(face,{rotationY:90,duration:.14,ease:'power2.in'}).add(()=>paintStep(st)).fromTo(face,{rotationY:-90},{rotationY:0,duration:.6,ease:'back.out(3)'});
+    gsap.fromTo(st,{scaleX:1,scaleY:1},{keyframes:{scaleX:[1.06,.98,1],scaleY:[.92,1.03,1]},duration:.45,ease:'power2.out'});
+    if(!st._on)return;
+    burstAt(face,22,[C[st.dataset.c],'#fff',INK],1);
+    gsap.fromTo(outW(st),{yPercent:0},{yPercent:-14,yoyo:true,repeat:1,duration:.2,ease:'power2.out'});
+    if(n===steps.length)gsap.delayedCall(.35,()=>{burstAt(startBtn,60,null,1.4);
+      gsap.fromTo(startBtn,{rotation:0,scale:1},{keyframes:{rotation:[-8,7,-5,3,0],scale:[1.15,1.1,1.05,1.02,1]},duration:.8,ease:'power2.out'})})});
+  st.addEventListener('pointerenter',e=>{if(RM||e.pointerType!=='mouse')return;gsap.to(st,{rotation:0,y:-8,duration:.35,ease:'back.out(2)',overwrite:'auto'})});
+  st.addEventListener('pointerleave',e=>{if(RM||e.pointerType!=='mouse')return;gsap.to(st,{rotation:base,y:0,duration:.8,ease:'elastic.out(1,.45)',overwrite:'auto'})})});
+startBtn.addEventListener('click',()=>{const r=startBtn.getBoundingClientRect();go(cur+1,r.left+r.width/2,r.top+r.height/2)});
 
 /* slide 8: contacts */
 const contacts=[...document.querySelectorAll('.contact')];
@@ -691,13 +772,16 @@ const enters=[
     gsap.fromTo(cards,{y:160,rotation:()=>R(-25,25),opacity:0,scale:.6},{y:0,rotation:0,opacity:1,scale:1,stagger:.1,duration:1,ease:'back.out(1.6)',delay:.55})},
   s=>{words(s,.3);pop(s,.5);if(usePhys)gsap.delayedCall(.35,startPhys);
     else gsap.fromTo(stickers,{scale:0,rotation:()=>R(-30,30)},{scale:1,rotation:()=>R(-6,6),stagger:.05,duration:.6,ease:'back.out(2)',delay:.5})},
-  s=>{words(s,.5);pop(s,.8);gsap.fromTo(s.querySelectorAll('.row'),{x:i=>i?300:-300,opacity:0},{x:0,opacity:1,duration:1.3,ease:'power4.out',stagger:.12,delay:.25})},
+  s=>{words(s,.4);pop(s,.7);resetSteps();gsap.fromTo(s.querySelectorAll('.row'),{x:i=>i?300:-300,opacity:0},{x:0,opacity:1,duration:1.3,ease:'power4.out',stagger:.12,delay:.25});
+    gsap.killTweensOf(steps);
+    gsap.fromTo(steps,{y:-40,scale:1.5,opacity:0,rotation:()=>R(-25,25)},{y:0,scale:1,opacity:1,rotation:i=>+steps[i].dataset.rot,duration:.7,ease:'back.out(2.2)',
+      stagger:{each:.14,onComplete(){burstAt(this.targets()[0],10,null,.6)}},delay:.8})},
   s=>{gsap.killTweensOf(outL);outL.forEach(l=>l.style.color='');
     gsap.fromTo(outL,{yPercent:130,rotation:()=>R(-40,40),opacity:0},{yPercent:0,rotation:0,opacity:1,duration:.9,ease:'back.out(2.2)',stagger:.03,delay:.35});pop(s,.9);
     gsap.fromTo(contacts,{y:90,opacity:0,scale:.6,rotation:()=>R(-20,20)},{y:0,opacity:1,scale:1,rotation:0,stagger:.09,duration:.9,ease:'back.out(2)',delay:1.05})}
 ];
 function runEnter(i,d){const s=slides[i];
-  if(RM){gsap.fromTo(s.querySelector('.content'),{opacity:0},{opacity:1,duration:.4});if(i===2)yrs.querySelector('.n').textContent='5';if(i===3)animatePanel();if(i===4)cards.forEach(c=>flip(c,false,true));return}
+  if(RM){gsap.fromTo(s.querySelector('.content'),{opacity:0},{opacity:1,duration:.4});if(i===2)yrs.querySelector('.n').textContent='5';if(i===3)animatePanel();if(i===4)cards.forEach(c=>flip(c,false,true));if(i===6)resetSteps();return}
   enters[i](s,d||0)}
 
 /* nav + transitions */
