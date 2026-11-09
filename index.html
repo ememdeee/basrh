@@ -195,6 +195,18 @@ body.fine,body.fine *{cursor:none!important}
 .card.big .bstack{gap:8px;margin-top:16px}
 .card.big .bstack span{font-size:13px;padding:5px 11px}
 .card.big .blink{justify-content:center;margin-top:14px;padding:13px 16px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font-size:15px}
+.blist{font:inherit;font-weight:800;font-size:clamp(12px,1.1vw,14px);margin-top:12px;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:0;background:var(--ink);color:#fff}
+.blist svg{width:12px;height:12px;flex:none;transition:transform .25s}
+.blist[aria-expanded="true"] svg{transform:rotate(180deg)}
+.llist{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.llist[hidden]{display:none}
+.litem{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;border:2px solid var(--ink);border-radius:10px;color:var(--ink);text-decoration:none;font-weight:800;font-size:13px;line-height:1.2}
+.litem small{display:block;font-weight:500;font-size:11px;margin-top:2px;overflow-wrap:anywhere}
+.litem svg{width:14px;height:14px;flex:none}
+.litem.ask{border-style:dashed}
+.card.big .blist{font-size:14px;padding:8px 14px;margin-top:16px}
+.card.big .litem{font-size:14px;padding:10px 12px}
+.card.big .litem small{font-size:12px}
 
 .head4{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .field{position:relative;flex:1;min-height:220px;max-height:480px;margin-top:20px}
@@ -545,8 +557,12 @@ addEventListener('pointermove',e=>{
   if(FINE&&e.pointerType==='mouse'){document.body.classList.add('fine');gsap.set(curEl,{x:e.clientX,y:e.clientY});rqx(e.clientX);rqy(e.clientY);
     const h=e.target.closest&&e.target.closest('[data-hover],.ltr,button,a');
     let key=h?(h.dataset&&h.dataset.hover||(h.classList.contains('ltr')?(h.closest('.name')?'drag':'btn'):'btn')):'';
-    if(key!==ring._k){ring._k=key;rl.textContent=(key&&key!=='btn')?key:'';gsap.to(ring,{scale:key?(key==='btn'?1.5:1.9):1,duration:.35,ease:'back.out(2.2)'})}}
+    /* plain states (none / over a control) apply at once; labelled states wait 90ms so crossing a gap between controls doesn't flash "close" */
+    if(key!==ring._w){ring._w=key;clearTimeout(ring._t);
+      if(!key||key==='btn')setRing(key);else ring._t=setTimeout(()=>setRing(ring._w),90)}
+    else if(ring._k===null)setRing(key)}
 });
+function setRing(key){if(key===ring._k)return;ring._k=key;rl.textContent=(key&&key!=='btn')?key:'';gsap.to(ring,{scale:key?(key==='btn'?1.5:1.9):1,duration:.35,ease:'back.out(2.2)'})}
 document.addEventListener('mouseleave',()=>document.body.classList.remove('fine'));
 
 /* draggable (letters) */
@@ -655,13 +671,22 @@ selectJob(0,false);
 
 /* slide 5: project cards */
 const PROJ=[
-  {name:"Healthy Boost Plan",desc:"Quiz funnel with A/B testing dashboard.",stack:["Next.js","GTM","Meta Pixel"],url:"https://healthyboostplan.basrh.com/",host:"healthyboostplan.basrh.com",c:"mint",sh:"circle",sc:"pink"},
+  {name:"Quiz",desc:"Quiz builder, a Google Forms alternative. Build pages, share one link, and see where people drop off.",stack:["Next.js","Analytics","No-code builder"],url:"https://quiz.basrh.com/",host:"quiz.basrh.com",c:"mint",sh:"circle",sc:"pink",
+    list:{label:"Custom quizzes I built",items:[{name:"Healthy Boost Plan",note:"Quiz funnel with A/B testing dashboard.",url:"https://healthyboostplan.basrh.com/"}],
+      ask:{name:"Need one?",note:"Order your own quiz"}}},
   {name:"SBENRC",desc:"Research library.",stack:["WordPress","ACF","Custom post types"],url:"https://sbenrc.com.au/",host:"sbenrc.com.au",c:"yellow",sh:"plus",sc:"blue"},
   {name:"Falafel Fresh",desc:"Restaurant website with menu and catering.",stack:["WordPress","Elementor Pro","GTM"],url:"https://falafelfresh.com/",host:"falafelfresh.com",c:"blue",sh:"star",sc:"yellow"},
   {name:"Be Your Kind",desc:"Brand website.",stack:["WordPress","Gutenberg","ACF blocks"],url:"https://beyourkind.com/",host:"beyourkind.com",c:"pink",sh:"ring",sc:"orange"}
 ];
 const EXT='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>';
 const XIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const CHV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+/* optional expandable link list on a card's back (used by the Quiz card) */
+const ARR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+/* the "ask" row stays on the page: it jumps to the last (contact) slide instead of opening a new tab */
+const litem=(i,cls)=>cls?'<a class="litem ask" href="#contact" tabindex="-1"><span>'+i.name+'<small>'+i.note+'</small></span>'+ARR+'</a>'
+  :'<a class="litem" href="'+i.url+'" target="_blank" rel="noopener" tabindex="-1"><span>'+i.name+'<small>'+i.note+'</small></span>'+EXT+'</a>';
+const listHTML=l=>l?'<button type="button" class="blist" aria-expanded="false" tabindex="-1">'+l.label+CHV+'</button><div class="llist" hidden>'+l.items.map(i=>litem(i)).join('')+(l.ask?litem(l.ask,' ask'):'')+'</div>':'';
 const cardsEl=document.getElementById('cards');
 const MOB=matchMedia('(max-width:760px)');
 const cards=PROJ.map(p=>{const slot=document.createElement('div');slot.className='slot';
@@ -670,14 +695,18 @@ const cards=PROJ.map(p=>{const slot=document.createElement('div');slot.className
   const fg=p.c==='blue'?'#fff':INK;
   d.innerHTML='<div class="card-in"><div class="face front" style="background:'+C[p.c]+';color:'+fg+'"><div class="fshape">'+SH[p.sh](C[p.sc])+'</div><span class="seal">Pop</span><h3 class="cname">'+p.name+'</h3></div>'+
     '<div class="face back"><span class="bx" style="background:'+C[p.c]+';color:'+fg+'" aria-hidden="true">'+XIC+'</span><h3 class="bname">'+p.name+'</h3>'+
-    '<div class="bbody"><p class="bdesc">'+p.desc+'</p><div class="bstack">'+p.stack.map(s=>'<span>'+s+'</span>').join('')+'</div></div>'+
+    '<div class="bbody"><p class="bdesc">'+p.desc+'</p><div class="bstack">'+p.stack.map(s=>'<span>'+s+'</span>').join('')+'</div>'+listHTML(p.list)+'</div>'+
     '<a class="blink" href="'+p.url+'" target="_blank" rel="noopener" tabindex="-1">'+p.host+EXT+'</a></div></div>';
   slot.appendChild(d);cardsEl.appendChild(slot);const inn=d.firstChild;d._bb=d.querySelector('.bbody');d._sync=()=>side(d);
   d._bb.addEventListener('scroll',()=>fade(d),{passive:true});
-  d.addEventListener('click',e=>{if(e.target.closest('a')){burstAt(e.target.closest('a'),20);return}flip(d,!d._open)});
+  d.addEventListener('click',e=>{const ak=e.target.closest('.ask');
+    if(ak){e.preventDefault();burstAt(ak,20);flip(d,false,true);go(N-1,e.clientX,e.clientY);return}
+    if(e.target.closest('a')){burstAt(e.target.closest('a'),20);return}
+    const lb=e.target.closest('.blist');if(lb){openList(d,lb.getAttribute('aria-expanded')!=='true');return}
+    flip(d,!d._open)});
   d.addEventListener('keydown',e=>{if(e.key==='Escape'&&d._open){e.preventDefault();flip(d,false);d.focus();return}
     if(e.target!==d)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();flip(d,!d._open)}});
-  d.addEventListener('pointermove',e=>{if(RM||e.pointerType!=='mouse')return;const r=d.getBoundingClientRect(),dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5;
+  d.addEventListener('pointermove',e=>{if(RM||e.pointerType!=='mouse'||d._open)return;/* an open card stays still so its controls don't move under the cursor */const r=d.getBoundingClientRect(),dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5;
     gsap.to(inn,{rotationY:d._base+dx*20,rotationX:-dy*16,duration:.5,ease:'power2.out',overwrite:'auto',onUpdate:d._sync})});
   d.addEventListener('pointerleave',()=>{if(RM)return;gsap.to(inn,{rotationY:d._base,rotationX:0,duration:.9,ease:'elastic.out(1,.5)',overwrite:'auto',onUpdate:d._sync})});
   return d});
@@ -685,6 +714,11 @@ const cards=PROJ.map(p=>{const slot=document.createElement('div');slot.className
 function side(d){const y=((gsap.getProperty(d.firstChild,'rotationY')%360)+360)%360,b=y>90&&y<270;
   if(b!==d._back){d._back=b;d.classList.toggle('flipped',b);if(b)fade(d)}}
 function fade(d){const b=d._bb;b.classList.toggle('more',b.scrollHeight-b.clientHeight-b.scrollTop>2)}
+/* expandable link list: keep focusability in step with the card and list state */
+function openList(d,on){const b=d.querySelector('.blist');if(!b)return;const l=d.querySelector('.llist');
+  b.setAttribute('aria-expanded',on?'true':'false');l.hidden=!on;
+  l.querySelectorAll('a').forEach(a=>a.tabIndex=on&&d._open?0:-1);
+  if(on)burstAt(b,14);fade(d);if(on)requestAnimationFrame(()=>{d._bb.scrollTo({top:d._bb.scrollHeight,behavior:RM?'auto':'smooth'});fade(d)})}
 /* phones: an open card lifts out of its slot and covers the whole grid */
 const slotBox=d=>{const s=d.parentNode;return{left:s.offsetLeft,top:s.offsetTop,width:s.offsetWidth,height:s.offsetHeight}};
 const gridBox=()=>({left:0,top:0,width:cardsEl.clientWidth,height:cardsEl.clientHeight});
@@ -700,6 +734,7 @@ function grow(d,big,instant){const was=d.classList.contains('big');
 function flip(d,open,instant){const inn=d.firstChild;d._open=open;d._base=open?180:0;d.setAttribute('aria-expanded',open?'true':'false');
   d.setAttribute('aria-label',(open?'Close ':'Open ')+d.querySelector('.cname').textContent);d.dataset.hover=open?'close':'pop';ring._k=null;
   d.querySelector('.blink').tabIndex=open?0:-1;
+  const bl=d.querySelector('.blist');if(bl){bl.tabIndex=open?0:-1;if(open)openList(d,bl.getAttribute('aria-expanded')==='true');else{bl.setAttribute('aria-expanded','false');d.querySelector('.llist').hidden=true;d.querySelectorAll('.litem').forEach(a=>a.tabIndex=-1)}}
   const big=open&&MOB.matches;
   if(big)cards.forEach(c=>{if(c!==d&&c._open)flip(c,false,true)});
   grow(d,big,RM||instant);
