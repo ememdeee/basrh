@@ -41,6 +41,19 @@ async function warm(page) {
   });
   await wait(800);
 }
+// Web fonts loaded from a stylesheet that is itself added late (Typekit on beyourkind.com) are not covered by
+// document.fonts.ready, so wait until the first family named on the page's h1 has a FontFace that finished loading.
+async function headingFont(page) {
+  try {
+    await page.waitForFunction(() => {
+      const h = document.querySelector("h1");
+      if (!h) return true;
+      const fam = getComputedStyle(h).fontFamily.split(",")[0].trim().replace(/["']/g, "");
+      return [...document.fonts].some((f) => f.family.replace(/["']/g, "") === fam && f.status === "loaded");
+    }, null, { timeout: 45000, polling: 500 });
+  } catch { console.log("  heading font did not load within 45 s"); }
+  await wait(1500);
+}
 async function hideCss(page, css) { await page.addStyleTag({ content: css }); }
 // Harinesia: show the counter-off state the site itself renders when produk.json "terjual" is empty
 async function noCounter(page) {
@@ -249,11 +262,18 @@ const jobs = {
   async clients() {
     const sites = [["sbenrc", "https://sbenrc.com.au/"], ["falafel", "https://falafelfresh.com/"], ["byk", "https://beyourkind.com/"]];
     for (const [k, url] of sites) {
+      if (process.env.ONLY && process.env.ONLY !== k) continue; // ONLY=byk node capture.mjs clients
       for (const kind of ["d", "m"]) {
         const c = await ctx(kind); const p = await c.newPage();
         try {
           await p.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
           await settle(p, 3000);
+          await headingFont(p);
+          if (k === "byk") await p.evaluate(async () => {
+            // the hero is a 15 s video; freeze it on the clinic frame at 3 s so desktop and mobile match
+            const v = document.querySelector("video"); if (!v) return;
+            v.pause(); v.currentTime = 3; await new Promise((r) => v.addEventListener("seeked", r, { once: true }));
+          }).then(() => wait(600));
           await shot(p, `${k}-${kind}-hero`);
           if (kind === "d") { await warm(p); await shot(p, `${k}-d-full`, { fullPage: true }); }
         } catch (e) { console.log("ERR", k, kind, e.message); }
