@@ -214,7 +214,15 @@ const jobs = {
       const c = await ctx(kind); const p = await c.newPage();
       try {
         await p.goto("https://falafelfresh.com/", { waitUntil: "commit", timeout: 120000 });
-        await wait(12000);
+        // The hero photo is a lazy-loaded Elementor background (.avif) that can take 20+ s on this host.
+        // Wait for the hero container to get its background URL, then for that image to download and decode.
+        await p.waitForFunction(() => [...document.querySelectorAll(".e-con")].some((e) => /home-hero/.test(getComputedStyle(e).backgroundImage)), null, { timeout: 120000 });
+        await p.evaluate(async () => {
+          const el = [...document.querySelectorAll(".e-con")].find((e) => /home-hero/.test(getComputedStyle(e).backgroundImage));
+          const url = getComputedStyle(el).backgroundImage.match(/url\("?([^")]+)"?\)/)[1];
+          const im = new Image(); im.src = url; await im.decode();
+        });
+        await wait(3000);
         await shot(p, `falafel-${kind}-hero`, { animations: "disabled", timeout: 90000 });
         if (kind === "d") { await warm(p); await shot(p, `falafel-d-full`, { fullPage: true, animations: "disabled", timeout: 90000 }); }
       } catch (e) { console.log("ERR falafel", kind, e.message); }

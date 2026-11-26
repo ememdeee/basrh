@@ -1,0 +1,4 @@
+# Portfolio PDF source (scripts, screenshots, previews) stays in git but is not deployed.
+# Only the finished PDF is served from this folder.
+/pdf/portfolio/*
+!/pdf/portfolio/portfolio.pdf

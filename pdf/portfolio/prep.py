@@ -42,6 +42,7 @@ JOBS = [
     ("sbenrc-d", "sbenrc-d-hero.png", 1100, None),
     ("sbenrc-m", "sbenrc-m-hero.png", M, None),
     ("falafel-d", "falafel-d-hero.png", 1100, None),
+    ("falafel-m", "falafel-m-hero.png", M, None),
     ("byk-d", "byk-d-hero.png", 1100, None),
     ("byk-m", "byk-m-hero.png", M, None),
 ]
