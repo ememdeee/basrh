@@ -1,0 +1,234 @@
+[
+ {
+  "t": "Not designed yet: every screen Code built without a board, with a link to see each one",
+  "h": "/dev/undesigned"
+ },
+ {
+  "t": "Log out",
+  "h": "/dev/session?as=out&next=%2Fdev"
+ },
+ {
+  "t": "Log in as a normal person",
+  "h": "/dev/session?as=user&next=%2Fdev"
+ },
+ {
+  "t": "Log in as the admin",
+  "h": "/dev/session?as=admin&next=%2Fdev"
+ },
+ {
+  "t": "Your quizzes/dashboard",
+  "h": "/dashboard"
+ },
+ {
+  "t": "Editor: published with 3 changes waiting (Body Reset)/dashboard/quiz-body-reset",
+  "h": "/dashboard/quiz-body-reset"
+ },
+ {
+  "t": "Editor: published and up to date, closed (Debug quiz)/dashboard/quiz-debug",
+  "h": "/dashboard/quiz-debug"
+ },
+ {
+  "t": "Editor: never published, no question yet (Customer feedback)/dashboard/quiz-customer-feedback",
+  "h": "/dashboard/quiz-customer-feedback"
+ },
+ {
+  "t": "Responses: Summary (Body Reset)/dashboard/quiz-body-reset/responses",
+  "h": "/dashboard/quiz-body-reset/responses"
+ },
+ {
+  "t": "Responses: Individual/dashboard/quiz-body-reset/responses?view=individual",
+  "h": "/dashboard/quiz-body-reset/responses?view=individual"
+ },
+ {
+  "t": "Responses: nothing yet (Customer feedback)/dashboard/quiz-customer-feedback/responses",
+  "h": "/dashboard/quiz-customer-feedback/responses"
+ },
+ {
+  "t": "Account/account",
+  "h": "/account"
+ },
+ {
+  "t": "Editor with the Quiz settings panel open/dashboard/quiz-body-reset/settings",
+  "h": "/dashboard/quiz-body-reset/settings"
+ },
+ {
+  "t": "Quiz not found/dashboard/does-not-exist",
+  "h": "/dashboard/does-not-exist"
+ },
+ {
+  "t": "UI kit: every component/dev/ui",
+  "h": "/dev/ui"
+ },
+ {
+  "t": "What each template contains/dev/templates",
+  "h": "/dev/templates"
+ },
+ {
+  "t": "The five emails/dev/emails",
+  "h": "/dev/emails"
+ },
+ {
+  "t": "Body Reset (live, one question only for “Lose weight”)/quiz/body-reset",
+  "h": "/quiz/body-reset"
+ },
+ {
+  "t": "Debug quiz (closed)/quiz/debug-quiz",
+  "h": "/quiz/debug-quiz"
+ },
+ {
+  "t": "Customer feedback (not published)/quiz/customer-feedback",
+  "h": "/quiz/customer-feedback"
+ },
+ {
+  "t": "A link that does not exist/quiz/no-such-quiz",
+  "h": "/quiz/no-such-quiz"
+ },
+ {
+  "t": "Try it: Body Reset, draft with 3 changes (log in first)/dashboard/quiz-body-reset/preview",
+  "h": "/dashboard/quiz-body-reset/preview"
+ },
+ {
+  "t": "Try it: Customer feedback, never published (log in first)/dashboard/quiz-customer-feedback/preview",
+  "h": "/dashboard/quiz-customer-feedback/preview"
+ },
+ {
+  "t": "Overview/admin",
+  "h": "/admin"
+ },
+ {
+  "t": "Users/admin/users",
+  "h": "/admin/users"
+ },
+ {
+  "t": "Users: not verified/admin/users?filter=unverified",
+  "h": "/admin/users?filter=unverified"
+ },
+ {
+  "t": "A person on the Custom plan (Maria Gomez)/admin/users/u-maria",
+  "h": "/admin/users/u-maria"
+ },
+ {
+  "t": "A person on the Free plan (Sarah Lee)/admin/users/u-sarah-lee",
+  "h": "/admin/users/u-sarah-lee"
+ },
+ {
+  "t": "A suspended person (Kevin Ross)/admin/users/u-suspended",
+  "h": "/admin/users/u-suspended"
+ },
+ {
+  "t": "Your own account (cannot suspend or delete)/admin/users/u-self",
+  "h": "/admin/users/u-self"
+ },
+ {
+  "t": "A person that does not exist/admin/users/nobody",
+  "h": "/admin/users/nobody"
+ },
+ {
+  "t": "Home/",
+  "h": "/"
+ },
+ {
+  "t": "Pricing/pricing",
+  "h": "/pricing"
+ },
+ {
+  "t": "Contact/contact",
+  "h": "/contact"
+ },
+ {
+  "t": "Contact: errors/contact?state=error",
+  "h": "/contact?state=error"
+ },
+ {
+  "t": "Contact: message sent/contact?state=sent",
+  "h": "/contact?state=sent"
+ },
+ {
+  "t": "Terms of Service/terms",
+  "h": "/terms"
+ },
+ {
+  "t": "Privacy Policy/privacy",
+  "h": "/privacy"
+ },
+ {
+  "t": "Page not found (404)/this-page-does-not-exist",
+  "h": "/this-page-does-not-exist"
+ },
+ {
+  "t": "Something went wrong (500)/dev/500",
+  "h": "/dev/500"
+ },
+ {
+  "t": "Maintenance/maintenance",
+  "h": "/maintenance"
+ },
+ {
+  "t": "Register/register",
+  "h": "/register"
+ },
+ {
+  "t": "Log in/login",
+  "h": "/login"
+ },
+ {
+  "t": "Log in: wrong password/login?state=error",
+  "h": "/login?state=error"
+ },
+ {
+  "t": "Log in: email not verified/login?state=unverified",
+  "h": "/login?state=unverified"
+ },
+ {
+  "t": "Log in: too many tries/login?state=too-many",
+  "h": "/login?state=too-many"
+ },
+ {
+  "t": "Log in: account suspended/login?state=suspended",
+  "h": "/login?state=suspended"
+ },
+ {
+  "t": "Log in: Google cancelled/login?state=google-cancelled",
+  "h": "/login?state=google-cancelled"
+ },
+ {
+  "t": "Forgot password/forgot-password",
+  "h": "/forgot-password"
+ },
+ {
+  "t": "Forgot password: check your email/forgot-password/sent",
+  "h": "/forgot-password/sent"
+ },
+ {
+  "t": "Set a new password/reset-password",
+  "h": "/reset-password"
+ },
+ {
+  "t": "Password updated/reset-password/done",
+  "h": "/reset-password/done"
+ },
+ {
+  "t": "Reset link expired/reset-password/expired",
+  "h": "/reset-password/expired"
+ },
+ {
+  "t": "Verify email: check your inbox/verify-email",
+  "h": "/verify-email"
+ },
+ {
+  "t": "Verify email: sent again/verify-email?state=resent",
+  "h": "/verify-email?state=resent"
+ },
+ {
+  "t": "Email verified/verify-email/done",
+  "h": "/verify-email/done"
+ },
+ {
+  "t": "Verify link expired/verify-email/expired",
+  "h": "/verify-email/expired"
+ },
+ {
+  "t": "Account deleted/goodbye",
+  "h": "/goodbye"
+ }
+]
